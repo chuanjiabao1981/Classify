@@ -1,0 +1,2 @@
+1. 需要在项目的最上层执行，保证模块之间的引用可以顺利进行
+	export PYTHONPATH=`pwd`:PYTHONPATH
