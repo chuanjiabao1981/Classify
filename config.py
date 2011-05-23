@@ -1,5 +1,8 @@
 #coding=utf-8
 from pymongo import Connection
+
+##
+version			= ('0','1','0')
 ##
 debug			= True
 ##数据库配置

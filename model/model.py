@@ -47,7 +47,7 @@ class Topic(Document):
 		"content"		:unicode,
 		"content_length"	:int,
 		"author"		:unicode,
-		"author_ref"		:Member,			# 作者引用
+		"author_ref"		:pymongo.objectid.ObjectId,			# 作者引用
 		"video"			:{
 						"where":unicode,	# 视频位置
 						"image":unicode,	# 视频截图的位置
@@ -56,7 +56,7 @@ class Topic(Document):
 		"create_time"		:datetime.datetime,		# topic 创建时间
 		"node_url"		:unicode,			# 节点的url
 		"node_name"		:unicode,			# 节点的引用
-		"node_ref"		:Node,				# 
+		"node_ref"		:pymongo.objectid.ObjectId,				# 
 		"last_reply_time"	:datetime.datetime,
 		"last_reply_by"		:unicode,			# 最后回复
 		"reply_num"		:int			
@@ -73,26 +73,4 @@ class Reply(Document):
 			"content"		:unicode,
 			"content_length"	:int
 		    }
-
-
-if __name__ == '__main__':
-	"""
-	t = connection.Topic()
-	t['title'] = u"你好"
-	t['content']	= u" 谁知道好不好"
-	t['content_length']	=123	
-	t.save()
-	print t.validate()
-	m = connection.Member()
-	m["name"] 	= u"maguowei"
-	m["email"]	= u"chuanjiabao1981@gmail.com"
-	m["password"]   = u"mgw"
-
-	n = connection.Node()
-	n["node_url"]		= 	u"test"
-	n["node_name"]		=	u"测试"
-	n["create_time"]	=	datetime.datetime.now()
-	n.save()
-
-	"""
 
