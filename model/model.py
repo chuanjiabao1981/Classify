@@ -6,6 +6,28 @@ import config
 ## 创建链接
 connection		= Connection(config.mongodb_host,config.mongodb_port)
 
+
+@connection.register
+class Node(Document):
+	__collection__ = 'node'
+	__database__   = config.classify_database
+	structure      = {
+				"node_url"		: unicode, 		# url 
+				"node_name"		: unicode,		# 用于展示的 比如汉字
+				"create_time"		: datetime.datetime
+			 }
+
+@connection.register
+class Member(Document):
+	__collection__ = 'member'
+	__database__   = config.classify_database
+	structure = {
+			"name"		:unicode,
+			"email"		:unicode,
+			"password"	:unicode
+		    }
+
+
 """
 1.  没有把 replies 作为array embeded into 到topic中
     1. 性能。拿插入来讲，独立的document 是 embed array 的10倍 参考《mongodb definitive guide》page 36
@@ -41,15 +63,6 @@ class Topic(Document):
 	}
 
 @connection.register
-class Member(Document):
-	__collection__ = 'member'
-	__database__   = config.classify_database
-	structure = {
-			"name"		:unicode,
-			"email"		:unicode,
-			"password"	:unicode
-		    }
-@connection.register
 class Reply(Document):
 	__collection__ 	= 'reply'
 	__database__	= config.classify_database	
@@ -61,15 +74,6 @@ class Reply(Document):
 			"content_length"	:int
 		    }
 
-@connection.register
-class Node(Document):
-	__collection__ = 'node'
-	__database__   = config.classify_database
-	structure      = {
-				"node_url"		: unicode, 		# url 
-				"node_name"		: unicode,		# 用于展示的 比如汉字
-				"create_time"		: datetime.datetime
-			 }
 
 if __name__ == '__main__':
 	"""
