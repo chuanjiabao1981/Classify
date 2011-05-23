@@ -25,7 +25,7 @@ class Topic(Document):
 		"content"		:unicode,
 		"content_length"	:int,
 		"author"		:unicode,
-		"author_ref"		:pymongo.dbref.DBRef,		# 作者引用
+		"author_ref"		:Member,			# 作者引用
 		"video"			:{
 						"where":unicode,	# 视频位置
 						"image":unicode,	# 视频截图的位置
@@ -34,7 +34,7 @@ class Topic(Document):
 		"create_time"		:datetime.datetime,		# topic 创建时间
 		"node_url"		:unicode,			# 节点的url
 		"node_name"		:unicode,			# 节点的引用
-		"node_ref"		:pymongo.dbref.DBRef,		# 
+		"node_ref"		:Node,				# 
 		"last_reply_time"	:datetime.datetime,
 		"last_reply_by"		:unicode,			# 最后回复
 		"reply_num"		:int			
