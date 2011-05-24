@@ -16,6 +16,8 @@ class Node(Document):
 				"node_name"		: unicode,		# 用于展示的 比如汉字
 				"create_time"		: datetime.datetime
 			 }
+	use_dot_notation	=	True
+
 
 @connection.register
 class Member(Document):

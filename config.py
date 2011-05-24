@@ -14,3 +14,7 @@ if debug:
 else:
 	classify_database	= "shitao"
 
+
+### 模板相对的路径都是以view/template为前缀的
+## 桌面模板 
+template_desktop_path		= "desktop/"
