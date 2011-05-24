@@ -1,6 +1,7 @@
 # coding=utf-8
 import web
 import os
+from model.model  import *
 from model.member import *
 from model.node   import *
 from mako.template import Template
@@ -31,11 +32,17 @@ class NewTopic:
 		member 		= get_member_by_name(member_name)
 		node		= get_node_by_url_name(node_url_name)
 		try: 
-			return template_desktop.get_template('new_topic.html').render(node=node)
+			return template_desktop.get_template('new_topic.html').render(node=node,site=config.site)
 		except:
 			return exceptions.html_error_template().render()
+	def POST(self,node_url_name):
+		node		= get_node_by_url_name(node_url_name)
+		member		= get_member_by_name(member_name)
+		topic		= connection.Topic()
+		topic.title	= web.input().title
+		topic.content	= web.input().content
+		topic
 
-		return '%s\n%s'%(member,node )
 
 application = app.wsgifunc()
 if __name__ == "__main__":

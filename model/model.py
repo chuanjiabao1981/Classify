@@ -12,8 +12,8 @@ class Node(Document):
 	__collection__ = 'node'
 	__database__   = config.classify_database
 	structure      = {
-				"node_url"		: unicode, 		# url 
-				"node_name"		: unicode,		# 用于展示的 比如汉字
+				"url"		: unicode, 		# url 
+				"name"		: unicode,		# 用于展示的 比如汉字
 				"create_time"		: datetime.datetime
 			 }
 	use_dot_notation	=	True
@@ -28,6 +28,8 @@ class Member(Document):
 			"email"		:unicode,
 			"password"	:unicode
 		    }
+	use_dot_notation	=	True
+
 
 
 """
@@ -63,6 +65,8 @@ class Topic(Document):
 		"last_reply_by"		:unicode,			# 最后回复
 		"reply_num"		:int			
 	}
+	use_dot_notation	=	True
+
 
 @connection.register
 class Reply(Document):

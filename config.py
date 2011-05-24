@@ -18,3 +18,15 @@ else:
 ### 模板相对的路径都是以view/template为前缀的
 ## 桌面模板 
 template_desktop_path		= "desktop/"
+
+
+class site():
+	pass
+
+## 网站名称
+site.title			= u"视淘"
+
+
+
+if __name__ == "__main__":
+	print site.title
