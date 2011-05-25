@@ -13,6 +13,7 @@ import config
 
 
 urls = (
+    '/topic/(.*)','TopicShow',
     '/newtopic/(.*)','NewTopic'
 )
 
@@ -26,6 +27,8 @@ template_desktop = TemplateLookup(directories		=[ os.path.join(os.path.dirname(_
 				  input_encoding	='utf-8'
 				 );
 
+######上边的东东 必须重启uwsgi才能生效##########
+######下边的东东 不需要重启uwsgi就能生效########
 
 class NewTopic:
 	def GET(self,node_url_name):
@@ -49,7 +52,9 @@ class NewTopic:
 
 
 class TopicShow:
-	pass
+	def GET(self,topic_id):
+		topic 		= find_topic_by_id(topic_id)
+		return '%s'%topic	
 		
 
 application = app.wsgifunc()
