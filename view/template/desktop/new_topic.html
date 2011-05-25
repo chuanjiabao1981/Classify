@@ -14,7 +14,7 @@
                     <span class="bigger"><a href="/">${site.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/go/${node.url}}">${node.name}</a> <span class="chevron">&nbsp;›&nbsp;</span> newtopic</span>
                 </div>
                 <div class="cell">
-                    <form action="/new/nodename" method="post">
+                    <form action="/newtopic/${node.url}" method="post">
                     <textarea name="title" maxlength="120" class="mll"></textarea>
                     <div class="sep10"></div>
 		    <textarea name="video" maxlength="120" class="mll short"></textarea>

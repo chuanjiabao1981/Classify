@@ -4,6 +4,7 @@ import os
 from model.model  import *
 from model.member import *
 from model.node   import *
+from model.topic  import *
 from mako.template import Template
 from mako.lookup import TemplateLookup
 from mako import exceptions
@@ -36,13 +37,20 @@ class NewTopic:
 		except:
 			return exceptions.html_error_template().render()
 	def POST(self,node_url_name):
+		member_name	=	""
 		node		= get_node_by_url_name(node_url_name)
 		member		= get_member_by_name(member_name)
-		topic		= connection.Topic()
-		topic.title	= web.input().title
-		topic.content	= web.input().content
-		topic
+		topic		= add_new_topic(node,member, 
+						web.input().title,
+						web.input().video,
+						web.input().content)  
+		web.seeother('/newtopic/%s'%(node.name))  
 
+
+
+class TopicShow:
+	pass
+		
 
 application = app.wsgifunc()
 if __name__ == "__main__":
