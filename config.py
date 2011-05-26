@@ -19,6 +19,10 @@ else:
 ## 桌面模板 
 template_desktop_path		= "desktop/"
 
+class template():
+	pass;
+## 
+template.chevron = u'<span class="chevron">&nbsp;›&nbsp;</span>' 
 
 class site():
 	pass

@@ -54,8 +54,11 @@ class NewTopic:
 class TopicShow:
 	def GET(self,topic_id):
 		topic 		= find_topic_by_id(topic_id)
-		return '%s'%topic	
+		member_name	=	""
+		member		= get_member_by_name(member_name)
 		
+		return template_desktop.get_template('topic.html').render(topic=topic,member=member)
+
 
 application = app.wsgifunc()
 if __name__ == "__main__":
