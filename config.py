@@ -13,6 +13,13 @@ if debug:
 	classify_database	= "shitao_debug"
 else:
 	classify_database	= "shitao"
+class collection_name():
+	pass;
+
+collection_name.Topic		= 'topic'
+collection_name.Reply		= 'reply'
+collection_name.Node		= 'node'
+collection_name.Member		= 'member'
 
 
 ### 模板相对的路径都是以view/template为前缀的
@@ -34,3 +41,4 @@ site.title			= u"视淘"
 
 if __name__ == "__main__":
 	print site.title
+	print a.b

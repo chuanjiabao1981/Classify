@@ -58,6 +58,20 @@ class TopicShow:
 		member		= get_member_by_name(member_name)
 		
 		return template_desktop.get_template('topic.html').render(topic=topic,member=member)
+	def POST(self,topic_id):
+		topic			= find_topic_by_id(topic_id)
+		replyer			= get_member_by_name("")
+		reply			= connection.Reply()
+		reply_time		= datetime.datetime.now()
+		reply.topic_id		= topic._id
+		reply.author		= replyer.name
+		reply.content		= web.input().content
+		reply.content_length	= len(reply.content)
+		reply.create_time	= reply_time
+		reply.save()
+		
+		add_new_reply_to_topic(topic._id,reply_time,replyer.name)
+		return "%s"%(reply)
 
 
 application = app.wsgifunc()

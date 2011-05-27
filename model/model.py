@@ -9,7 +9,7 @@ connection		= Connection(config.mongodb_host,config.mongodb_port)
 
 @connection.register
 class Node(Document):
-	__collection__ = 'node'
+	__collection__ = config.collection_name.Node
 	__database__   = config.classify_database
 	structure      = {
 				"url"		: unicode, 		# url 
@@ -21,7 +21,7 @@ class Node(Document):
 
 @connection.register
 class Member(Document):
-	__collection__ = 'member'
+	__collection__ = config.collection_name.Member
 	__database__   = config.classify_database
 	structure = {
 			"name"		:unicode,
@@ -44,7 +44,7 @@ class Member(Document):
 @connection.register
 class Topic(Document):
 
-	__collection__ 	= 'topic'
+	__collection__ 	= config.collection_name.Topic
 	__database__	= config.classify_database
 	structure = {
 		"title"			:unicode,
@@ -73,7 +73,7 @@ class Topic(Document):
 
 @connection.register
 class Reply(Document):
-	__collection__ 	= 'reply'
+	__collection__ 	= config.collection_name.Reply
 	__database__	= config.classify_database	
 	structure = {
 			"topic_id"		:pymongo.objectid.ObjectId,
@@ -82,4 +82,5 @@ class Reply(Document):
 			"content"		:unicode,
 			"content_length"	:int
 		    }
+	use_dot_notation	=	True
 
