@@ -20,7 +20,9 @@ urls = (
 app = web.application(urls, globals())
 
 
-template_desktop = TemplateLookup(directories		=[ os.path.join(os.path.dirname(__file__),'template',config.template_desktop_path)],
+template_desktop = TemplateLookup(directories		=[ os.path.join(os.path.dirname(__file__),'template',config.template_desktop_path),
+							   os.path.join(os.path.dirname(__file__),'template','portion')
+							 ],
 				  module_directory	= os.path.join(os.path.dirname(__file__),'..','tmp'),
 				  output_encoding       ='utf-8', 
 				  encoding_errors	='replace',
@@ -56,8 +58,9 @@ class TopicShow:
 		topic 		= find_topic_by_id(topic_id)
 		member_name	=	""
 		member		= get_member_by_name(member_name)
-		
-		return template_desktop.get_template('topic.html').render(topic=topic,member=member)
+		replies		= get_reply_by_topic_id(topic_id)
+
+		return template_desktop.get_template('topic.html').render(topic=topic,member=member,replies=replies)
 	def POST(self,topic_id):
 		topic			= find_topic_by_id(topic_id)
 		replyer			= get_member_by_name("")
