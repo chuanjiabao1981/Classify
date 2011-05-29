@@ -1,16 +1,21 @@
-% for reply in replies: 
+<%!
+	import view.filter
+	from config import template,site
+%>
+
+% for counter,reply in enumerate(replies): 
 <div class="cell reply from_{{ reply.member_num }}">
 
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
-            <td width="48" valign="top"><a href="/member/{{ reply.created_by }}">${reply.author}</a></td>
+            <td width="48" valign="top"><a href="/member/${reply.author}">${reply.author|view.filter.avatar("normal")}</a></td>
             <td width="10"></td>
             <td width="auto" valign="top">
 	    <div class="fr" id="reply_{{ reply.num }}_buttons">
-	    <strong><small class="snow">#55 ago &nbsp; 
-	    <img src="/static/img/reply.png" align="absmiddle" border="0" alt="回复 {{ reply.member.username }}" onclick="replyOne('{{ reply.member.username }}')" class="clickable" /><span class="ops"></span></small></strong></div>
+	    <strong><small class="snow">#${counter} - ${reply.create_time} ago &nbsp; 
+	    <img src="/static/img/reply.png" align="absmiddle" border="0" alt="回复 ${reply.author}" onclick="replyOne('${reply.author}')" class="clickable" /><span class="ops"></span></small></strong></div>
             <div class="sep3"></div>
-            <strong><a href="/member/{{reply.created_by}}" class="dark">${reply.author}</a></strong>
+            <strong><a href="/member/${reply.author}" class="dark">${reply.author}</a></strong>
                 <div class="sep5"></div>
                 <div class="content reply_content">${reply.content}</div>
             </td>
