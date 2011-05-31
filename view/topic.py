@@ -74,8 +74,7 @@ class TopicShow:
 		reply.save()
 		
 		add_new_reply_to_topic(topic._id,reply_time,replyer.name)
-		return "%s"%(reply)
-
+		web.seeother('/topic/%s'%(topic_id))
 
 application = app.wsgifunc()
 if __name__ == "__main__":

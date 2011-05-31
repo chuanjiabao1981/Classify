@@ -30,6 +30,11 @@ class template():
 	pass;
 ## 
 template.chevron = u'<span class="chevron">&nbsp;›&nbsp;</span>' 
+template.add_a_reply_now = u'现在添加一条回复'
+template.reply		 = u'回复'
+template.till		 = u'直到'
+template.send		 = u'发送'
+
 
 class site():
 	pass
