@@ -20,6 +20,28 @@
                     <div class="fr snow" style="padding-left: 10px; padding-bottom: 10px;"><a href="/member/{{ topic.member.username }}">${topic.author|view.filter.avatar("large")}</a></div>
                     <span class="bigger"><a href="/">${site.title}</a> ${template.chevron} <a href="/go/${topic.node_url}">${topic.node_name|h}</a></span>
                     <h1>${topic["title"]|h}</h1>
+		    <small class="fade">
+		      % if 0:
+			  % if 0:
+			   <span style="display: inline-block; background-color: {{ topic.type_color }}; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; color: #fff; padding: 0px 8px 0px 8px; font-size: 11px;">{{ topic.type }}</span> &nbsp;
+                          % endif 
+		      % endif 
+		      By <a href="/member/${topic.author}" class="dark">${topic.author}</a>
+		      % if 'source' in topic:
+			    via {{ topic.source }}
+		      % endif 
+		      at ${topic.create_time} , {{ topic.hits }} hits
+		      % if level == 0:
+			&nbsp; <a href="#;" onclick="if (confirm('{{ l10n.sure_to_delete }} #{{ topic.num }} - {{ topic.title|escape }}')) { location = '/delete/topic/{{ topic.num }}'; }" class="op">DELETE</a> <a href="/backstage/tidy/topic/{{ topic.num }}" class="op">TIDY</a>
+		      % endif 
+		      % if can_move:
+			 <a href="/backstage/move/topic/{{ topic.key }}" class="op">MOVE</a>
+		      % endif 
+		      % if can_edit: 
+			 <a href="/edit/topic/{{ topic.num }}" class="op">EDIT</a>
+		      % endif 
+		      </small>
+
                 </div>
 		% if "content" in topic:
                 <div class="inner">

@@ -1,2 +1,5 @@
 1. 需要在项目的最上层执行，保证模块之间的引用可以顺利进行
 	export PYTHONPATH=`pwd`:PYTHONPATH
+2. schema update
+   db.topic.update({hits:{"$exists":false}},{"$set":{hits:0}},false,true)
+   最后一个参数表示对符合条件的全部record进行update操作;默认这值为false
