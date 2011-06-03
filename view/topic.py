@@ -8,6 +8,7 @@ from model.topic  import *
 from mako.template import Template
 from mako.lookup import TemplateLookup
 from mako import exceptions
+from template import template_desktop
 import config
 
 
@@ -19,7 +20,7 @@ urls = (
 
 app = web.application(urls, globals())
 
-
+"""
 template_desktop = TemplateLookup(directories		=[ os.path.join(os.path.dirname(__file__),'template',config.template_desktop_path),
 							   os.path.join(os.path.dirname(__file__),'template','portion')
 							 ],
@@ -27,7 +28,7 @@ template_desktop = TemplateLookup(directories		=[ os.path.join(os.path.dirname(_
 				  output_encoding       ='utf-8', 
 				  encoding_errors	='replace',
 				  input_encoding	='utf-8'
-				 );
+				 );"""
 
 ######上边的东东 必须重启uwsgi才能生效##########
 ######下边的东东 不需要重启uwsgi就能生效########
