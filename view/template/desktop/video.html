@@ -1,0 +1,35 @@
+
+	<style type="text/css">
+		#mediaplayer_wrapper
+		{
+				position:relative;
+				top:15px;
+				width:600px;
+				margin:auto
+		}
+		#media_content
+		{
+			/*默认就是repeat-x repeat-y*/
+			background-image:url(/static/img/noisy.png);
+			width:800px;
+			height:300px
+		}
+	</style>
+        <div id="media_content">
+	<!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+	<div id="mediaplayer" >JW Player goes here</div>
+	</div>
+	
+	<script type="text/javascript" src="/static/jwplayer/jwplayer.js"></script>
+	<script type="text/javascript">
+		jwplayer("mediaplayer").setup({
+			flashplayer: "player.swf",
+			file: "/static/jwplayer/video1.mp4",
+			image: "preview.jpg",
+			menu:'false',
+			skin:'/static/skin/glow.zip',
+			width:'480',
+			height:'270'
+		});
+	</script>
+	<!-- END OF THE PLAYER EMBEDDING -->
