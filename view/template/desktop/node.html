@@ -1,4 +1,9 @@
 <%include file="common/head.html" />
+<%!
+	import view.filter
+	from config import template,site
+%>
+
 <body>
     {% include 'common/top.html' %}
     <div id="Wrapper">
@@ -28,7 +33,7 @@
                     <td width="10"></td>
                     {% endif %}
                     <td width="auto" valign="top"><div class="fr" align="right"><span class="snow">{{ l10n.total_topics }}</span> <span class="fade"><strong>{{ node.topics }}</strong>{% if member %} &nbsp;<span class="snow">•</span>&nbsp; {% if favorited %}<a href="/unfavorite/node/{{ node.name }}">取消收藏</a>{% else %}<a href="/favorite/node/{{ node.name }}">加入收藏</a>{% endif %}{% if can_manage %} &nbsp;<span class="snow">•</span>&nbsp; <a href="/backstage/node/{{ node.name }}">管理节点信息</a>{% endif %}{% endif %}</span></div>
-                    <span class="bigger"><a href="/">{{ site.title }}</a> <span class="chevron">&nbsp;›&nbsp;</span> {{ node.title|escape }}</span>
+                    <span class="bigger"><a href="/">${site.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> ${node.name|h}</span>
                     {% if node.header %}
                     <div class="sep10"></div>
                     <span class="header">{{ node.header|linebreaksbr }}</span>

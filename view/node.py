@@ -21,9 +21,11 @@ app = web.application(urls, globals())
 
 
 class NodeList:
-	def GET(self,node_name):
+	def GET(self,node_url_name):
+		node		= get_node_by_url_name(node_url_name)
+
 		try: 
-			return template_desktop.get_template('node.html').render()
+			return template_desktop.get_template('node.html').render(node=node)
 		except:
 			return exceptions.html_error_template().render()
 
