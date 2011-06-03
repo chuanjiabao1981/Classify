@@ -37,13 +37,23 @@ def find_topic_by_id(topic_id):
 	return connection.Topic.find_one({'_id':bson.objectid.ObjectId(topic_id)})
 
 def get_reply_by_topic_id(topic_id):
-	return connection.Reply.find({'topic_id':bson.objectid.ObjectId(topic_id)})
+	topic = connection.Reply.find({'topic_id':bson.objectid.ObjectId(topic_id)})
+	return topic
+
+def hit_topic_by_topic_id(topic_id):
+	connection[config.classify_database][config.collection_name.Topic].update(
+		{'_id':bson.objectid.ObjectId(topic_id)},
+		{ '$inc':{"hits":1}}
+	)
 
 	
 
 	
 if __name__=='__main__':
 	#add_new_reply_to_topic(bson.objectid.ObjectId('4ddc49c0decbef09c3000000'),datetime.datetime.now(),u"mgw")
-	for reply in get_reply_by_topic_id('4ddc49c0decbef09c3000000'):
-		print reply
+	#for reply in get_reply_by_topic_id('4ddc49c0decbef09c3000000'):
+	#	print reply
 	#print find_topic_by_id('4ddc49c0decbef09c3000000')
+	#hit_topic_by_topic_id('4ddc49c0decbef09c3000000')
+	topic=find_topic_by_id('4ddc49c0decbef09c3000000')
+	print type(topic.hits)

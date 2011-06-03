@@ -58,7 +58,8 @@ class TopicShow:
 		topic 		= find_topic_by_id(topic_id)
 		member_name	=	""
 		member		= get_member_by_name(member_name)
-		replies		= get_reply_by_topic_id(topic_id)
+		replies		= get_reply_by_topic_id(topic_id) 
+		hit_topic_by_topic_id(topic_id)
 
 		return template_desktop.get_template('topic.html').render(topic=topic,member=member,replies=replies)
 	def POST(self,topic_id):

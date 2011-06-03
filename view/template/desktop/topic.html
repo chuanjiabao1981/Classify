@@ -30,7 +30,7 @@
 		      % if 'source' in topic:
 			    via {{ topic.source }}
 		      % endif 
-		      at ${topic.create_time} , {{ topic.hits }} hits
+		      at ${topic.create_time} , ${topic.hits|view.filter.float2int} hits
 		      % if level == 0:
 			&nbsp; <a href="#;" onclick="if (confirm('{{ l10n.sure_to_delete }} #{{ topic.num }} - {{ topic.title|escape }}')) { location = '/delete/topic/{{ topic.num }}'; }" class="op">DELETE</a> <a href="/backstage/tidy/topic/{{ topic.num }}" class="op">TIDY</a>
 		      % endif 
@@ -43,6 +43,8 @@
 		      </small>
 
                 </div>
+		<%include file="video.html"/>
+
 		% if "content" in topic:
                 <div class="inner">
                     <div class="content topic_content">${topic["content"]|view.filter.linebreaksbr,view.filter.htmlspace}</div>

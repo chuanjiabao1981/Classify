@@ -50,6 +50,7 @@ class Topic(Document):
 		"title"			:unicode,
 		"content"		:unicode,
 		"content_length"	:int,
+		"hits"			:int,
 		"author"		:unicode,
 		"author_ref"		:pymongo.objectid.ObjectId,			# 作者引用
 		"video"			:{
@@ -68,7 +69,7 @@ class Topic(Document):
 	#TODO:
 	#content title 长度限制
 	use_dot_notation	=	True
-	default_values		=	{"reply_num":0,"create_time":datetime.datetime.now()}
+	default_values		=	{"reply_num":0,"create_time":datetime.datetime.now(),"hits":0}
 
 
 @connection.register

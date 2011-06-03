@@ -10,6 +10,10 @@ def avatar(arg):
 		return '<img src="' + default + '" border="0" />'  
 		return default
 	return filter
+
+def float2int(arg):
+	return "%d"%(float(arg))
+
 if __name__=="__main__":
 	print linebreaksbr("a\r\nb")
 	print htmlspace("   ab  ")
