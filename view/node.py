@@ -9,6 +9,7 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 from mako import exceptions
 import config
+from template import template_desktop
 
 
 
@@ -21,7 +22,10 @@ app = web.application(urls, globals())
 
 class NodeList:
 	def GET(self,node_name):
-		return "hello world"
+		try: 
+			return template_desktop.get_template('node.html').render()
+		except:
+			return exceptions.html_error_template().render()
 
 application = app.wsgifunc()
 if __name__ == "__main__":
