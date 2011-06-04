@@ -23,9 +23,11 @@ app = web.application(urls, globals())
 class NodeList:
 	def GET(self,node_url_name):
 		node		= get_node_by_url_name(node_url_name)
+		can_create	= True
+		is_member	= True
 
 		try: 
-			return template_desktop.get_template('node.html').render(node=node)
+			return template_desktop.get_template('node.html').render(node=node,can_create=can_create,is_member=is_member)
 		except:
 			return exceptions.html_error_template().render()
 

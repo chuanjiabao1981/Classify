@@ -5,4 +5,4 @@ def get_node_by_url_name(name):
 
 if __name__ == "__main__":
 	node = get_node_by_url_name("")
-	print node.node_url
+	print node

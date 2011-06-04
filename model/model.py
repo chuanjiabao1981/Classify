@@ -14,9 +14,12 @@ class Node(Document):
 	structure      = {
 				"url"		: unicode, 		# url 
 				"name"		: unicode,		# 用于展示的 比如汉字
+				"header"	: unicode,		# 节点的说明
+				"topic_num"	: int,			# 节点topic总数
 				"create_time"		: datetime.datetime
 			 }
 	use_dot_notation	=	True
+	default_values		=	{"topic_num":0,"header":""}
 
 
 @connection.register
@@ -29,6 +32,7 @@ class Member(Document):
 			"password"	:unicode
 		    }
 	use_dot_notation	=	True
+
 
 
 
