@@ -12,6 +12,8 @@ class Node(Document):
 	__collection__ = config.collection_name.Node
 	__database__   = config.classify_database
 	structure      = {
+#TODO:保证url和name是唯一的
+
 				"url"		: unicode, 		# url 
 				"name"		: unicode,		# 用于展示的 比如汉字
 				"header"	: unicode,		# 节点的说明
@@ -27,6 +29,7 @@ class Member(Document):
 	__collection__ = config.collection_name.Member
 	__database__   = config.classify_database
 	structure = {
+#TODO:保证name和email唯一
 			"name"		:unicode,
 			"email"		:unicode,
 			"password"	:unicode

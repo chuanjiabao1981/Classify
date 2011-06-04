@@ -50,7 +50,8 @@ class NewTopic:
 						web.input().title,
 						web.input().video,
 						web.input().content)  
-		web.seeother('/newtopic/%s'%(node.name))  
+		inc_topic_num_by_node_url_name(node_url_name)
+		web.seeother('/newtopic/%s'%(node.url))  
 
 
 
