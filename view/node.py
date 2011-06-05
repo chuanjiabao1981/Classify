@@ -22,12 +22,16 @@ app = web.application(urls, globals())
 
 class NodeList:
 	def GET(self,node_url_name):
+		member_name 	= ""
+		member 		= get_member_by_name(member_name)
+
 		node		= get_node_by_url_name(node_url_name)
 		can_create	= True
 		is_member	= True
+		latest		= find_all_node_topic_by_node_url_name(node_url_name)
 
 		try: 
-			return template_desktop.get_template('node.html').render(node=node,can_create=can_create,is_member=is_member)
+			return template_desktop.get_template('node.html').render(node=node,can_create=can_create,is_member=is_member,latest=latest,member=member)
 		except:
 			return exceptions.html_error_template().render()
 

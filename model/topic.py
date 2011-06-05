@@ -46,6 +46,9 @@ def hit_topic_by_topic_id(topic_id):
 		{ '$inc':{"hits":1}}
 	)
 
+def find_all_node_topic_by_node_url_name(node_url_name):
+	return connection.Topic.fetch({"node_url":node_url_name}).sort([('last_reply_time',-1)])
+	
 	
 
 	
@@ -55,5 +58,8 @@ if __name__=='__main__':
 	#	print reply
 	#print find_topic_by_id('4ddc49c0decbef09c3000000')
 	#hit_topic_by_topic_id('4ddc49c0decbef09c3000000')
-	topic=find_topic_by_id('4ddc49c0decbef09c3000000')
-	print type(topic.hits)
+	#topic=find_topic_by_id('4ddc49c0decbef09c3000000')
+	#print topic
+	#print type(topic.hits)
+	for i in find_all_node_topic_by_node_url_name("begin"):
+		print i.last_reply_time

@@ -46,7 +46,7 @@ class site():
 
 ## 网站名称
 site.title			= u"视淘"
-
+site.use_topic_types		= False
 
 
 if __name__ == "__main__":
