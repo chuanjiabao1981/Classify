@@ -42,7 +42,7 @@
 </table>
 </div>
 % endfor 
-{% if member %}
+% if member :
 <script type="text/javascript">
 blocked = [{{ blocked }}];
 $("#topics_index").children('.cell').each( function(index) {
@@ -53,4 +53,4 @@ $("#topics_index").children('.cell').each( function(index) {
     }
 });
 </script>
-{% endif %}
+% endif 
