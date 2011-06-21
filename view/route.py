@@ -2,11 +2,13 @@
 import web
 from topic import *
 from node  import *
+from main import *
 
 urls = (
     '/topic/(.*)','TopicShow',
     '/newtopic/(.*)','NewTopic',
-    '/go/(.*)','NodeList'
+    '/go/(.*)','NodeList',
+    '/','MainPage',
 )
 
 app = web.application(urls, globals())
