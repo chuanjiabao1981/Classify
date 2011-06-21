@@ -1,0 +1,220 @@
+* {
+	margin:0px;
+	padding:0px;
+	}
+#Rightbar{
+		width:282px;
+		float:right;
+}
+
+#Content{
+		width:662px;
+/*		padding:10px;*/
+		float:left;
+		/*
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-o-border-radius: 5px;
+		border-radius: 5px;
+		-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		-o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		background-color: white;
+		border: 2px solid white;*/
+}
+#Main{
+		width:960px;
+		margin:0px auto 0px auto;
+		padding: 25px 0px 0px 0px
+}
+#Wrapper {
+	background-color: white;
+	background-image: url("http://bookfor.us/include/style/img/bigbg.jpg");
+	background-image: url("http://static.v2ex.com/tiles/bohemian.jpg");
+}
+#Welcome
+{
+
+}
+#Top
+{
+	height: 40px;
+	background-color: #222;
+	background-image: url("http://www.v2ex.com/static/img/bg_top.png");
+}
+#TopInfo
+{
+			width:960px;
+			text-align: center;
+			margin: 0px auto 0px auto;
+
+}
+#TopInfo h2
+{
+	height: 44px;
+	color: white;
+	
+	font-size: 100%;
+}
+#Search {
+	margin: 0px 200px 0px 20px;
+	text-align: left;
+	padding: 7px 0px 0px 0px;
+}
+
+.video_list_box{
+		padding:5px;
+		border-bottom: 1px 	solid #E2E2E2;
+		overflow:hidden
+}
+.video_thumbnail{
+		float:left
+}
+.video_thumbnail img
+{
+	width:135px;
+	height:76px
+}
+.video_info
+{
+	/*padding:10px 0px 0px 0px;*/
+	width:400px;
+	float:left
+}
+.video_info ul
+{
+	list-style-type:none;
+	padding-left: 15px;
+	margin:0px
+}
+.video_info .video_title
+{	
+	color: #CC1F29;
+	color:  #2786C2;
+	font-size:16px;
+}
+.video_info .video_intro
+{
+	
+	font-size:12px;
+	margin:5px 0px 0px 0px;
+			color: #999;
+   /*	display:none*/
+}
+.video_info .vidoe_create
+{
+	font-size:12px;
+	float:right;
+	
+}
+.node a{
+		font-size: 12px;
+		height: 15px;
+		line-height: 16px;
+		padding: 2px 4px;
+		margin: 1px 3px 0 0;
+		color: #333;
+
+		background: #EFEFEF;
+		border: 1px solid #CCC;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+		display:inline-block;
+}
+.video_view{
+	line-height: 12px;
+	font-weight: bold;
+	color: white;
+	background-color: #AAB0C6;
+	display: inline-block;
+	padding: 2px 10px 2px 10px;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	margin: 18px 12px 0px 0px;
+	text-decoration: none;
+}
+
+a:link, a:visited, a:active {
+	color: #636A86;
+    /*color: #CC1F29;*/
+	text-decoration: none;
+}
+
+.video_category_list{
+	
+	overflow:hidden;
+	/*padding:8px;
+	border-bottom: 1px 	solid #E2E2E2;*/
+}
+.video_category_list .part
+{
+	float:left;
+	width:33%
+}
+.video_category_list .part ul
+{
+	padding:5px;
+	list-style-type:none;
+	display:block
+}
+.video_category_list .part ul img
+{
+	padding-right:10px;
+	float:left;
+
+}
+.video_category_list .part ul li
+{
+	margin-top:5px;
+	display:block;
+	overflow:hidden
+}
+.video_category_list .part
+{
+	font-size:12px;
+	/*line-height: 16px;*/
+	color: #636A86;
+}
+.snow {
+color: rgba(0, 0, 0, 0.15);
+}
+body
+{
+font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
+.part ul  .first_line
+{
+	margin-top:0px;
+}
+.box {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	-o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	background-color: white;
+	border: 2px solid white;
+}
+.box .cell {
+padding: 10px;
+font-size: 12px;
+line-height: 16px;
+border-bottom: 1px solid #E2E2E2;
+}
+
+.search {
+	-moz-border-radius: 3px 0px 0px 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+	font-size: 14px;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	width: 240px;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
