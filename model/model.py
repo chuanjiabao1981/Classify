@@ -1,5 +1,6 @@
 #coding=utf-8
 from mongokit import *
+from default  import *
 import pymongo
 import datetime
 import config
@@ -36,7 +37,36 @@ class Member(Document):
 		    }
 	use_dot_notation	=	True
 
-
+@connection.register
+class Video(Document):
+	__collection__ = config.collection_name.Video
+	__database__   = config.classify_database
+	structure = {
+		"title"			:unicode,
+		"content"		:unicode,
+		"content_length"	:int,
+		"time"			:int,	#视频时间,单位s
+		"node_url"		:unicode,
+		"node_name"		:unicode,
+		"node_ref"		:pymongo.objectid.ObjectId,
+		"create_time"		:datetime.datetime,
+		"author"		:unicode,
+		"author_ref"		:pymongo.objectid.ObjectId,
+		"last_reply_time"	:datetime.datetime,
+		"last_reply_by"		:unicode,			# 最后回复
+		"reply_num"		:int,
+		"view_num"		:int,
+		"tag"			:unicode,
+		"location"		:unicode,
+		"image"			:unicode,
+		"fail_reason"		:unicode,
+		"status"		:int			
+	}
+	use_dot_notation		= True
+	default_values		=	{"reply_num":0,"create_time":datetime.datetime.now(),
+					  "view_num":0,"last_reply_time":datetime.datetime.now(),
+					  "status"  :video_status_wait_process,
+					  "image"   :""}
 
 
 """
