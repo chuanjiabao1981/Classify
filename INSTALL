@@ -3,3 +3,6 @@
 2. schema update
    db.topic.update({hits:{"$exists":false}},{"$set":{hits:0}},false,true)
    最后一个参数表示对符合条件的全部record进行update操作;默认这值为false
+3. nginx 安装
+   sudo ./configure --prefix=/opt/nginx --user=nginx --group=nginx --with-http_ssl_module --add-module=/opt/nginx_upload_module-2.2.0/ --add-module=/opt/masterzen-nginx-upload-progress-module-8b55a34/
+
