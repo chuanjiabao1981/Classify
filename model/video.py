@@ -12,13 +12,14 @@ def process_tag(tags):
 	return tags
 
 def video_verify(location):
+	##'file_content_type': u'video/mp4"'
 	return True
 def video_time(video):
 	return True
 
 def video_image(video):
 	## 在正确的目录下生成缩略图
-	image_file_name = config.video_setting.image_path+'/'+os.path.basename(video.location) +".jpg"
+	image_file_name = config.video_setting.image_path+'/'+video.file_md5 +".jpg"
 	cmd = "ffmpeg -y -i " + video.location + " -ss "+str(video.image_time)+" -s 160x90 -vframes 1 -an -sameq -f image2 "+image_file_name
 	re	=	os.system(cmd)
 	if re !=0 :
@@ -28,12 +29,12 @@ def video_image(video):
 	return True;
 
 def video_move(video):
-	video_name = os.path.basename(video.location)
+	video_name = video.file_md5
 	video_name =  config.video_setting.video_path+'/'+video_name;
-
 	shutil.move(video.location,video_name)
 	video.location = video_name;
 	return True;
+
 def process_video(video):
 	if video.status != video_status_wait_process:
  		return
@@ -60,16 +61,17 @@ def process_video(video):
 	
 def add_a_new_video(node,member,webinput):
 	video = connection.Video();
-	video.title		=	webinput.title()
-	video.content   	=       webinput.content()
+	video.title		=	webinput.title
+	video.content   	=       webinput.content
 	video.content_length	=	len(video.content)
 	video.node_url		=	node.url
 	video.node_name		=	node.name
 	video.node_ref		=	node._id
 	video.author		=	member.name
 	video.author_ref	=	member._id
-	video.location		=	webinput.file_location()
+	video.location		=	webinput.file_path
 	video.tags		=	process_tag(tags)
+	video.video_md5		=	webinput.file_md5
 ## 这个过程应该放在后台任务
 	process_video(video)
 	video.save()
@@ -77,8 +79,9 @@ def add_a_new_video(node,member,webinput):
 
 class video_test:
 	def __init__(self):
-		self.location 		= '/home/work/project/12_60_20/2011-04-02/1301757163_56.mp4'
+		self.location 		= '/srv/www/shitao.com/upload_video/8/0019074038'
 		self.image_time		= 5
+		self.file_md5		= 'xxrrrdddssss'
 
 if __name__ == '__main__':
 	a = video_test ()

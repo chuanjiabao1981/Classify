@@ -58,6 +58,7 @@ class Video(Document):
 		"view_num"		:int,
 		"tag"			:unicode,
 		"location"		:unicode,
+		"video_md5"		:unicode,
 		"image_time"		:int,	# 截图的时间 单位 s
 		"image"			:unicode,
 		"fail_reason"		:unicode,
