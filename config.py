@@ -49,6 +49,15 @@ class site():
 site.title			= u"视淘"
 site.use_topic_types		= False
 
+class video_setting():
+	pass
+#video_setting.image_path	= '/srv/www/shitao.com/public_html/static_file/video_img/'
+video_setting.image_path	= '~/tmp'
+## 这个目录最终要放在不可下载目录下,这个必须是绝对路径
+#video_setting.video_path	= '/srv/www/shitao.com/public_html/static_file/video/'
+video_setting.video_path	= '/home/work/tmp'
+
+
 
 if __name__ == "__main__":
 	print site.title

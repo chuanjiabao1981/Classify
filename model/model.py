@@ -58,6 +58,7 @@ class Video(Document):
 		"view_num"		:int,
 		"tag"			:unicode,
 		"location"		:unicode,
+		"image_time"		:int,	# 截图的时间 单位 s
 		"image"			:unicode,
 		"fail_reason"		:unicode,
 		"status"		:int			
@@ -66,6 +67,7 @@ class Video(Document):
 	default_values		=	{"reply_num":0,"create_time":datetime.datetime.now(),
 					  "view_num":0,"last_reply_time":datetime.datetime.now(),
 					  "status"  :video_status_wait_process,
+					  "image_time" : 5,
 					  "image"   :""}
 
 
