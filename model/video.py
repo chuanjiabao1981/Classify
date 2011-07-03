@@ -84,9 +84,12 @@ def str_to_unicode(video):
 	
 def add_a_new_video(node,member,webinput):
 	video = connection.Video();
+	# webinput引用的字段都是必须要有的
 	video.title		=	webinput.title
 	video.content   	=       webinput.content
 	video.content_length	=	len(video.content)
+	if webinput.image_time.isdigit():
+		video.image_time	=	int(webinput.image_time)
 	video.node_url		=	node.url
 	video.node_name		=	node.name
 	video.node_ref		=	node._id

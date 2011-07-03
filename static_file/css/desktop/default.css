@@ -228,3 +228,17 @@ border-bottom: 1px solid #E2E2E2;
 	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
 
+.upload_cell {
+	list-style-type:none;
+	padding-bottom:10px	
+}
+.upload_cell .col1
+{
+	float:left;
+	width:200px;
+	font-weight:bold;
+}
+.upload_cell .col2
+{
+	float:left;
+}
