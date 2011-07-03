@@ -1,9 +1,10 @@
 # coding=utf-8
 import web
-from topic import *
-from node  import *
-from main import *
-from upload import *
+from topic   import *
+from node    import *
+from main    import *
+from upload  import *
+from video   import *
 
 urls = (
     '/topic/(.*)','TopicShow',
@@ -11,6 +12,7 @@ urls = (
     '/go/(.*)','NodeList',
     '/','MainPage',
     '/upload','UploadVideo',
+    '/videotopic/(.*)','VideoTopicShow',
 )
 
 app = web.application(urls, globals())

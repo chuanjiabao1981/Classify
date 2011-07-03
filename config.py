@@ -58,6 +58,8 @@ video_setting.image_path	= '/srv/www/shitao.com/public_html/static_file/video_im
 ## 这个目录最终要放在不可下载目录下,这个必须是绝对路径
 #这个必须要有写权限,上级目录必须要有执行权限
 video_setting.video_path	= '/srv/www/shitao.com/upload_video/'
+video_setting.image_small	= '160x90'
+video_setting.image_big		= '480x270'
 
 
 

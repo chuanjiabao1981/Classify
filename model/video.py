@@ -20,20 +20,33 @@ def video_time(video):
 
 def video_image(video):
 	## 在正确的目录下生成缩略图
-	image_file_name = config.video_setting.image_path+'/'+video.video_md5 +".jpg"
-	cmd = "/usr/bin/ffmpeg -y -i " + video.location + " -ss "+str(video.image_time)+" -s 160x90 -vframes 1 -an -sameq -f image2 "+image_file_name
+	image_file_name = config.video_setting.image_path+'/'+video.video_md5 
+	cmd = "/usr/bin/ffmpeg -y -i " + \
+	      video.location + " -ss " + \
+	      str(video.image_time)    + \
+	      " -s " + config.video_setting.image_small + " -vframes 1 -an -sameq -f image2 "+image_file_name+"_small.jpg"
 	re	=	os.system(cmd)
 	if re !=0 :
-		video.fail_reason = u"video image process fail!";
+		video.fail_reason = u"video image samll process fail!";
 		return False
-	video.image = image_file_name
+
+	cmd = "/usr/bin/ffmpeg -y -i " + \
+	      video.location + " -ss " + \
+	      str(video.image_time)    + \
+	      " -s " + config.video_setting.image_big + " -vframes 1 -an -sameq -f image2 "+image_file_name+"_big.jpg"
+	re	=	os.system(cmd)
+	if re !=0 :
+		video.fail_reason = u"video image big process fail!";
+		return False
+
+	video.image = video.video_md5
 	return True;
 
 def video_move(video):
 	video_name = video.video_md5
 	video_name =  config.video_setting.video_path+'/'+video_name;
 	shutil.move(video.location,video_name)
-	video.location = video_name;
+	video.location = video.video_md5
 	return True;
 
 def process_video(video):
@@ -49,7 +62,6 @@ def process_video(video):
 		video.fail_reason = u"video cal time fail"
 		return
 	if not video_image(video):
-		video.fail_reason = u"video produce image error"
 		return
 	if not video_move(video):
 		video.fail_reason = u"video move fail"
@@ -87,6 +99,15 @@ def add_a_new_video(node,member,webinput):
 	video.save()
 	return video
 
+def find_video_topic_by_id(topic_id):
+	return connection.Video.find_one({'_id':bson.objectid.ObjectId(topic_id)})
+
+def hit_video_topic_by_topic_id(topic_id):
+	connection[config.classify_database][config.collection_name.Video].update(
+		{'_id':bson.objectid.ObjectId(topic_id)},
+		{ '$inc':{"view_num":1}}
+	)
+
 class video_test:
 	def __init__(self):
 		self.location 		= '/var/tmp/upload_video/2/0000000002'
@@ -94,6 +115,7 @@ class video_test:
 		self.video_md5		= 'xxrrrdddssss'
 
 if __name__ == '__main__':
+	"""
 	a = video_test ()
 	if video_image(a):
 		print "ok"
@@ -101,4 +123,5 @@ if __name__ == '__main__':
 		print a.location
 		#video_move(a)
 		print a.location
-	
+	"""	
+	print find_video_topic_by_id('4e0fb44ddecbef0aff000000')
