@@ -21,7 +21,7 @@ def video_time(video):
 def video_image(video):
 	## 在正确的目录下生成缩略图
 	image_file_name = config.video_setting.image_path+'/'+video.video_md5 +".jpg"
-	cmd = "/usr/bin/ffmpeg -y -i " + video.location + " -ss "+str(video.image_time)+" -s 160x90 -vframes 1 -an -sameq -f image2 "+image_file_name + "1>/var/tmp/tt.txt 2>/var/tmp/tt.txt"
+	cmd = "/usr/bin/ffmpeg -y -i " + video.location + " -ss "+str(video.image_time)+" -s 160x90 -vframes 1 -an -sameq -f image2 "+image_file_name
 	re	=	os.system(cmd)
 	if re !=0 :
 		video.fail_reason = u"video image process fail!";
