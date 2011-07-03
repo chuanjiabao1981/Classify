@@ -11,6 +11,12 @@ def avatar(arg):
 		return default
 	return filter
 
+def video_image(arg):
+	def filter(text):
+		default = "/static_file/video_img/"+text+"_"+arg+".jpg"
+		return default
+	return filter
+
 def float2int(arg):
 	return "%d"%(float(arg))
 

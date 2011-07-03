@@ -44,7 +44,9 @@ def video_image(video):
 
 def video_move(video):
 	video_name = video.video_md5
-	video_name =  config.video_setting.video_path+'/'+video_name;
+##################这里不应该完全是mp4#########################################
+##############################################################################
+	video_name =  config.video_setting.video_path+'/'+video_name+".mp4";
 	shutil.move(video.location,video_name)
 	video.location = video.video_md5
 	return True;

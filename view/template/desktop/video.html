@@ -1,3 +1,8 @@
+<%!
+	import view.filter
+	from config import template,site
+%>
+
 <style type="text/css">
 #mediaplayer_wrapper
 {
@@ -22,8 +27,8 @@ height:300px
 <script type="text/javascript">
 jwplayer("mediaplayer").setup({
 flashplayer: "/static/jwplayer/player.swf",
-file: "${topic.location}",
-image: "${topic.image}",
+file: "/upload_video/${topic.location}.mp4",
+image: "${topic.image|view.filter.video_image("big")}",
 menu:'false',
 skin:'/static/skin/glow.zip',
 width:'480',
