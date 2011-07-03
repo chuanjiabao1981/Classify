@@ -13,6 +13,7 @@ urls = (
     '/','MainPage',
     '/upload','UploadVideo',
     '/videotopic/(.*)','VideoTopicShow',
+    '/newvideo/(.*)','NewVideoTopic',
 )
 
 app = web.application(urls, globals())

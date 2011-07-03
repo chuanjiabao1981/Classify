@@ -3,7 +3,7 @@
 	padding:0px;
 	}
 #Rightbar{
-		width:264px;
+		width:272px;
 		float:right;
 }
 
@@ -204,3 +204,27 @@ border-bottom: 1px solid #E2E2E2;
 	width: 240px;
 	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
+
+.mll_small {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	display: block;
+	width: 420px;
+	height: 40px;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
+.mll_big {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	display: block;
+	width: 420px;
+	height: 160px;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
+

@@ -1,0 +1,90 @@
+<form id="upload" enctype="multipart/form-data" action="/upload" method="post" onsubmit="openProgressBar(); return true;">
+  <ul style='list-style-type:none;padding-bottom:10px'>
+  	<li style='float:left'>
+  		<div style='width:200px'>
+			视频标题
+  		</div>
+  	</li>
+  	<li style='float:left'>
+  		<div>
+			<textarea name="title" maxlength="120" class='mll_small'></textarea>
+  		</div>
+  	</li>
+  	<li style='clear:both'/>
+  </ul>
+  <ul style='list-style-type:none;padding-bottom:10px'>
+  	<li style='float:left'>
+  		<div style='width:200px'>
+			视频描述
+  		</div>
+  	</li>
+  	<li style='float:left'>
+  		<div>
+			<textarea name="title" maxlength="120" class='mll_big'></textarea>
+  		</div>
+  	</li>
+  	<li style='clear:both'/>
+  </ul>
+  <ul style='list-style-type:none;padding-bottom:10px'>
+  	<li style='float:left'>
+  		<div style='width:200px'>
+			上传文件
+  		</div>
+  	</li>
+  	<li style='float:left'>
+  		<div>
+			<!--textarea name="title" maxlength="120" class='mll_big'></textarea-->
+		        <input name="file" type="file" label="fileupload" />
+  		</div>
+  	</li>
+  	<li style='clear:both'/>
+  </ul>
+  <ul style='list-style-type:none;padding-bottom:10px'>
+  	<li style='float:left'>
+  		<div style='width:200px'>
+			已上传
+  		</div>
+  	</li>
+  	<li style='float:left'>
+  		<div>
+			<!--textarea name="title" maxlength="120" class='mll_big'></textarea-->
+			Uploading
+  		</div>
+  	</li>
+  	<li style='clear:both'/>
+  </ul>
+  <ul style='list-style-type:none;padding-bottom:10px'>
+  	<li style='float:left'>
+  		<div style='width:200px'>
+			截图时间(秒)
+  		</div>
+  	</li>
+  	<li style='float:left'>
+  		<div>
+			<textarea name="title" maxlength="120" class='mll_small' style='height:20px'></textarea>
+  		</div>
+  	</li>
+  	<li style='clear:both'/>
+  </ul>
+  <ul style='list-style-type:none;padding-bottom:10px'>
+  	<li style='float:left'>
+  		<div style='width:200px'>
+			视频标签(空白隔开)
+  		</div>
+  	</li>
+  	<li style='float:left'>
+  		<div>
+			<textarea name="title" maxlength="120" class='mll_small'></textarea>
+  		</div>
+  	</li>
+  	<li style='clear:both'/>
+  </ul>
+
+  <!--input type="hidden" name="MAX_FILE_SIZE" value="30000000"  />
+  <input name="file" type="file" label="fileupload" />
+  <input name="title" type="text" label="title"/>
+  <input name="content" type="text" label="content"/>
+  <input name="tags"	type="text" label="tags"/>
+  <input type="submit" value="Send File" /-->
+</form>
+

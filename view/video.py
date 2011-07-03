@@ -22,3 +22,14 @@ class VideoTopicShow:
 
 		return template_desktop.get_template('video_topic.html').render(topic=topic,member=member,replies=replies)
 
+
+class NewVideoTopic:
+	def GET(self,node_url_name):
+		member_name 	= ""
+		member 		= get_member_by_name(member_name)
+		node		= get_node_by_url_name(node_url_name)
+		try: 
+			return template_desktop.get_template('new_video.html').render(node=node,site=config.site)
+		except:
+			return exceptions.html_error_template().render()
+
