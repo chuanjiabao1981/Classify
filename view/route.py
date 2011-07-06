@@ -5,6 +5,7 @@ from node    import *
 from main    import *
 from upload  import *
 from video   import *
+from backend import *
 
 urls = (
     '/topic/(.*)','TopicShow',
@@ -14,6 +15,7 @@ urls = (
     '/upload','UploadVideo',
     '/videotopic/(.*)','VideoTopicShow',
     '/newvideo/(.*)','NewVideoTopic',
+    '/backend','Backend',
 )
 
 app = web.application(urls, globals())

@@ -242,3 +242,84 @@ border-bottom: 1px solid #E2E2E2;
 {
 	float:left;
 }
+
+#BackendMain{
+		width:1024px;
+		margin:0px auto 0px auto;
+		padding: 25px 0px 0px 0px
+}
+
+ul.backend_nav,ul.backend_nav ul
+{
+	margin:0px;
+	padding:0px;
+	list-style-type:none;
+	float:left;
+	//border:1px solid #486b02;
+	background-color:#8bd400;
+	background-color:#ccc;
+
+	
+}
+
+ul.backend_nav li
+{
+	float:left;
+	width:8em;
+	background-color:#8bd400;
+	background-color:whiteSmoke;
+	background-color:#ccc;
+	background-color:#2786C2;
+
+
+
+	
+}
+
+ul.backend_nav li ul
+{
+	width:8em;
+	position:absolute;
+	left:-999em;
+}
+
+.backend_nav li:hover ul
+{
+	left:auto;
+}
+
+ul.backend_nav a
+{
+	display:block;
+	color:#2b3f00;
+	text-decoration:none;
+	padding:0.3em 1em;
+	//border-right: 1px solid #486b02;
+	//border-left:  1px solid #e4ffd3;
+	border-right: 3px solid white;
+	border-left:  3px solid white;
+
+}
+
+ul.backend_nav li li a
+{
+	//border-top:1px solid #e4ffd3;
+	//border-bottom:1px solid #486b02;
+
+	border-top:3px solid white;
+	//border-bottom:3px solid white;
+	border-right: 3px solid white;
+	border-left:  3px solid white;
+}
+/*
+ul.backend_nav li:last-child a{
+	border-right:0;
+	border-bottom:0;
+}
+*/
+ul.backend_nav a:hover,ul a:focus
+{
+	color:#f3f3f3;
+	background-color:#C00;
+}
+
