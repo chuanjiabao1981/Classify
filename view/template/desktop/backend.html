@@ -4,9 +4,9 @@
 <%include file="index_top.html"/>
 <div id="Wrapper">
 	<div id="BackendMain">
-		<div id="BackNav">
+		<div id="BackNav" style="margin-bottom:15px">
 			<div class="box">
-				<div class="cell" style="font-size:13px;padding:0px">
+				<div class="cell" style="font-size:13px;padding:0px;border:0px">
 					<ul class="backend_nav">
 						<li><a href="/">Home</a></li>
 						<li><a href="/">类别节点</a>
@@ -20,6 +20,50 @@
 					<ul style="clear:both"></ul>
 				</div>
 			</div>
+		</div>
+		<style type="text/css">
+		table, td, th
+		{
+		}
+		th
+		{
+			border:1px solid white;
+		}
+		td
+		{
+			border:1px solid green;
+			height:60px;
+			font-size:14px;
+			padding-left:10px;
+		}
+		th
+		{
+			background-color:green;
+			color:white;
+		}
+		</style>
+		<div class="box">
+		<table  class="list" style="width:100%;border-collapse: collapse">
+			<thead>
+				<tr>
+					<th>类别名称</th>
+					<th>类别url</th>
+					<th>节点数</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="text-align: left;">
+					<td>时光隧道</td>
+					<td>
+					时光隧道
+					<span style='visibility: hidden;'><a href="/" style="padding-left:15px">edit</a>
+					      <a href="/" style="padding-left:15px">delete</a>
+					</span>
+					</td>
+					<td>8</td>
+				</tr>
+			</tbody>
+		</table>
 		</div>
 	</div>
 </div>
