@@ -1,11 +1,20 @@
 ##coding:utf-8
-<%include file="common/head_own.html"/>
+<%include file="common/admin_head.html"/>
 <body>
-<%include file="index_top.html"/>
+<div style="background-color:green">
+<!--img src="/static_file/img/SHITAO2.png" style="float:left;padding-top:4px" width="48px"/-->
+<img src="/static_file/img/logo-txt.png" style="float:left;padding-left:6px" width="98px"/>
+<div style="float:right;padding:18px"><a href="/">退出</a></div>
+<div style="float:right;padding:18px"><a href="/">后台</a></div>
+<div style="float:right;padding:18px"><a href="/">配置</a></div>
+<div style="float:right;padding:18px"><a href="/">首页</a></div>
+<div style="clear:both"></div>
+<div style="border-bottom:1px solid white"></div>
+</div>
 <div id="Wrapper">
 	<div id="BackendMain">
 		<div id="BackNav" style="margin-bottom:15px">
-			<div class="box">
+			<div>
 				<div class="cell" style="font-size:13px;padding:0px;border:0px">
 					<ul class="backend_nav">
 						<li><a href="/">Home</a></li>
@@ -27,43 +36,101 @@
 		}
 		th
 		{
-			border:1px solid white;
+			//border:1px solid white;
 		}
 		td
 		{
 			border:1px solid green;
-			height:60px;
+			height:25px;
 			font-size:14px;
 			padding-left:10px;
 		}
 		th
 		{
 			background-color:green;
+			border-right:1px solid white;
 			color:white;
+			height:25px;
+		}
+		span.do 
+		{
+			display:none;
+			//position: absolute;
+			//min-width:460px;
+			//bottom: -19px;
+			//left: 0px;
+		}
+		tr:hover span.do
+		{
+		}
+		.table_title h1{
+			color: #023E69;
+			font-size: 22px;
+			width: 500px;
+			margin-bottom: 5px;
+		}
+		.table_title a:link,a:visited,a:active
+		{
+			color:white;
+			text-decoration:none;
+		}
+		.table_title a:hover
+		{
+			color:white;
+			background-color:black
+		}
+		.button {
+			font-size: 13px;
+			line-height: 13px;
+			padding: 4px 10px 4px 10px;
+			margin: 3px;
+			background-color: green;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+			display: inline-block;
+			font-color:white;
 		}
 		</style>
-		<div class="box">
-		<table  class="list" style="width:100%;border-collapse: collapse">
+		<div style="background-color:white">
+		<div class="table_title">
+			<h1>类别管理</h1>
+			<div>
+			<a href='/' class="button">添加新类别</a>
+			</div>
+		</div>
+		<div style="padding:2px">
+		<table  style="border-collapse: collapse;border:0px;width:100%">
 			<thead>
 				<tr>
-					<th>类别名称</th>
-					<th>类别url</th>
-					<th>节点数</th>
+					<th width="25%">类别名称</th>
+					<th width="30%">类别url</th>
+					<th width="25%">节点数</th>
+					<th width="10%" colspan="2">操作</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr style="text-align: left;">
 					<td>时光隧道</td>
 					<td>
-					时光隧道
-					<span style='visibility: hidden;'><a href="/" style="padding-left:15px">edit</a>
-					      <a href="/" style="padding-left:15px">delete</a>
-					</span>
+					<div>
+						时光隧道
+						<span class="do">
+							<a href="/" style="padding-left:15px">edit</a>
+					      		<a href="/" style="padding-left:15px">delete</a>
+						</span>
+					</div>
 					</td>
 					<td>8</td>
+					<td style="text-align:center;padding:0px">
+					<a href="/">编辑</a>
+					</td>
+					<td style="text-align:center;padding:0px">
+					<a href="/">删除</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
+		</div>
 		</div>
 	</div>
 </div>
