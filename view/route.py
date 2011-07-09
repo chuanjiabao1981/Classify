@@ -15,7 +15,7 @@ urls = (
     '/upload','UploadVideo',
     '/videotopic/(.*)','VideoTopicShow',
     '/newvideo/(.*)','NewVideoTopic',
-    '/backend','Backend',
+    '/backend/(.*)','Backend',
 )
 
 app = web.application(urls, globals())
