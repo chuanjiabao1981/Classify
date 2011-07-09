@@ -32,10 +32,6 @@ ul.backend_nav li
 	//background-color:#2786C2;
 	//background-color:#7a7a7a;
 
-
-
-
-	
 }
 
 ul.backend_nav li ul
@@ -84,3 +80,75 @@ ul.backend_nav a:hover,ul a:focus
 	color:#f3f3f3;
 	background-color:#C00;
 }
+
+
+.admin_title
+{
+			padding-left:4px;
+			padding-top:4px;
+}
+.admin_title h1{
+color: #023E69;
+			color: green;
+			font-size: 20px;
+			width: 500px;
+			margin-bottom: 5px;
+			margin-top:5px;
+
+}
+a:link,a:visited,a:active
+{
+			color:white;
+			text-decoration:none;
+}
+.admin_content
+{
+			padding:2px;
+}
+
+.button {
+			font-size: 13px;
+			line-height: 13px;
+			padding: 4px 10px 4px 10px;
+			margin: 3px;
+			background-color: green;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+			display: inline-block;
+			font-color:white;
+}
+.operation_link a:hover
+{
+color:white;
+      background-color:black;
+}
+		
+table.table_style
+{
+			border-collapse: collapse;
+			width:100%
+}
+table.table_style tr th
+{
+			background-color:green;
+			border-right:1px solid white;
+			color:white;
+			height:25px;
+}
+table.table_style tbody tr
+{
+			text-align:left;
+}
+table.table_style .operation
+{
+			text-align:center;
+			padding:0px;
+}
+table.table_style td
+{
+			border:1px solid green;
+			height:25px;
+			font-size:14px;
+			padding-left:10px;
+}
+
