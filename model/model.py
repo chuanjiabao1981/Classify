@@ -16,6 +16,7 @@ class Classify(Document):
 	structure      = {
 			 "url"			:unicode,### 类型的url名称
 			 "name"			:unicode,### 用于展示
+			 "des"			:unicode,
 			 "node_num"		:int,	 ### classify中包含的node个数
 			 "create_time"		:datetime.datetime
 	}

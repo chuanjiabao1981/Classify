@@ -173,7 +173,7 @@ table.edit_style td
 }
 table.edit_style td.error
 {
-				text-align:right;
+				text-align:left;
 				font-weight:bold;
 				color:red;
 }

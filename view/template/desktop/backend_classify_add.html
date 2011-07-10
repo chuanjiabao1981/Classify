@@ -1,11 +1,4 @@
-##coding:utf-8
-<%include file="common/admin_head.html"/>
-<body>
-<%include file="common/admin_top.html"/>
-<div id="Wrapper">
-	<div id="BackendMain">
-		<%include file="common/admin_nav.html"/>
-		<div>
+	<div>
 			<div class="admin_title">
 				<h1>类别管理</h1>
 			</div>
@@ -19,19 +12,40 @@
 				<fieldset>
 				<legend>#类别编辑#</legend>
 				<table class='edit_style'>
-					
+					% if error:
+					<tr>
+						<td></td>
+						
+						<td class='error'>${error}</td>
+					</tr>
+					% endif
+					<%
+						if web and web.input() and 'url' in web.input():
+							last_url=web.input().url
+						else:
+							last_url=''
+						ss=len(last_url)
+						if web and web.input() and 'name' in web.input():
+							last_name=web.input().name
+						else:
+							last_name=''
+						if web and web.input() and 'des' in web.input():
+							last_des=web.input().des
+						else:
+							last_des=''
+					%>
 					<tr>
 						<td>类别url</td>
-						<td><textarea name="url" type="text" class='small_text_box'></textarea> </td>	
-						<!--td class='error'>xxx<td-->
+						<td><textarea name="url" type="text" class='small_text_box'>${last_url}</textarea>
+						</td>	
 					</tr>
 					<tr>
 						<td>类别名称</td>
-						<td><textarea name="name" type="text" class='small_text_box'></textarea> </td>	
+						<td><textarea name="name" type="text" class='small_text_box'>${last_name}</textarea> </td>	
 					</tr>
 					<tr>
 						<td>类别说明</td>
-						<td><textarea name="des" type="text" class='big_text_box'></textarea> </td>	
+						<td><textarea name="des" type="text" class='big_text_box'>${last_des}</textarea> </td>	
 					</tr>
 					<tr>
 						<td></td>
@@ -44,6 +58,3 @@
 			</form>
 		</div>
 	</div>
-</div>
-</body>
-</html>
