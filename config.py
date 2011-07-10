@@ -21,6 +21,7 @@ collection_name.Reply		= 'reply'
 collection_name.Node		= 'node'
 collection_name.Member		= 'member'
 collection_name.Video		= 'video'
+collection_name.Classify	= 'classify'
 
 
 ### 模板相对的路径都是以view/template为前缀的

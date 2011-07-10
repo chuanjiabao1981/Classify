@@ -8,6 +8,26 @@ import config
 connection		= Connection(config.mongodb_host,config.mongodb_port)
 
 
+
+@connection.register
+class Classify(Document):
+	__collection__ = config.collection_name.Classify
+	__database__   = config.classify_database
+	structure      = {
+			 "url"			:unicode,### 类型的url名称
+			 "name"			:unicode,### 用于展示
+			 "node_num"		:int,	 ### classify中包含的node个数
+			 "create_time"		:datetime.datetime
+	}
+	use_dot_notation	=	True
+	default_values		=	{"node_num":0,"create_time":datetime.datetime.utcnow()}
+	indexes			=	[
+						{
+							'fields':["url","name"],
+							'unique':True
+						}, 
+					]
+
 @connection.register
 class Node(Document):
 	__collection__ = config.collection_name.Node
@@ -23,6 +43,7 @@ class Node(Document):
 			 }
 	use_dot_notation	=	True
 	default_values		=	{"topic_num":0,"header":""}
+
 
 
 @connection.register

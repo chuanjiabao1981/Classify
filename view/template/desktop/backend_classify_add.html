@@ -1,0 +1,49 @@
+##coding:utf-8
+<%include file="common/admin_head.html"/>
+<body>
+<%include file="common/admin_top.html"/>
+<div id="Wrapper">
+	<div id="BackendMain">
+		<%include file="common/admin_nav.html"/>
+		<div>
+			<div class="admin_title">
+				<h1>类别管理</h1>
+			</div>
+
+			<div class="operation_link">
+				<a href='/backend/classify' class="button">类别管理</a>
+				<a href='/backend/classify/add' class="button select">添加新类别</a>
+			</div>
+			<div class='edit_content'>
+			<form enctype="multipart/form-data" action="/backend/classify/add" method="post">
+				<fieldset>
+				<legend>#类别编辑#</legend>
+				<table class='edit_style'>
+					
+					<tr>
+						<td>类别url</td>
+						<td><textarea name="url" type="text" class='small_text_box'></textarea> </td>	
+						<!--td class='error'>xxx<td-->
+					</tr>
+					<tr>
+						<td>类别名称</td>
+						<td><textarea name="name" type="text" class='small_text_box'></textarea> </td>	
+					</tr>
+					<tr>
+						<td>类别说明</td>
+						<td><textarea name="des" type="text" class='big_text_box'></textarea> </td>	
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" value="提  交" /> </td>
+					</tr>
+
+				</table>
+
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

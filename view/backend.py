@@ -31,3 +31,12 @@ class Backend:
 
 
 
+class ClassifyAdd:
+	def GET(self):
+		try:
+			return template_desktop.get_template('backend_classify_add.html').render()
+		except:
+			return exceptions.html_error_template.render()	
+	def POST(self):
+		
+		return web.input()

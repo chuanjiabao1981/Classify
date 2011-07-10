@@ -119,8 +119,13 @@ a:link,a:visited,a:active
 }
 .operation_link a:hover
 {
-color:white;
+      color:white;
       background-color:black;
+}
+.operation_link .select
+{
+		background-color:black;
+		color:white
 }
 		
 table.table_style
@@ -152,3 +157,43 @@ table.table_style td
 			padding-left:10px;
 }
 
+table.edit_style
+{
+}
+table.edit_style td
+{
+				border-width:10px;
+				border-style:dotted;
+				border-color:white;
+
+				text-align:right;
+				padding-right:10px;
+				font-weight:bold;
+				font-size:14px;
+}
+table.edit_style td.error
+{
+				text-align:right;
+				font-weight:bold;
+				color:red;
+}
+table.edit_style textarea.small_text_box
+{
+				border: 1px solid green;
+				width:400px;
+}
+table.edit_style textarea.big_text_box
+{
+				border: 1px solid green;
+				width:400px;
+				height:50px;
+}
+
+.edit_content fieldset
+{
+	border:1px solid green;
+}
+.edit_content legend 
+{
+color: green;font-weight:bold;
+}
