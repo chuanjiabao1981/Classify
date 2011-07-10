@@ -15,18 +15,25 @@
 				</tr>
 		</thead>
 		<tbody>
-
+		% if all_classify:
+			% for i in all_classify:
 				<tr>
-					<td>时光隧道</td>
-					<td>时光隧道</td>
-					<td>8</td>
+					<td>${i.url}</td>
+					<td>${i.name}</td>
+					<td>${i.node_num}</td>
 					<td class="operation">
-					<a href="/" style='color:black'>编辑</a>
+					<a href="/backend/classify/edit/${i._id}" style='color:black'>编辑</a>
 					</td>
 					<td class="operation">
-					<a href="/" style='color:black'>删除</a>
+					<form action="/backend/classify/del/" name="del" method="post">
+      						<input type="hidden" name="id" value='${i._id}'></input>
+      						<input type="submit" value="delete">
+    					</form>
+					<!--a href="/backend/classify/del/${i._id}" style='color:black'>删除</a-->
 					</td>
 				</tr>
+			% endfor
+		% endif
 		</tbody>
 	</table>
 </div>

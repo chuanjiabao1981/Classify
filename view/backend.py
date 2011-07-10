@@ -32,6 +32,13 @@ class Backend:
 			return exceptions.html_error_template().render()
 
 
+class Classify:
+	def GET(self):
+		all_classify = get_all_classify()
+		try:
+			return template_desktop.get_template('backend.html').render(all_classify=all_classify,admin_file='backend_classify.html')
+		except:
+			return exceptions.html_error_template().render()
 
 class ClassifyAdd:
 	def GET(self):
