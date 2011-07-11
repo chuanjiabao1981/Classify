@@ -8,7 +8,14 @@
 				<a href='/backend/classify/add' class="button select">添加新类别</a>
 			</div>
 			<div class='edit_content'>
+			% if action_type == 'add':
 			<form enctype="multipart/form-data" action="/backend/classify/add" method="post">
+			% elif action_type == 'edit':
+				<form enctype="multipart/form-data" action="/backend/classify/edit" method="post">
+				<input type="hidden" name="id" value="${classify_item._id}"></input>
+			% endif
+
+
 				<fieldset>
 				<legend>#类别编辑#</legend>
 				<table class='edit_style'>
@@ -20,19 +27,28 @@
 					</tr>
 					% endif
 					<%
-						if web and web.input() and 'url' in web.input():
-							last_url=web.input().url
-						else:
-							last_url=''
-						ss=len(last_url)
-						if web and web.input() and 'name' in web.input():
-							last_name=web.input().name
-						else:
-							last_name=''
-						if web and web.input() and 'des' in web.input():
-							last_des=web.input().des
-						else:
-							last_des=''
+						last_url	=	''
+						last_name	=	''
+						last_des	=	''
+						if classify_item and 'url' in classify_item:
+							last_url	=	classify_item.url
+						if classify_item and 'name' in classify_item:
+							last_name	=	classify_item.name
+						if classify_item and 'des'  in classify_item:
+							last_des	=	classify_item.des	
+						if error:
+							if web and web.input() and 'url' in web.input():
+								last_url=web.input().url
+							else:
+								last_url=''
+							if web and web.input() and 'name' in web.input():
+								last_name=web.input().name
+							else:
+								last_name=''
+							if web and web.input() and 'des' in web.input():
+								last_des=web.input().des
+							else:
+								last_des=''
 					%>
 					<tr>
 						<td>类别url</td>
@@ -49,7 +65,9 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="提  交" /> </td>
+						<td><input type="submit" value="提  交" /> 
+						<!--input type="submit" value="取消"/-->
+						</td>
 					</tr>
 
 				</table>

@@ -16,6 +16,7 @@ urls = (
     '/videotopic/(.*)','VideoTopicShow',
     '/newvideo/(.*)','NewVideoTopic',
     '/backend/classify/add','ClassifyAdd',
+    '/backend/classify/edit/([^/]+)','ClassifyEdit',
     '/backend/classify','Classify',
     '/backend/main','Backend',
 )
