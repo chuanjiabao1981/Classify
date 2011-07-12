@@ -38,16 +38,28 @@ class Node(Document):
 	__collection__ = config.collection_name.Node
 	__database__   = config.classify_database
 	structure      = {
-#TODO:保证url和name是唯一的
 
 				"url"		: unicode, 		# url 
 				"name"		: unicode,		# 用于展示的 比如汉字
 				"header"	: unicode,		# 节点的说明
 				"topic_num"	: int,			# 节点topic总数
-				"create_time"		: datetime.datetime
+				"classify_name" : unicode,
+				"classify_url"	: unicode,
+				"classify_ref"	: pymongo.objectid.ObjectId,
+				"create_time"	: datetime.datetime
 			 }
 	use_dot_notation	=	True
-	default_values		=	{"topic_num":0,"header":""}
+	default_values		=	{"topic_num":0,"header":"","create_time":datetime.datetime.utcnow()}
+	indexes			=	[
+						{
+							'fields':["url"],
+							'unique':True
+						},
+						{
+							'fields':["name"],
+							'unique':True
+						}	
+					]
 
 
 

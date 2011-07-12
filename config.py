@@ -63,7 +63,24 @@ video_setting.image_small	= '160x90'
 video_setting.image_big		= '480x270'
 
 
+class backend():
+	class node():
+		class field():
+			pass
+		pass
+	pass
+
+backend.node.title			= u'节点管理'
+backend.node.add			= u'添加节点'
+backend.node.edit			= u'编辑节点'
+backend.node.field.url			= u'节点url'
+backend.node.field.name			= u'节点名称'
+backend.node.field.header		= u'节点header（用于展示）'
+backend.node.field.topic_num		= u'节点包含的topic个数'
+backend.node.field.classify_name	= u'节点所属类别'
+
+
 
 if __name__ == "__main__":
 	print site.title
-	print a.b
+	print backend.node.title

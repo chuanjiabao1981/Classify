@@ -9,6 +9,8 @@ def inc_topic_num_by_node_url_name(name):
 		{'url':name}, 
 		{ '$inc':{"topic_num":1} } 
 	)
+def get_all_node():
+	return connection.Node.find().sort('create_time')
 
 
 

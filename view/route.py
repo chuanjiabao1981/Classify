@@ -18,6 +18,8 @@ urls = (
     '/backend/classify/add','ClassifyAdd',
     '/backend/classify/edit/([^/]+)','ClassifyEdit',
     '/backend/classify','Classify',
+    '/backend/node','NodeOverView',
+    '/backend/node/add','NodeAdd',
     '/backend/main','Backend',
 )
 

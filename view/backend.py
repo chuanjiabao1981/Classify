@@ -31,6 +31,20 @@ class Backend:
 		except:
 			return exceptions.html_error_template().render()
 
+class NodeOverView:
+	def GET(self):
+		all_node = get_all_node()
+		return template_desktop.get_template('backend.html').render(all_node=all_node,admin_file='backend_node.html')
+
+
+class NodeAdd:
+	def GET(self):
+		all_classify = get_all_classify()
+		return template_desktop.get_template('backend.html').render(admin_file='backend_node_add.html',\
+			error=None,
+			action_type='add',all_classify=all_classify)
+
+		
 
 class Classify:
 	def GET(self):

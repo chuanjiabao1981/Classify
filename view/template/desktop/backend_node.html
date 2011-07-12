@@ -1,33 +1,38 @@
+<%!
+	import view.filter
+	from config import template,site,backend
+%>
+
 <div class="admin_title">
-		<h1>类别管理</h1>
+		<h1>${backend.node.title}</h1>
 </div>
 <div class="operation_link">
-		<a href='/backend/classify/add' class="button">添加新类别</a>
+		<a href='/backend/node/add' class="button">${backend.node.add}</a>
 </div>
 <div class="admin_content">
 	<table  class="table_style">
 		<thead>
 			<tr>
-					<th width="25%">类别名称</th>
-					<th width="30%">类别url</th>
-					<th width="25%">节点数</th>
+					<th width="25%">${backend.node.field.name}</th>
+					<th width="30%">${backend.node.field.url}</th>
+					<th width="25%">${backend.node.field.topic_num}</th>
 					<th width="10%" colspan="2">操作</th>
 				</tr>
 		</thead>
 		<tbody>
-		% if all_classify:
-			% for i in all_classify:
+		% if all_node:
+			% for i in all_node:
 				<tr>
 					<td>${i.name}</td>
 					<td>${i.url}</td>
-					<td>${i.node_num}</td>
+					<td>${i.topic_num}</td>
 					<td class="operation">
-					<form action="/backend/classify/edit/${i._id}" name="del" method="get">
+					<form action="/backend/node/edit/${i._id}" name="del" method="get">
       						<input type="submit" value="编辑">
     					</form>
 					</td>
 					<td class="operation">
-					<form action="/backend/classify/del/" name="del" method="post">
+					<form action="/backend/node/del/" name="del" method="post">
       						<input type="hidden" name="id" value='${i._id}'></input>
       						<input type="submit" value="删除">
     					</form>
@@ -38,4 +43,3 @@
 		</tbody>
 	</table>
 </div>
-

@@ -1,0 +1,101 @@
+<%!
+	import view.filter
+	from config import template,site,backend
+%>
+
+	<div>
+			<div class="admin_title">
+			% if action_type == 'add':
+				<h1>${backend.node.add}</h1>
+			% elif action_type == 'edit':
+				<h1>${backend.node.edit}</h1>
+			% endif
+			</div>
+
+			<div class="operation_link">
+				<a href='/backend/node' class="button">${backend.node.title}</a>
+				<a href='/backend/node/add' class="button select">${backend.node.add}</a>
+			</div>
+			<div class='edit_content'>
+			% if action_type == 'add':
+			<form enctype="multipart/form-data" name="classify_form" action="/backend/node/add" method="post">
+			% elif action_type == 'edit':
+				<form enctype="multipart/form-data" name="classify_form" action="/backend/node/edit/${node_item_id}" method="post">
+				<input type="hidden" name="id" value="${node_item_id}"></input>
+			% endif
+
+
+				<fieldset>
+				<legend>#${backend.node.edit}#</legend>
+				<table class='edit_style'>
+					% if error:
+					<tr>
+						<td></td>
+						
+						<td class='error'>${error}</td>
+					</tr>
+					% endif
+					<%
+						last_url	=	''
+						last_name	=	''
+						last_des	=	''
+						if node_item and 'url' in node_item:
+							last_url	=	node_item.url
+						if node_item and 'name' in node_item:
+							last_name	=	node_item.name
+						if node_item and 'header'  in node_item:
+							last_des	=	node_item.header
+						if error:
+							if web and web.input() and 'url' in web.input():
+								last_url=web.input().url
+							else:
+								last_url=''
+							if web and web.input() and 'name' in web.input():
+								last_name=web.input().name
+							else:
+								last_name=''
+							if web and web.input() and 'header' in web.input():
+								last_des=web.input().header
+							else:
+								last_des=''
+
+					%>
+					<tr>
+						<td>${backend.node.field.name}</td>
+						<td><textarea name="name" type="text" class='small_text_box'>${last_name}</textarea> </td>	
+					</tr>
+
+					<tr>
+						<td>${backend.node.field.url}</td>
+						<td><textarea name="url" type="text" class='small_text_box'>${last_url}</textarea>
+						</td>	
+					</tr>
+					<tr>
+						<td>${backend.node.field.classify_name}</td>
+						<td>
+							<select style='width:100%'>
+							  % if all_classify:
+								% for j in all_classify:
+							  		<option value="${j._id}">${j.name}</option>
+								% endfor
+							  % endif
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>${backend.node.field.header}</td>
+						<td><textarea name="header" type="text" class='big_text_box'>${last_des}</textarea> </td>	
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" value="提  交" /> 
+						<input name="cancel" type="submit" value="取消" onclick="cancel();"/>
+						</td>
+					</tr>
+
+				</table>
+
+				</fieldset>
+			</form>
+		</div>
+	</div>
