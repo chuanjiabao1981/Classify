@@ -24,9 +24,13 @@ class Classify(Document):
 	default_values		=	{"node_num":0,"create_time":datetime.datetime.utcnow()}
 	indexes			=	[
 						{
-							'fields':["url","name"],
+							'fields':["url"],
 							'unique':True
 						}, 
+						{
+							'fields':["name"],
+							'unique':True
+						}
 					]
 
 @connection.register

@@ -18,8 +18,8 @@
 		% if all_classify:
 			% for i in all_classify:
 				<tr>
-					<td>${i.name}</td>
 					<td>${i.url}</td>
+					<td>${i.name}</td>
 					<td>${i.node_num}</td>
 					<td class="operation">
 					<form action="/backend/classify/edit/${i._id}" name="del" method="get">

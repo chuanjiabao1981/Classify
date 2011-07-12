@@ -3,6 +3,11 @@
 2. schema update
    db.topic.update({hits:{"$exists":false}},{"$set":{hits:0}},false,true)
    最后一个参数表示对符合条件的全部record进行update操作;默认这值为false
+
 3. nginx 安装
    sudo ./configure --prefix=/opt/nginx --user=nginx --group=nginx --with-http_ssl_module --add-module=/opt/nginx_upload_module-2.2.0/ --add-module=/opt/masterzen-nginx-upload-progress-module-8b55a34/
 
+4. db.classify.ensureIndex({'name':1},{unique:true, dropDups : true})
+   mongodb 的命令行，用于给name建立索引，且保持唯一，如果有重复保存第一个，删除其他的。
+   这个的作用是，给已有的数据建立索引。如果没有第三个参数，每次插入数据，都会报错（如果建立索引前的数据中name有重复的）
+   用这个命令可以保证把重复的删除

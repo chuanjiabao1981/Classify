@@ -1,3 +1,10 @@
+	<script>
+		function cancel()
+		{
+			document.classify_form.action.value='/backend/classify';
+			document.classify_form.submit();
+		}
+	</script>
 	<div>
 			<div class="admin_title">
 				<h1>类别管理</h1>
@@ -9,10 +16,10 @@
 			</div>
 			<div class='edit_content'>
 			% if action_type == 'add':
-			<form enctype="multipart/form-data" action="/backend/classify/add" method="post">
+			<form enctype="multipart/form-data" name="classify_form" action="/backend/classify/add" method="post">
 			% elif action_type == 'edit':
-				<form enctype="multipart/form-data" action="/backend/classify/edit" method="post">
-				<input type="hidden" name="id" value="${classify_item._id}"></input>
+				<form enctype="multipart/form-data" name="classify_form" action="/backend/classify/edit/${classify_item_id}" method="post">
+				<input type="hidden" name="id" value="${classify_item_id}"></input>
 			% endif
 
 
@@ -51,13 +58,14 @@
 								last_des=''
 					%>
 					<tr>
+						<td>类别名称</td>
+						<td><textarea name="name" type="text" class='small_text_box'>${last_name}</textarea> </td>	
+					</tr>
+
+					<tr>
 						<td>类别url</td>
 						<td><textarea name="url" type="text" class='small_text_box'>${last_url}</textarea>
 						</td>	
-					</tr>
-					<tr>
-						<td>类别名称</td>
-						<td><textarea name="name" type="text" class='small_text_box'>${last_name}</textarea> </td>	
 					</tr>
 					<tr>
 						<td>类别说明</td>
@@ -66,7 +74,7 @@
 					<tr>
 						<td></td>
 						<td><input type="submit" value="提  交" /> 
-						<!--input type="submit" value="取消"/-->
+						<input name="cancel" type="submit" value="取消" onclick="cancel();"/>
 						</td>
 					</tr>
 

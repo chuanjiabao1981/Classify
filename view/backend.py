@@ -40,7 +40,7 @@ class Classify:
 		except:
 			return exceptions.html_error_template().render()
 
-def ClassifyEditAddPost(action_type):
+def ClassifyEditAddPost(action_type,classify_item_id):
 	url_len_limit	=	1024
 	name_len_limit	=	10
 	des_len_limit	=	1024
@@ -59,16 +59,29 @@ def ClassifyEditAddPost(action_type):
 	elif len(web.input().des) > des_len_limit:
 		error = u'类别说明不能超过'+str(des_len_limit)+u'个字符!'
 	if error:
-		return template_desktop.get_template('backend.html').render(error=error,web=web,admin_file='backend_classify_add.html',action_type=action_type)
+		return template_desktop.get_template('backend.html').render(error=error,\
+					web=web,\
+					admin_file='backend_classify_add.html',\
+					action_type=action_type,\
+					classify_item_id=classify_item_id)
 	if action_type == 'add':
 	###去首尾空白 
 		(status,code) = add_a_classify(web.input().url.strip(" ").strip("\n"),web.input().name.strip(" ").strip("\n"),web.input().des.strip(" ").strip("\n"))
-		if not status and code == -1:
-			error = u'这个分类已经存在(url名称或者类别名称已经重复)'
-		if error:
-			return template_desktop.get_template('backend.html').render(error=error,web=web,admin_file='backend_classify_add.html',action_type=action_type)
 	elif action_type == 'edit':
-		pass
+		(status,code) =	update_a_classify(web.input().id,\
+						  web.input().url.strip(" ").strip("\n"),\
+						 web.input().name.strip(" ").strip("\n"),\
+						 web.input().des.strip(" ").strip("\n"))
+ 					  
+	if not status and code == -1:
+		error = u'这个分类已经存在(url名称或者类别名称已经重复)'
+	if error:
+		return template_desktop.get_template('backend.html').render(error=error,\
+									    web=web,\
+									    admin_file='backend_classify_add.html',\
+									    action_type=action_type,\
+									    classify_item_id=classify_item_id
+										)
 	return web.seeother('/backend/classify')
 
 class ClassifyEdit:
@@ -78,7 +91,14 @@ class ClassifyEdit:
 		i= find_a_classify(arg)
 		if not i:
 			return web.notfound("这个真没有")
-		return template_desktop.get_template('backend.html').render(admin_file='backend_classify_add.html',action_type='edit',classify_item=i)
+		return template_desktop.get_template('backend.html').render(admin_file='backend_classify_add.html',\
+									   action_type='edit',\
+									   classify_item=i,\
+									   classify_item_id=arg)
+	def POST(self,arg):
+		if not arg:		
+			return web.notfound("这个真没有")
+		return ClassifyEditAddPost('edit',arg)
 
 
 
@@ -86,7 +106,7 @@ class ClassifyAdd:
 	def GET(self):
 		return template_desktop.get_template('backend.html').render(admin_file='backend_classify_add.html',error=None,action_type='add')
 	def POST(self):
-		return ClassifyEditAddPost('add')
+		return ClassifyEditAddPost('add',None)
 		url_len_limit	=	1024
 		name_len_limit	=	10
 		des_len_limit	=	1024
