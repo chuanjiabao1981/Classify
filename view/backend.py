@@ -52,11 +52,15 @@ class NodeAdd:
 		t["admin_file"] 	= 'backend_node_add.html'
 		t["action_type"]	= 'add'
 		t["error"]		= self.VerifyPostInput()
+		t["all_classify"] 	= get_all_classify()
+		t["web"]	  	= web	
+
 		if t["error"]:
-			t["all_classify"] = get_all_classify()
-			t["web"]	  = web	
 			return template_desktop.get_template('backend.html').render(**t)
-		add_a_node(web.input())
+		(status,code)		= add_a_node(web.input())
+		if code == -1 and status == False:
+			t["error"]	= u'节点的url或者节点名称已经存在'
+			return template_desktop.get_template('backend.html').render(**t)
 		return web.input().classify_id
 
 	def VerifyPostInput(self):

@@ -29,6 +29,7 @@ def add_a_node(info):
 		node.save()
 	except pymongo.errors.DuplicateKeyError:
 		return (False,-1)
+	update_classify_node_num(info.classify_id)
 	return (True,0)
 
 if __name__ == "__main__":

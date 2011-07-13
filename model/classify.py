@@ -37,6 +37,12 @@ def update_a_classify(classify_id,url,name,des):
 	return (True,0)
 
 	
+def update_classify_node_num(classify_id):
+	connection[config.classify_database][config.collection_name.Classify].update(
+		{'_id':bson.objectid.ObjectId(classify_id)},
+		{'$inc':{"node_num":1}} ,
+	)
+
 
 if __name__ == '__main__':
 	update_a_classify('4e1b8c3cdecbef10a9000000','test1','aa','test')
