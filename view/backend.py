@@ -5,6 +5,7 @@ from model.video  import *
 from model.model  import *
 from model.member import *
 from model.classify import *
+from model.node  import *
 from mako.template import Template
 from mako.lookup import TemplateLookup
 from mako import exceptions
@@ -40,10 +41,41 @@ class NodeOverView:
 class NodeAdd:
 	def GET(self):
 		all_classify = get_all_classify()
-		return template_desktop.get_template('backend.html').render(admin_file='backend_node_add.html',\
-			error=None,
-			action_type='add',all_classify=all_classify)
+		t			= {}
+		t["admin_file"] 	= 'backend_node_add.html'
+		t["error"]		= None
+		t["action_type"]	= 'add'
+		t["all_classify"]	= all_classify
+		return template_desktop.get_template('backend.html').render(**t)
+	def POST(self):
+		t			= {}
+		t["admin_file"] 	= 'backend_node_add.html'
+		t["action_type"]	= 'add'
+		t["error"]		= self.VerifyPostInput()
+		if t["error"]:
+			t["all_classify"] = get_all_classify()
+			t["web"]	  = web	
+			return template_desktop.get_template('backend.html').render(**t)
+		add_a_node(web.input())
+		return web.input().classify_id
 
+	def VerifyPostInput(self):
+		p		=	re.compile('^[a-zA-Z0-9_]+$')
+		url_len_limit	=	64
+		name_len_limit	=	10
+		error		=	None
+		if not web.input().url:
+			error = u'节点 url不能为空!'	
+		elif not p.match(web.input().url):
+			error = u'节点 url只能为字母、数字、下划线!'
+		elif len(web.input().url) > url_len_limit:
+			error = u'节点 url不能超过'+str(url_len_limit)+u'个字符!'
+		elif not web.input().name:
+			error = u'节点名称不能为空!'
+		elif not web.input().classify_id:
+			error = u'类别id异常'
+		return error
+		
 		
 
 class Classify:

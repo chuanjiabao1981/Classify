@@ -36,15 +36,19 @@
 					</tr>
 					% endif
 					<%
-						last_url	=	''
-						last_name	=	''
-						last_des	=	''
+						last_url		=	''
+						last_name		=	''
+						last_des		=	''
+						last_classify_ref	=	''
 						if node_item and 'url' in node_item:
-							last_url	=	node_item.url
+							last_url		=node_item.url
 						if node_item and 'name' in node_item:
-							last_name	=	node_item.name
+							last_name		=node_item.name
 						if node_item and 'header'  in node_item:
-							last_des	=	node_item.header
+							last_des		=node_item.header
+						if node_item and 'classify_id' in node_item:
+							last_classify_ref	=node_item.classify_ref
+
 						if error:
 							if web and web.input() and 'url' in web.input():
 								last_url=web.input().url
@@ -58,6 +62,10 @@
 								last_des=web.input().header
 							else:
 								last_des=''
+							if web and web.input() and 'classify_id' in web.input():
+								last_classify_ref = web.input().classify_id
+							else:
+								last_classify_ref = ''
 
 					%>
 					<tr>
@@ -73,10 +81,14 @@
 					<tr>
 						<td>${backend.node.field.classify_name}</td>
 						<td>
-							<select style='width:100%'>
+							<select style='width:100%' name="classify_id">
 							  % if all_classify:
 								% for j in all_classify:
-							  		<option value="${j._id}">${j.name}</option>
+									% if str(j._id) == last_classify_ref:
+										<option value="${j._id}" selected="selected">${j.name}</option>
+									% else:
+							  			<option value="${j._id}">${j.name}</option>
+									% endif
 								% endfor
 							  % endif
 							</select>
