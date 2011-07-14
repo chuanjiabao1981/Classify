@@ -46,8 +46,8 @@
 							last_name		=node_item.name
 						if node_item and 'header'  in node_item:
 							last_des		=node_item.header
-						if node_item and 'classify_id' in node_item:
-							last_classify_ref	=node_item.classify_ref
+						if node_item and 'classify_ref' in node_item:
+							last_classify_ref	=str(node_item.classify_ref)
 
 						if error:
 							if web and web.input() and 'url' in web.input():

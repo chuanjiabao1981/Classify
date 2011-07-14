@@ -20,6 +20,7 @@ urls = (
     '/backend/classify','Classify',
     '/backend/node','NodeOverView',
     '/backend/node/add','NodeAdd',
+    '/backend/node/edit/([^/]+)','NodeEdit',
     '/backend/main','Backend',
 )
 

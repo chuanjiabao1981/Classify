@@ -37,7 +37,65 @@ class NodeOverView:
 		all_node = get_all_node()
 		return template_desktop.get_template('backend.html').render(all_node=all_node,admin_file='backend_node.html')
 
+def NodeVerifyPostInput():
+	p		=	re.compile('^[a-zA-Z0-9_]+$')
+	url_len_limit	=	64
+	name_len_limit	=	10
+	error		=	None
+	if not web.input().url:
+		error = u'节点 url不能为空!'	
+	elif not p.match(web.input().url):
+		error = u'节点 url只能为字母、数字、下划线!'
+	elif len(web.input().url) > url_len_limit:
+		error = u'节点 url不能超过'+str(url_len_limit)+u'个字符!'
+	elif not web.input().name:
+		error = u'节点名称不能为空!'
+	elif len(web.input().name) > name_len_limit:
+		error = u'节点名称不能超过'+str(name_len_limit)+u'个字符!'
+	elif not web.input().classify_id:
+		error = u'类别id异常'
+	return error
+	
+class NodeEdit:
+	def GET(self,arg):
+		if not arg:	
+			return web.notfound("这个真没有")
+		i = find_a_node(arg)
+		if not i:
+			return web.notfound("这个真没有")
 
+		all_classify		= get_all_classify()
+		t = {}
+		t["admin_file"]		= 'backend_node_add.html'
+		t["error"]		= None
+		t["action_type"]	= 'edit'
+		t["all_classify"]	= all_classify
+		t["node_item"]		= i
+		t["web"]		= web
+		t["node_item_id"]	= arg
+		return template_desktop.get_template('backend.html').render(**t)
+
+	def POST(self,arg):
+		t			= {}
+		t["error"]		= NodeVerifyPostInput()
+		t["admin_file"]		= 'backend_node_add.html'
+		t["action_type"]	= 'edit'
+		t["all_classify"]	= get_all_classify()
+		t["node_item"]		= find_a_node(arg)
+		t["web"]		= web
+		t["node_item_id"]	= arg
+		if not t["node_item"]:
+			return web.notfound("这个真没有")
+		if t["error"]:
+			return template_desktop.get_template('backend.html').render(**t)
+
+		(status,code)		= update_a_node(t["node_item"],web.input())
+		if code == -1 and status == False:
+			t["error"]	= u'节点的url或者节点名称已经存在'
+			return template_desktop.get_template('backend.html').render(**t)
+		return web.seeother('/backend/node')
+
+	
 class NodeAdd:
 	def GET(self):
 		all_classify = get_all_classify()
@@ -51,7 +109,7 @@ class NodeAdd:
 		t			= {}
 		t["admin_file"] 	= 'backend_node_add.html'
 		t["action_type"]	= 'add'
-		t["error"]		= self.VerifyPostInput()
+		t["error"]		= NodeVerifyPostInput()
 		t["all_classify"] 	= get_all_classify()
 		t["web"]	  	= web	
 
@@ -61,7 +119,7 @@ class NodeAdd:
 		if code == -1 and status == False:
 			t["error"]	= u'节点的url或者节点名称已经存在'
 			return template_desktop.get_template('backend.html').render(**t)
-		return web.input().classify_id
+		return web.seeother('/backend/node')
 
 	def VerifyPostInput(self):
 		p		=	re.compile('^[a-zA-Z0-9_]+$')

@@ -37,10 +37,10 @@ def update_a_classify(classify_id,url,name,des):
 	return (True,0)
 
 	
-def update_classify_node_num(classify_id):
+def update_classify_node_num(classify_id,num):
 	connection[config.classify_database][config.collection_name.Classify].update(
 		{'_id':bson.objectid.ObjectId(classify_id)},
-		{'$inc':{"node_num":1}} ,
+		{'$inc':{"node_num":num}} ,
 	)
 
 
