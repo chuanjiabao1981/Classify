@@ -1,6 +1,7 @@
 # coding=utf-8
 import sys
 from model import *
+from node import *
 import bson.objectid
 import config
 
@@ -9,11 +10,11 @@ def get_all_classify():
 	return connection.Classify.find().sort('create_time')
 
 
-def add_a_classify(url,name,des):
+def add_a_classify(web_info):
 	classify = connection.Classify()	
-	classify.name = name;
-	classify.url  = url;
-	classify.des  = des;
+	classify.name = web_info.name.strip(" ").strip("\n");
+	classify.url  = web_info.url.strip(" ").strip("\n");
+	classify.des  = web_info.des.strip(" ").strip("\n");
 	try:
 		classify.save()
 	except pymongo.errors.DuplicateKeyError:
@@ -23,15 +24,20 @@ def add_a_classify(url,name,des):
 def find_a_classify(topic_id):
 	return connection.Classify.find_one({'_id':bson.objectid.ObjectId(topic_id)})
 
-def update_a_classify(classify_id,url,name,des):
+def update_a_classify(web_info):
 	try:
 		connection[config.classify_database][config.collection_name.Classify].update(
-		{'_id':bson.objectid.ObjectId(classify_id)},
+		{'_id':bson.objectid.ObjectId(web_info.id)},
 		{
-	 	'$set':{'url':url,'name':name,'des':des}
+	 	'$set':{'url'		:web_info.url.strip(" ").strip("\n"),
+			'name'		:web_info.name.strip(" ").strip("\n"),
+			'des'		:web_info.des.strip(" ").strip("\n")
+			}
 		},
 		safe=True
 		)
+		i = find_a_classify(web_info.id)
+		update_node_classify_info(i)
 	except pymongo.errors.DuplicateKeyError:
 		return (False,-1)
 	return (True,0)
@@ -41,6 +47,7 @@ def update_classify_node_num(classify_id,num):
 	connection[config.classify_database][config.collection_name.Classify].update(
 		{'_id':bson.objectid.ObjectId(classify_id)},
 		{'$inc':{"node_num":num}} ,
+		safe=True
 	)
 
 

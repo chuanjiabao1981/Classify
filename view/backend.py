@@ -121,23 +121,6 @@ class NodeAdd:
 			return template_desktop.get_template('backend.html').render(**t)
 		return web.seeother('/backend/node')
 
-	def VerifyPostInput(self):
-		p		=	re.compile('^[a-zA-Z0-9_]+$')
-		url_len_limit	=	64
-		name_len_limit	=	10
-		error		=	None
-		if not web.input().url:
-			error = u'节点 url不能为空!'	
-		elif not p.match(web.input().url):
-			error = u'节点 url只能为字母、数字、下划线!'
-		elif len(web.input().url) > url_len_limit:
-			error = u'节点 url不能超过'+str(url_len_limit)+u'个字符!'
-		elif not web.input().name:
-			error = u'节点名称不能为空!'
-		elif not web.input().classify_id:
-			error = u'类别id异常'
-		return error
-		
 		
 
 class Classify:
@@ -173,13 +156,9 @@ def ClassifyEditAddPost(action_type,classify_item_id):
 					action_type=action_type,\
 					classify_item_id=classify_item_id)
 	if action_type == 'add':
-	###去首尾空白 
-		(status,code) = add_a_classify(web.input().url.strip(" ").strip("\n"),web.input().name.strip(" ").strip("\n"),web.input().des.strip(" ").strip("\n"))
+		(status,code) = add_a_classify(web.input())
 	elif action_type == 'edit':
-		(status,code) =	update_a_classify(web.input().id,\
-						  web.input().url.strip(" ").strip("\n"),\
-						 web.input().name.strip(" ").strip("\n"),\
-						 web.input().des.strip(" ").strip("\n"))
+		(status,code) = update_a_classify(web.input())
  					  
 	if not status and code == -1:
 		error = u'这个分类已经存在(url名称或者类别名称已经重复)'
@@ -215,29 +194,3 @@ class ClassifyAdd:
 		return template_desktop.get_template('backend.html').render(admin_file='backend_classify_add.html',error=None,action_type='add')
 	def POST(self):
 		return ClassifyEditAddPost('add',None)
-		url_len_limit	=	1024
-		name_len_limit	=	10
-		des_len_limit	=	1024
-		p		=	re.compile('^[a-zA-Z0-9_]+$')
-		error		=	None
-		if not web.input().url:
-			error = u'类别 url不能为空!'	
-		elif not p.match(web.input().url):
-			error = u'类别 url只能为字母、数字、下划线!'
-		elif len(web.input().url) > url_len_limit:
-			error = u'类别 url不能超过'+str(url_len_limit)+u'个字符!'
-		elif not web.input().name:
-			error = u'类别名称不能为空!'
-		elif len(web.input().name) > name_len_limit:
-			error = u'类别名称不能超过'+str(name_len_limit)+u'个字符!'
-		elif len(web.input().des) > des_len_limit:
-			error = u'类别说明不能超过'+str(des_len_limit)+u'个字符!'
-		if error:
-			return template_desktop.get_template('backend.html').render(error=error,web=web,admin_file='backend_classify_add.html',action_type='add')
-		###去首尾空白 
-		(status,code) = add_a_classify(web.input().url.strip(" "),web.input().name.strip(" "),web.input().des.strip(" "))
-		if not status and code == -1:
-			error = u'这个分类已经存在(url名称或者类别名称已经重复)'
-		if error:
-			return template_desktop.get_template('backend.html').render(error=error,web=web,admin_file='backend_classify_add.html',action_type='add')
-		return web.seeother('/backend/classify')

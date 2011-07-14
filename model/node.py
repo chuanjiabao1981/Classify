@@ -16,7 +16,18 @@ def get_all_node():
 def find_a_node(node_id):
 	return connection.Node.find_one({'_id':bson.objectid.ObjectId(node_id)})
 
-
+def update_node_classify_info(classify_info):
+	connection[config.classify_database][config.collection_name.Node].update(
+		{'classify_ref':classify_info._id},
+		{
+		 '$set':{
+				'classify_ref'	:	classify_info._id,
+				'classify_name'	:	classify_info.name,
+				'classify_url'	:	classify_info.url
+			}
+		},
+		multi=True
+	)
 def update_a_node(node_info,web_info):
 	try:
 		# first
