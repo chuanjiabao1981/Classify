@@ -1,4 +1,8 @@
 from model import *
+
+ADMIN			=	0
+UPLOAD_VIDEO		=	1
+
 def get_member_by_name(name):
 	return connection.Member.find_one()	
 

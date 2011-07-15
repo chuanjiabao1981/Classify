@@ -68,12 +68,23 @@ class Member(Document):
 	__collection__ = config.collection_name.Member
 	__database__   = config.classify_database
 	structure = {
-#TODO:保证name和email唯一
 			"name"		:unicode,
 			"email"		:unicode,
-			"password"	:unicode
+			"password"	:unicode,
+			"authority"	:long,
+			"status"	:int
 		    }
 	use_dot_notation	=	True
+	default_values		=	{"authority":0,"status":member_status_active}
+	indexes			=	[
+						{
+							"fields":["name"],
+							"unique":True
+						},
+						{	"fields":["email"],
+							"unique":True
+						}
+					]
 
 @connection.register
 class Video(Document):
