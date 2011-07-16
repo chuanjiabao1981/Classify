@@ -1,0 +1,48 @@
+<%!
+	import view.filter
+	from config import template,site,backend
+	from model.default import MemberStatus
+%>
+
+<div class="admin_title">
+		<h1>${backend.member.title}</h1>
+</div>
+<div class="operation_link">
+		<a href='/backend/member/add' class="button">${backend.member.add}</a>
+</div>
+<div class="admin_content">
+	<table  class="table_style">
+		<thead>
+			<tr>
+					<th width="25%">${backend.member.field.name}</th>
+					<th width="30%">${backend.member.field.email}</th>
+					<th width="25%">${backend.member.field.register_time}</th>
+					<th width="10%">${backend.member.field.status}</th>
+					<th width="10%" colspan="2">操作</th>
+				</tr>
+		</thead>
+		<tbody>
+		% if all_member:
+			% for i in all_member:
+				<tr>
+					<td>${i.name}</td>
+					<td>${i.email}</td>
+					<td>${i.register_time}</td>
+					<td>${MemberStatus.StatusName[i.status]}</td>
+					<td class="operation">
+					<form action="/backend/member/edit/${i._id}" name="del" method="get">
+      						<input type="submit" value="编辑">
+    					</form>
+					</td>
+					<td class="operation">
+					<form action="/backend/member/del/" name="del" method="post">
+      						<input type="hidden" name="id" value='${i._id}'></input>
+      						<input type="submit" value="删除">
+    					</form>
+					</td>
+				</tr>
+			% endfor
+		% endif
+		</tbody>
+	</table>
+</div>

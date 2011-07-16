@@ -194,3 +194,19 @@ class ClassifyAdd:
 		return template_desktop.get_template('backend.html').render(admin_file='backend_classify_add.html',error=None,action_type='add')
 	def POST(self):
 		return ClassifyEditAddPost('add',None)
+
+class MemberOverView:
+	def GET(self):
+		t		=	{}
+		t["all_member"]	=	get_all_member()
+		t["admin_file"]	=	'backend_member.html'
+		return template_desktop.get_template('backend.html').render(**t)
+class MemberAdd:
+	def GET(self):
+		t			=	{}
+		t["admin_file"]		=	'backend_member_add.html'
+		t["action_type"]	=	'add'
+		return template_desktop.get_template('backend.html').render(**t)
+	def POST(self):
+		return web.input()
+

@@ -68,6 +68,9 @@ class backend():
 		class field():
 			pass
 		pass
+	class member():
+		class field():
+			pass
 	pass
 
 backend.node.title			= u'节点管理'
@@ -78,6 +81,15 @@ backend.node.field.name			= u'节点名称'
 backend.node.field.header		= u'节点header（用于展示）'
 backend.node.field.topic_num		= u'节点包含的topic个数'
 backend.node.field.classify_name	= u'节点所属类别'
+backend.member.title			= u'用户管理'
+backend.member.add			= u'添加用户'
+backend.member.edit			= u'编辑用户信息'
+backend.member.field.name		= u'用户名'
+backend.member.field.register_time	= u'用户注册时间'
+backend.member.field.email		= u'电子邮件'
+backend.member.field.status		= u'用户状态'
+backend.member.field.password		= u'密码'
+backend.member.field.readme		= u'自我简介'
 
 
 

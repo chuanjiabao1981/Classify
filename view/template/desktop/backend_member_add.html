@@ -1,0 +1,146 @@
+<%!
+	import view.filter
+	from config import template,site,backend
+	from model.default import MemberAuthority
+%>
+
+	<div>
+			<div class="admin_title">
+			% if action_type == 'add':
+				<h1>${backend.member.add}</h1>
+			% elif action_type == 'edit':
+				<h1>${backend.member.edit}</h1>
+			% endif
+			</div>
+
+			<div class="operation_link">
+				<a href='/backend/member' class="button">${backend.member.title}</a>
+				<a href='/backend/member/add' class="button select">${backend.member.add}</a>
+			</div>
+			<div class='edit_content'>
+			% if action_type == 'add':
+			<form enctype="multipart/form-data" name="classify_form" action="/backend/member/add" method="post">
+			% elif action_type == 'edit':
+				<form enctype="multipart/form-data" name="classify_form" action="/backend/member/edit/${member_item_id}" method="post">
+				<input type="hidden" name="id" value="${member_item_id}"></input>
+			% endif
+
+
+				<fieldset>
+				% if action_type == 'add':
+					<legend>#${backend.member.add}#</legend>
+				% elif action_type == 'edit':
+					<legend>#${backend.member.edit}#</legend>
+				% endif
+				<table class='edit_style'>
+					% if error:
+					<tr>
+						<td></td>
+						
+						<td class='error'>${error}</td>
+					</tr>
+					% endif
+					<%
+						last_url		=	''
+						last_name		=	''
+						last_des		=	''
+						last_classify_ref	=	''
+						if node_item and 'url' in node_item:
+							last_url		=node_item.url
+						if node_item and 'name' in node_item:
+							last_name		=node_item.name
+						if node_item and 'header'  in node_item:
+							last_des		=node_item.header
+						if node_item and 'classify_ref' in node_item:
+							last_classify_ref	=str(node_item.classify_ref)
+
+						if error:
+							if web and web.input() and 'url' in web.input():
+								last_url=web.input().url
+							else:
+								last_url=''
+							if web and web.input() and 'name' in web.input():
+								last_name=web.input().name
+							else:
+								last_name=''
+							if web and web.input() and 'header' in web.input():
+								last_des=web.input().header
+							else:
+								last_des=''
+							if web and web.input() and 'classify_id' in web.input():
+								last_classify_ref = web.input().classify_id
+							else:
+								last_classify_ref = ''
+
+					%>
+					<thead>
+					<tr>
+						<th colspan="2" style="color:green">基本信息</th>
+					</tr>
+					</thead>
+					<tr>
+						<td>${backend.member.field.name}</td>
+						<td><input type="text" name="name" class='input_box_style'></input>
+						</td>
+					</tr>
+					<tr>
+						<td>${backend.member.field.email}</td>
+						<td><input type="text" name="email" class='input_box_style'></input>
+						</td>
+					</tr>
+
+					<tr>
+						<td>${backend.member.field.password}</td>
+						<td><input type="password" name="password1" class='input_box_style'></input>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="password" name="password2" class='input_box_style'></input>
+						</td>
+					</tr>
+					<tr>
+						<td>${backend.member.field.readme}</td>
+						<td><textarea name="readme" type="text" class='big_text_box'>${last_des}</textarea> </td>	
+					</tr>
+
+					<thead>
+						<th colspan="2" style="color:green">用户权限</th>
+					</thead>
+
+					<tr>
+						<td>通用</td>
+						<td class="authority">
+						<input type="checkbox" name="upload_video" value="${MemberAuthority.upload_video}">
+						${MemberAuthority.AuthorityName[MemberAuthority.upload_video]}</input> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="checkbox" name="reply" value="${MemberAuthority.reply}">
+						${MemberAuthority.AuthorityName[MemberAuthority.reply]}</input> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												</td>
+					</tr>
+					<tr>
+						<td>后台</td>
+						<td class="authority">
+						<input type="checkbox" name="loggin_backend" value="${MemberAuthority.loggin_backend}">
+						${MemberAuthority.AuthorityName[MemberAuthority.loggin_backend]}</input> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="checkbox" name="edit_backend" value="${MemberAuthority.edit_backend}">
+						${MemberAuthority.AuthorityName[MemberAuthority.edit_backend]}</input> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td><input type="submit" value="提  交" /> 
+						<input name="cancel" type="submit" value="取消" onclick="cancel();"/>
+						</td>
+					</tr>
+
+				</table>
+
+				</fieldset>
+			</form>
+		</div>
+	</div>
