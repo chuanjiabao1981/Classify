@@ -72,10 +72,11 @@ class Member(Document):
 			"email"		:unicode,
 			"password"	:unicode,
 			"authority"	:long,
-			"status"	:int
+			"status"	:int,
+			"register_time"	:datetime.datetime
 		    }
 	use_dot_notation	=	True
-	default_values		=	{"authority":0,"status":member_status_active}
+	default_values		=	{"authority":0l,"status":member_status_active,"register_time":datetime.datetime.utcnow()}
 	indexes			=	[
 						{
 							"fields":["name"],
