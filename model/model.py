@@ -77,7 +77,7 @@ class Member(Document):
 			"register_time"	:datetime.datetime
 		    }
 	use_dot_notation	=	True
-	default_values		=	{"authority"		:0l,
+	default_values		=	{"authority"		:MemberAuthority.default_authority,
 					 "status"		:MemberStatus.active,
 					 "register_time"	:datetime.datetime.utcnow(),
 					 "readme"		:""}

@@ -201,6 +201,21 @@ class MemberOverView:
 		t["all_member"]	=	get_all_member()
 		t["admin_file"]	=	'backend_member.html'
 		return template_desktop.get_template('backend.html').render(**t)
+def MemberVerifyPostInput():
+	user_name_len_limit	= 20
+	if not web.input().name:
+		return u"用户名不可为空"
+	elif len(web.input().name) > user_name_len_limit:
+		return u"用户名不可超过"+str(user_name_len_limit)+u"个字符！"
+
+	if web.input().password != web.input().password_again:
+		return u"密码两次输入不一致"
+	if not '@' in web.input().email:
+		return u"电子邮件格式错误"
+
+	return None
+	
+	
 class MemberAdd:
 	def GET(self):
 		t			=	{}
@@ -208,5 +223,18 @@ class MemberAdd:
 		t["action_type"]	=	'add'
 		return template_desktop.get_template('backend.html').render(**t)
 	def POST(self):
+		t			=	{}
+		t["admin_file"]		=	'backend_member_add.html'
+
+		t["error"]		=	MemberVerifyPostInput()
+		t["web"]		=	web
+		t["action_type"]	=	'add'
+		try:
+			if t["error"]:
+				return template_desktop.get_template('backend.html').render(**t)
+		except:
+			return exceptions.html_error_template().render()
+
 		return web.input()
+
 

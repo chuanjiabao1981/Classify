@@ -41,36 +41,26 @@
 					</tr>
 					% endif
 					<%
-						last_url		=	''
 						last_name		=	''
-						last_des		=	''
-						last_classify_ref	=	''
-						if node_item and 'url' in node_item:
-							last_url		=node_item.url
-						if node_item and 'name' in node_item:
-							last_name		=node_item.name
-						if node_item and 'header'  in node_item:
-							last_des		=node_item.header
-						if node_item and 'classify_ref' in node_item:
-							last_classify_ref	=str(node_item.classify_ref)
+						last_email		=	''
+						last_readme		=	''
+
+						if item and 'name' in item:
+							last_name		=item.name
+						if item and 'email' in item:
+							last_email		=item.email
+						if item and 'readme'  in item:
+							last_readme		=item.readme
 
 						if error:
-							if web and web.input() and 'url' in web.input():
-								last_url=web.input().url
-							else:
-								last_url=''
 							if web and web.input() and 'name' in web.input():
 								last_name=web.input().name
-							else:
-								last_name=''
-							if web and web.input() and 'header' in web.input():
-								last_des=web.input().header
-							else:
-								last_des=''
-							if web and web.input() and 'classify_id' in web.input():
-								last_classify_ref = web.input().classify_id
-							else:
-								last_classify_ref = ''
+
+							if web and web.input() and 'readme' in web.input():
+								last_readme=web.input().readme
+
+							if web and web.input() and 'email' in web.input():
+								last_email = web.input().email
 
 					%>
 					<thead>
@@ -80,28 +70,28 @@
 					</thead>
 					<tr>
 						<td>${backend.member.field.name}</td>
-						<td><input type="text" name="name" class='input_box_style'></input>
+						<td><input type="text" name="name" class='input_box_style' value=${last_name}></input>
 						</td>
 					</tr>
 					<tr>
 						<td>${backend.member.field.email}</td>
-						<td><input type="text" name="email" class='input_box_style'></input>
+						<td><input type="text" name="email" class='input_box_style' value=${last_email}></input>
 						</td>
 					</tr>
 
 					<tr>
 						<td>${backend.member.field.password}</td>
-						<td><input type="password" name="password1" class='input_box_style'></input>
+						<td><input type="password" name="password" class='input_box_style'></input>
 						</td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="password" name="password2" class='input_box_style'></input>
+						<td><input type="password" name="password_again" class='input_box_style'></input>
 						</td>
 					</tr>
 					<tr>
 						<td>${backend.member.field.readme}</td>
-						<td><textarea name="readme" type="text" class='big_text_box'>${last_des}</textarea> </td>	
+						<td><textarea name="readme" type="text" class='big_text_box'>${last_readme}</textarea> </td>	
 					</tr>
 
 					<thead>
