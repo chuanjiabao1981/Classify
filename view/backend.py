@@ -214,7 +214,35 @@ def MemberVerifyPostInput():
 		return u"电子邮件格式错误"
 
 	return None
+class MemberEdit:
+	def GET(sef,arg):
+		t			=	{}
+		t["admin_file"]		=	'backend_member_add.html'
+		t["action_type"]	=	'edit'
+		t["error"]		=	None #MemberVerifyPostInput()
+		t["web"]		=	web
+		t["item"]		=	get_member_by_id(arg)
+		if not t["item"]:
+			return web.notfound()
+		return template_desktop.get_template('backend.html').render(**t)
+	def POST(self,arg):
+		t			=	{}
+		t["admin_file"]		=	'backend_member_add.html'
+		t["action_type"]	=	'edit'
+		t["error"]		=	MemberVerifyPostInput()
+		t["web"]		=	web
+		t["item"]		=	get_member_by_id(arg)
+		if not t["item"]:
+			return web.notfound()
+		if t["error"]:
+			return template_desktop.get_template('backend.html').render(**t)
+		(status,t["error"])	= update_member_info(t["item"],web.input())
+		if t["error"]:
+			return template_desktop.get_template('backend.html').render(**t)
+		return web.seeother('/backend/member')
+
 	
+		
 	
 class MemberAdd:
 	def GET(self):
@@ -232,9 +260,12 @@ class MemberAdd:
 		try:
 			if t["error"]:
 				return template_desktop.get_template('backend.html').render(**t)
+			(status,t["error"]) = add_a_member(web.input())
+			if t["error"]:
+				return template_desktop.get_template('backend.html').render(**t)
+			return web.seeother('/backend/member')
 		except:
 			return exceptions.html_error_template().render()
-
-		return web.input()
+			return web.input()
 
 

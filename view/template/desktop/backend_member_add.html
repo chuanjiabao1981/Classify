@@ -21,8 +21,8 @@
 			% if action_type == 'add':
 			<form enctype="multipart/form-data" name="classify_form" action="/backend/member/add" method="post">
 			% elif action_type == 'edit':
-				<form enctype="multipart/form-data" name="classify_form" action="/backend/member/edit/${member_item_id}" method="post">
-				<input type="hidden" name="id" value="${member_item_id}"></input>
+				<form enctype="multipart/form-data" name="classify_form" action="/backend/member/edit/${item._id}" method="post">
+				<input type="hidden" name="id" value="${item._id}"></input>
 			% endif
 
 
@@ -44,6 +44,7 @@
 						last_name		=	''
 						last_email		=	''
 						last_readme		=	''
+						last_all		=	{}
 
 						if item and 'name' in item:
 							last_name		=item.name
@@ -52,6 +53,7 @@
 						if item and 'readme'  in item:
 							last_readme		=item.readme
 
+						
 						if error:
 							if web and web.input() and 'name' in web.input():
 								last_name=web.input().name
@@ -61,6 +63,9 @@
 
 							if web and web.input() and 'email' in web.input():
 								last_email = web.input().email
+							if web and web.input():
+								last_all = web.input()
+								
 
 					%>
 					<thead>
@@ -101,22 +106,40 @@
 					<tr>
 						<td>通用</td>
 						<td class="authority">
+						% if  'upload_video' in last_all or (item and MemberAuthority.can_upload_video(item.authority)):
+						<input type="checkbox" name="upload_video" value="${MemberAuthority.upload_video}" checked="checked">
+						${MemberAuthority.AuthorityName[MemberAuthority.upload_video]}</input> 
+						% else:
 						<input type="checkbox" name="upload_video" value="${MemberAuthority.upload_video}">
 						${MemberAuthority.AuthorityName[MemberAuthority.upload_video]}</input> 
+						% endif	
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						% if 'reply' in last_all or (item and MemberAuthority.can_reply(item.authority)):
+						<input type="checkbox" name="reply" value="${MemberAuthority.reply}" checked="checked">
+						${MemberAuthority.AuthorityName[MemberAuthority.reply]}</input> 
+						% else:
 						<input type="checkbox" name="reply" value="${MemberAuthority.reply}">
 						${MemberAuthority.AuthorityName[MemberAuthority.reply]}</input> 
+						% endif
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												</td>
 					</tr>
 					<tr>
 						<td>后台</td>
 						<td class="authority">
-						<input type="checkbox" name="loggin_backend" value="${MemberAuthority.loggin_backend}">
-						${MemberAuthority.AuthorityName[MemberAuthority.loggin_backend]}</input> 
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="checkbox" name="edit_backend" value="${MemberAuthority.edit_backend}">
-						${MemberAuthority.AuthorityName[MemberAuthority.edit_backend]}</input> 
+						% if 'loggin_backend' in last_all or (item and MemberAuthority.can_loggin_backend(item.authority)):
+							<input type="checkbox" name="loggin_backend" value="${MemberAuthority.loggin_backend}" checked="checked">${MemberAuthority.AuthorityName[MemberAuthority.loggin_backend]}</input>
+						% else:
+							<input type="checkbox" name="loggin_backend" value="${MemberAuthority.loggin_backend}">
+							${MemberAuthority.AuthorityName[MemberAuthority.loggin_backend]}</input>
+						% endif
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						% if 'edit_backend' in last_all or (item and MemberAuthority.can_edit_backend(item.authority)):
+							<input type="checkbox" name="edit_backend" value="${MemberAuthority.edit_backend}" checked="checked"> ${MemberAuthority.AuthorityName[MemberAuthority.edit_backend]}</input> 
+						% else:
+							<input type="checkbox" name="edit_backend" value="${MemberAuthority.edit_backend}">
+							${MemberAuthority.AuthorityName[MemberAuthority.edit_backend]}</input> 
+						% endif
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 					</tr>

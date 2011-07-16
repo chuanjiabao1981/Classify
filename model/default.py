@@ -44,6 +44,31 @@ class MemberAuthority:
 		if "edit_backend" in authority:
 			v 	= v | 1l<<MemberAuthority.edit_backend 
 		return v
+	@staticmethod
+	def is_admin(authority_val):
+		if authority_val & 1l << MemberAuthority.admin:
+			return True
+		return False
+	@staticmethod
+	def can_upload_video(authority_val):
+		if authority_val & 1l << MemberAuthority.upload_video:
+			return True
+		return False
+	@staticmethod
+	def can_reply(authority_val):
+		if authority_val & 1l << MemberAuthority.reply:
+			return True
+		return False
+	@staticmethod
+	def can_loggin_backend(authority_val):
+		if authority_val & 1l << MemberAuthority.loggin_backend:
+			return True
+		return False
+	@staticmethod
+	def can_edit_backend(authority_val):
+		if authority_val & 1l << MemberAuthority.edit_backend:
+			return True
+		return False
 		
 if __name__ == '__main__':
 	print MemberAuthority.AuthorityName[MemberAuthority.admin]
