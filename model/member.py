@@ -20,6 +20,7 @@ def get_member_by_name(name):
 
 def update_member_info(member_info,web_info):
 	t		=	{}
+	t['name']	=	web_info.name.strip(' ').strip('\n')
 	t['email']	=	web_info.email.strip(' ').strip('\n')
 	t['readme']	=	web_info.readme
 	t['authority']	=	MemberAuthority.build_authority(web_info)

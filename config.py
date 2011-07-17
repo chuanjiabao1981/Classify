@@ -92,6 +92,10 @@ backend.member.field.password		= u'密码'
 backend.member.field.readme		= u'自我简介'
 
 
+class security:
+	pass
+##这个必须是8个字符##
+security.key				= '12345678'
 
 if __name__ == "__main__":
 	print site.title

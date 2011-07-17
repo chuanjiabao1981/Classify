@@ -6,6 +6,7 @@ from main    import *
 from upload  import *
 from video   import *
 from backend import *
+from login   import *
 
 urls = (
     '/topic/(.*)','TopicShow',
@@ -15,6 +16,7 @@ urls = (
     '/upload','UploadVideo',
     '/videotopic/(.*)','VideoTopicShow',
     '/newvideo/(.*)','NewVideoTopic',
+    '/login','Login',
     '/backend/classify/add','ClassifyAdd',
     '/backend/classify/edit/([^/]+)','ClassifyEdit',
     '/backend/classify','Classify',

@@ -106,7 +106,7 @@
 					<tr>
 						<td>通用</td>
 						<td class="authority">
-						% if  'upload_video' in last_all or (item and MemberAuthority.can_upload_video(item.authority)):
+						% if  'upload_video' in last_all or (not error and item and MemberAuthority.can_upload_video(item.authority)):
 						<input type="checkbox" name="upload_video" value="${MemberAuthority.upload_video}" checked="checked">
 						${MemberAuthority.AuthorityName[MemberAuthority.upload_video]}</input> 
 						% else:
@@ -114,7 +114,7 @@
 						${MemberAuthority.AuthorityName[MemberAuthority.upload_video]}</input> 
 						% endif	
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						% if 'reply' in last_all or (item and MemberAuthority.can_reply(item.authority)):
+						% if 'reply' in last_all or (not error and item and MemberAuthority.can_reply(item.authority)):
 						<input type="checkbox" name="reply" value="${MemberAuthority.reply}" checked="checked">
 						${MemberAuthority.AuthorityName[MemberAuthority.reply]}</input> 
 						% else:
@@ -127,14 +127,14 @@
 					<tr>
 						<td>后台</td>
 						<td class="authority">
-						% if 'loggin_backend' in last_all or (item and MemberAuthority.can_loggin_backend(item.authority)):
+						% if 'loggin_backend' in last_all or (not error and item and MemberAuthority.can_loggin_backend(item.authority)):
 							<input type="checkbox" name="loggin_backend" value="${MemberAuthority.loggin_backend}" checked="checked">${MemberAuthority.AuthorityName[MemberAuthority.loggin_backend]}</input>
 						% else:
 							<input type="checkbox" name="loggin_backend" value="${MemberAuthority.loggin_backend}">
 							${MemberAuthority.AuthorityName[MemberAuthority.loggin_backend]}</input>
 						% endif
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						% if 'edit_backend' in last_all or (item and MemberAuthority.can_edit_backend(item.authority)):
+						% if 'edit_backend' in last_all or (not error and item and MemberAuthority.can_edit_backend(item.authority)):
 							<input type="checkbox" name="edit_backend" value="${MemberAuthority.edit_backend}" checked="checked"> ${MemberAuthority.AuthorityName[MemberAuthority.edit_backend]}</input> 
 						% else:
 							<input type="checkbox" name="edit_backend" value="${MemberAuthority.edit_backend}">
