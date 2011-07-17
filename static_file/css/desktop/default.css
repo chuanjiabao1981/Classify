@@ -18,7 +18,7 @@
 }
 #Wrapper {
 	background-color: white;
-	background-image: url("http://bookfor.us/include/style/img/bigbg.jpg");
+	//background-image: url("http://bookfor.us/include/style/img/bigbg.jpg");
 	background-image: url("http://static.v2ex.com/tiles/bohemian.jpg");
 }
 #Welcome
@@ -178,7 +178,6 @@ font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino San
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
-	border-radius: 5px;
 	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 	-o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -325,3 +324,12 @@ ul.backend_nav a:hover,ul a:focus
 	background-color:#C00;
 }
 
+table.input_table td
+{
+	border-width:5px;
+	border-style:dotted;
+	border-color:white;
+	text-align:right;
+	padding-right:10px;
+	font-size:12px;	
+}

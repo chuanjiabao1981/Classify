@@ -97,6 +97,11 @@ class security:
 ##这个必须是8个字符##
 security.key				= '12345678'
 
+class cookie:
+	pass
+##cookie 时间 单位s
+cookie.period				= 3600
+
 if __name__ == "__main__":
 	print site.title
 	print backend.node.title

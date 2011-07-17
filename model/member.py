@@ -3,20 +3,32 @@ from model import *
 from default import *
 import hashlib
 import bson.objectid
+from security import *
+import json
 
-
-def is_admin(member):
-	if not member:
-		return False
-	if (member.authority & ( 1 << member_authority_admin)):
-		return True
-	return False
 
 def get_member_by_id(_id):
 	return connection.Member.find_one({"_id":bson.objectid.ObjectId(_id)})	
-
 def get_member_by_name(name):
-	return connection.Member.find({})
+	return connection.Member.find_one({"name":name})
+def get_member_by_email(email):
+	return connection.Member.find_one({"email":email})
+	
+def verify_login(web_info):
+	t	=	None
+	if '@' in web_info.name:
+		t = get_member_by_email(web_info.name)
+	else:
+		t = get_member_by_name(web_info.name)
+	if not t:
+		return (False,'这个用户不存在!')
+	pp	=	unicode(hashlib.md5(web_info.password.strip(' ').strip('\n')).hexdigest().upper())
+	if pp != t.password:
+		return (False,'密码错误!!')
+	aa	= {'name':t.name,'password':t.password}
+	tt	= json.dumps(aa)
+	dd	= encrypt_data(tt)
+	return (True,dd)
 
 def update_member_info(member_info,web_info):
 	t		=	{}
@@ -57,9 +69,9 @@ def add_a_member(web_info):
 		member.save()	
 	except pymongo.errors.DuplicateKeyError,a:
 		if 0 != connection.Member.find({'name':member.name}).count():
-			return (False,u"用户名已经存在")
+			return (False,u"用户名已经存在!")
 		if 0 != connection.Member.find({'email':member.email}).count():
-			return (False,u"Email已经存在")
+			return (False,u"Email已经存在!!")
 		return (False,u"错了么")
 	return (True,None)
 
@@ -71,10 +83,18 @@ if __name__ == '__main__':
 		print i
 	if (is_admin(p)):
 		print "admin"
-	"""
 	a		= connection.Member()
 	a.name		= u"混世魔王"
 	a.email		= u"chuanjiabao19811@gmail.com"
 	a.password	= u"123"
+	"""
 	#print add_a_member(a)
 	#print get_member_by_name(a.name)
+	print get_member_by_name(u'飞龙在天')
+	print get_member_by_email(u'chuanjiabao19811@gmail.com')
+
+	a		= connection.Member()
+	a.name		= u"混世魔王"
+	a.email		= u"chuanjiabao19811@gmail.com"
+	a.password	= u"123"
+	print verify_login(a)

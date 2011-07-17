@@ -1,0 +1,63 @@
+##coding:utf-8
+<%include file="common/head_own.html"/>
+<body>
+<%include file="index_top.html"/>
+<div id="Wrapper">
+	<div id="Main">
+		<div id="Content">
+			<div class="box">
+				<div class="cell">
+					<style type="text/css">
+						.sl {
+						-moz-border-radius: 3px;
+						-webkit-border-radius: 3px;
+						padding: 3px;
+						font-size: 14px;
+						border: 1px solid #CCC;
+						width: 320px;
+						}
+
+					</style>
+					<div style="padding-left:40px">
+					<form action='/login' method='POST'>
+						<table class='input_table'>
+						<tr>
+							<td>用户名</td>
+							<td>
+							<input type='text' name='name' class='sl'/>
+							</td>
+						</tr>
+						<tr>
+							<td>密码</td>
+							<td>
+							<input type='password' name='password' class='sl'/>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+							<input type='submit'   name='注册' value="注册" style="width:55px;height:20px;font-size:12px"/>
+							</td>
+						</tr>
+						</table>
+					</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div id="Rightbar">
+			<div id="Login" style="width:282px">
+				<div class="box">
+					<div class="cell">
+						注册
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+</div>
+</body>
+</html>
+
