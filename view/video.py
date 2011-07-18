@@ -20,7 +20,7 @@ class VideoTopicShow:
 		replies		= None
 		hit_video_topic_by_topic_id(topic_id)
 
-		return template_desktop.get_template('video_topic.html').render(topic=topic,member=member,replies=replies)
+		return template_desktop.get_template('video_topic2.html').render(topic=topic,member=member,replies=replies)
 
 
 class NewVideoTopic:

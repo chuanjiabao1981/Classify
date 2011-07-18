@@ -19,7 +19,7 @@ urls = (
     '/login','Login',
     '/backend/classify/add','ClassifyAdd',
     '/backend/classify/edit/([^/]+)','ClassifyEdit',
-    '/backend/classify','Classify',
+    '/backend/classify','ClassifyOverView',
     '/backend/member','MemberOverView',
     '/backend/member/add','MemberAdd',
     '/backend/member/edit/([^/]+)','MemberEdit',

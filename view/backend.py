@@ -131,6 +131,14 @@ class Classify:
 		except:
 			return exceptions.html_error_template().render()
 
+class ClassifyOverView:
+	def GET(self):
+		t			=	{}
+		t['all_classify']	=	get_all_classify()
+		t['admin_file']		=	'backend_classify.html'
+		return template_desktop.get_template('backend.html').render(**t)
+
+
 def ClassifyEditAddPost(action_type,classify_item_id):
 	url_len_limit	=	1024
 	name_len_limit	=	10

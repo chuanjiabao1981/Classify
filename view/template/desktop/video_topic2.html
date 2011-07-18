@@ -1,0 +1,58 @@
+##coding:utf-8
+<%!
+	import view.filter
+	from config import template,site
+%>
+
+<%include file="common/head_own.html"/>
+<body>
+<%include file="index_top.html"/>
+<div id="Wrapper">
+	<div id="Main">
+		<div id="Content">
+			<div class="box">
+				 % if "content" in topic:
+					<div class="cell" style="min-height: 73px;">
+				% else:
+					<div class="inner" style="min-height: 73px;">
+				% endif
+						<div class="fr snow" style="padding-left: 10px; padding-bottom: 10px;">
+							<a href="/member/{{ topic.member.username }}">${topic.author|view.filter.avatar("large")}</a>
+						</div>
+					        <span class="bigger"><a href="/">${site.title}</a> ${template.chevron} 
+								     <a href="/go/${topic.node_url}">${topic.node_name|h}</a>
+						</span>
+						<h1>${topic["title"]|h}</h1>
+						<small class="fade">
+							By <a href="/member/${topic.author}" class="dark">${topic.author}</a>
+		      						% if 'source' in topic:
+			    						via {{ topic.source }}
+		      						% endif 
+		      					at ${topic.create_time} , ${topic.view_num|view.filter.float2int} hits
+						</small>
+					</div>
+					<%include file="video.html"/>
+				% if "content" in topic:
+                			<div class="inner">
+                    				<div class="content topic_content">${topic["content"]|view.filter.linebreaksbr,view.filter.htmlspace}</div>
+                			</div>
+				% endif 
+			</div>
+		</div>
+		<div id="Rightbar">
+			<div id="Login" style="width:282px">
+				<div class="box">
+					<div class="cell">
+						注册
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="clear:both"></div>
+
+	</div>
+</div>
+</body>
+</html>
+

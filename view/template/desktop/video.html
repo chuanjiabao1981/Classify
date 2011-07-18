@@ -6,22 +6,20 @@
 <style type="text/css">
 #mediaplayer_wrapper
 {
-position:relative;
-top:15px;
+//position:relative;
+//top:15px;
     /*width:600px;*/
-margin:auto
-}
-#media_content
-{
-	/*默认就是repeat-x repeat-y*/
-	background-image:url(/static/img/noisy.png);
-	/*width:800px;*/
-height:300px
+	margin:auto
 }
 </style>
-<div id="media_content">
-<div id="mediaplayer" ></div>
+<div class="cell">
+	<div style='height:350px'>
+	<div id="mediaplayer" ></div>
+	</div>
 </div>
+<div>
+</div>
+
 
 <script type="text/javascript" src="/static/jwplayer/jwplayer.js"></script>
 <script type="text/javascript">
@@ -31,7 +29,7 @@ file: "/upload_video/${topic.location}.mp4",
 image: "${topic.image|view.filter.video_image("big")}",
 menu:'false',
 skin:'/static/skin/glow.zip',
-width:'480',
-height:'270'
+width:'610',
+height:'343'
 });
 </script>

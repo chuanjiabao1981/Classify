@@ -168,7 +168,7 @@ color: rgba(0, 0, 0, 0.15);
 }
 body
 {
-font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+font-family: "微软雅黑","Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
 .part ul  .first_line
 {
@@ -333,3 +333,69 @@ table.input_table td
 	padding-right:10px;
 	font-size:12px;	
 }
+
+.glass {
+	background-color: transparent;
+	border: 1px solid transparent;
+}
+
+.box .inner, .glass .inner {
+	padding: 10px;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.box .yellow {
+	padding: 10px;
+	font-size: 12px;
+	line-height: 16px;
+	background-color: #ffffe2;
+	border-top: 1px solid #ffffcc;
+	-moz-border-radius: 0px 0px 6px 6px;
+}
+
+.box .cell {
+	padding: 10px;
+	border-bottom: 1px solid #e2e2e2;
+	font-size: 12px;
+	line-height: 16px;
+}
+.fr {
+	float: right;
+}
+.snow {
+color: rgba(0, 0, 0, 0.15);
+}
+.bigger {
+	font-size: 16px;
+}
+.fade {
+	color: #999;
+}
+
+h1 {
+	font-size: 22px;
+	line-height: 25px;
+	font-weight: bold;
+	padding: 10px 0px 10px 0px;
+	margin: 0px;
+}
+
+a.dark:link, a.dark:visited, a.dark:active {
+	color: gray;
+	text-decoration: none;
+}
+
+a.dark:hover {
+	color: #385f8a;
+	text-decoration: none;
+}
+
+.content {
+	font-size: 14px;
+	line-height: 180%;
+	color: #000;
+	text-overflow: ellipsis;
+	overflow:hidden;
+}
+
