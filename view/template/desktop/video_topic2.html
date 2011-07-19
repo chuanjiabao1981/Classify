@@ -11,6 +11,7 @@
 	<div id="Main">
 		<div id="Content">
 			<div class="box">
+				
 				 % if "content" in topic:
 					<div class="cell" style="min-height: 73px;">
 				% else:
@@ -38,6 +39,85 @@
                 			</div>
 				% endif 
 			</div>
+			% if topic.reply_num == 0: 
+            			<div class="sep20"></div>
+            			<div class="glass" align="center"><div class="inner"><span class="white">${template.no_reply}</span></div></div>
+			% else:
+				<div class="sep20"></div>
+            			<div class="box">
+                			<div class="cell">
+						<div class="fr">
+							{% if reply_reversed %}
+								<a href="/t/{{ topic.num }}?r=0">{{ l10n.earlier_replies_first }}</a>
+							{% else %}
+								<a href="/t/{{ topic.num }}?r=1">{{ l10n.newer_replies_first }}</a>
+							{% endif %} 
+							&nbsp;<span class="snow">|</span>&nbsp; 
+							{% if filter_mode %}
+								<a href="/t/{{ topic.num }}?f=0">{{ l10n.show_all }}</a>
+							{% else %}
+								<a href="/t/{{ topic.num }}?f=1">{{ l10n.just_topic_creator }}</a>
+							{% endif %}
+						</div>
+						<span class="fade">
+							${topic.reply_num} ${template.reply} &nbsp;
+							<span class="snow">|</span>&nbsp; ${template.till} ${topic.last_reply_time}
+						</span>
+					</div>
+                			<script type="text/javascript">
+                    			is_admin = {{ is_admin }};
+                    			{% if member %}
+                   			 	member_id = {{ member.num }};
+                    			{% else %}
+                    				member_id = 0;
+                    			{% endif %}
+                    			replies_keys = new Array(); replies_ids = new Array(); replies_parents = new Array();
+                			</script>
+                			<div id="replies">
+						<%include file="topic_replies.html"/>
+                			</div>
+            			</div>
+			% endif
+			% if member:
+            			<div class="sep20"></div>
+            				<script type="text/javascript">
+            					function v() {
+                					r = document.getElementById('reply_content');
+                					if (r.value.length == 0) {
+                    						e = document.getElementById('e');
+                    						e.innerHTML = "{{ l10n.reply_content_cannot_be_empty }}";
+                    						return false;
+                					}
+            					}
+            
+            					function c() {
+                					e = document.getElementById('e');
+                					if (e.innerHTML.length > 0) {
+                    						e.innerHTML = '';
+               						}
+            					}
+            				</script>
+            			<div class="box">
+					<form action="/videotopic/${topic["_id"]}" method="post" onsubmit="return v()">
+                				<div class="cell">
+							% if errors:
+                						<strong class="black">{{ reply_content_error_message }}</strong>
+                					% else:
+								<div class="fr fade">⬆ <a href="#_top" class="dark">回到顶部</a></div>
+                						<span class="fade">${template.add_a_reply_now}</span>
+                					% endif
+           					</div>
+                				<div class="cell">
+                    					<textarea class="mll" name="content" id="reply_content"  onkeyup="c();"></textarea>
+                    					<div class="sep10"></div>
+                    					<div class="fr fade" id="e"></div>
+                   			 		<input type="submit" class="super normal button" value="${template.send}" style='margin-top:10px;width:60px;font-family:"微软雅黑"'/>
+                				</div>
+					</form>
+            			</div>
+            		% endif
+
+
 		</div>
 		<div id="Rightbar">
 			<div id="Login" style="width:282px">

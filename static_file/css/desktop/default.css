@@ -201,7 +201,7 @@ border-bottom: 1px solid #E2E2E2;
 	border-bottom: 1px solid white;
 	border-left: 1px solid white;
 	width: 240px;
-	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
 
 .mll_small {
@@ -213,7 +213,7 @@ border-bottom: 1px solid #E2E2E2;
 	display: block;
 	width: 420px;
 	height: 40px;
-	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
 .mll_big {
 	-moz-border-radius: 3px;
@@ -224,7 +224,7 @@ border-bottom: 1px solid #E2E2E2;
 	display: block;
 	width: 420px;
 	height: 160px;
-	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 }
 
 .upload_cell {
@@ -397,5 +397,61 @@ a.dark:hover {
 	color: #000;
 	text-overflow: ellipsis;
 	overflow:hidden;
+}
+.sep20 {
+	height: 20px;
+}
+
+
+.white {
+	color: rgba(255, 255, 255, 0.75);
+}
+a.black:link, a.black:visited, a.black:active {
+	color: rgba(0, 0, 0, 1);
+	text-decoration: none;
+}
+
+a.black:hover {
+	color: rgba(0, 0, 0, 1);
+	text-decoration: underline;
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.mll {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	display: block;
+	width: 628px;
+	height: 160px;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
+
+.mll:focus {
+	border: 1px solid rgba(128, 128, 160, 0.6);
+	-moz-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+	-webkit-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+	outline: none;
+}
+
+.mlt {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	display: block;
+	width: 242px;
+	height: 50px;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
+
+.mlt:focus {
+	border: 1px solid rgba(128, 128, 160, 0.6);
+	-moz-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+	-webkit-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+	outline: none;
 }
 

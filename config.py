@@ -35,10 +35,11 @@ template.chevron = u'<span class="chevron">&nbsp;›&nbsp;</span>'
 template.add_a_reply_now 	= u'现在添加一条回复'
 template.reply		 	= u'回复'
 template.till		 	= u'直到'
-template.send		 	= u'发送'
+template.send		 	= u'回复'
 template.create_new_topic 	= u"创建新主题"
 template.total_topics 		= u'主题总数'
 template.create			= u'创建'
+template.no_reply		= u'目前尚无回复'
 
 
 

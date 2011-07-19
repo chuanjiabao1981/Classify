@@ -36,9 +36,6 @@ def add_new_reply_to_topic(topic_id,reply_time,reply_author):
 def find_topic_by_id(topic_id):
 	return connection.Topic.find_one({'_id':bson.objectid.ObjectId(topic_id)})
 
-def get_reply_by_topic_id(topic_id):
-	topic = connection.Reply.find({'topic_id':bson.objectid.ObjectId(topic_id)})
-	return topic
 
 def hit_topic_by_topic_id(topic_id):
 	connection[config.classify_database][config.collection_name.Topic].update(

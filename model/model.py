@@ -178,4 +178,5 @@ class Reply(Document):
 			"content_length"	:int
 		    }
 	use_dot_notation	=	True
+	default_values		= {"create_time":datetime.datetime.utcnow()}
 

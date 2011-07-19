@@ -3,6 +3,7 @@ from model import *
 from node  import *
 from member import *
 from default import *
+from reply import *
 import bson.objectid
 import datetime
 import config
@@ -112,12 +113,24 @@ def hit_video_topic_by_topic_id(topic_id):
 		{'_id':bson.objectid.ObjectId(topic_id)},
 		{ '$inc':{"view_num":1}}
 	)
+def reply_to_topic(web_info,member,topic):
+	reply_time	= datetime.datetime.utcnow()
+	add_a_reply(web_info,member,topic)
+	connection[config.classify_database][config.collection_name.Video].update(
+		{'_id':topic._id}, 
+		{ '$inc':{"reply_num":1} ,
+		  '$set':{"last_reply_by":member.name,"last_reply_time":reply_time}
+		
+		} 
+	)
 
 class video_test:
 	def __init__(self):
 		self.location 		= '/var/tmp/upload_video/2/0000000002'
 		self.image_time		= 5
 		self.video_md5		= 'xxrrrdddssss'
+
+
 
 if __name__ == '__main__':
 	"""
