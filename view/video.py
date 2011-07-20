@@ -12,6 +12,28 @@ from template import template_desktop
 import config
 
 class VideoTopicShow:
+	def __init__(self):
+		self.content_length_up 		=	2000
+		self.content_length_down	=	3
+
+		self.inputerror_str			=	{}
+		self.inputerror_str[0]		=	None
+		self.inputerror_str[1]		=	u'八个呀路!'
+		self.inputerror_str[2]		=	u'输入字符不能超过'+unicode(str(self.content_length_up))+u'个字符'
+		self.inputerror_str[3]		=	u'写点啥'
+		self.inputerror_str[4]		=	u'写的太少了、再写点。至少写'+unicode(str(self.content_length_down))+u'个字符'
+
+	def InputCheck(self):
+		if not 'content' in web.input():
+			return (False,1)
+		if len(web.input().content) > self.content_length_up:
+			return (False,2)
+		if len(web.input().content.strip()):
+			return (False,3)
+		if len(web.input().content.strip()) < self.content_length_down:
+			return (False,4)
+		return (True,0)
+			
 	def GET(self,topic_id):
 		topic 		= find_video_topic_by_id(topic_id)
 		member_name	=	""
@@ -22,18 +44,22 @@ class VideoTopicShow:
 			return template_desktop.get_template('video_topic2.html').render(topic=topic,member=member,replies=replies)
 		except:
 			return exceptions.html_error_template().render()
+	
 
 
 	def POST(self,topic_id):
 		t			= {}
 		t["error"]		= None
+		##TODO:未登录 用decorator
 		t["member"]		= get_member_by_name('飞龙在天')
 		t["topic"]		= find_video_topic_by_id(topic_id)
-		reply_to_topic(web.input(),t["member"],t["topic"])
 		t["replies"]		= get_reply_by_topic_id(topic_id)
+		(status,error_code)	=self.InputCheck()
+		t["error"]		= self.inputerror_str[error_code]
 		if t["error"]:
 			return template_desktop.get_template('video_topic2.html').render(**t)
 		else:
+			reply_to_topic(web.input(),t["member"],t["topic"])
 			return web.seeother('/videotopic/'+topic_id)
 
 class NewVideoTopic:

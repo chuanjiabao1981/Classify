@@ -47,6 +47,7 @@
             			<div class="box">
                 			<div class="cell">
 						<div class="fr">
+							% if 0:
 							{% if reply_reversed %}
 								<a href="/t/{{ topic.num }}?r=0">{{ l10n.earlier_replies_first }}</a>
 							{% else %}
@@ -58,6 +59,7 @@
 							{% else %}
 								<a href="/t/{{ topic.num }}?f=1">{{ l10n.just_topic_creator }}</a>
 							{% endif %}
+							% endif
 						</div>
 						<span class="fade">
 							${topic.reply_num} ${template.reply} &nbsp;
@@ -85,7 +87,7 @@
                 					r = document.getElementById('reply_content');
                 					if (r.value.length == 0) {
                     						e = document.getElementById('e');
-                    						e.innerHTML = "{{ l10n.reply_content_cannot_be_empty }}";
+                    						e.innerHTML = "${template.reply_content_cannot_be_empty}";
                     						return false;
                 					}
             					}
@@ -100,8 +102,8 @@
             			<div class="box">
 					<form action="/videotopic/${topic["_id"]}" method="post" onsubmit="return v()">
                 				<div class="cell">
-							% if errors:
-                						<strong class="black">{{ reply_content_error_message }}</strong>
+							% if error:
+                						<strong class="black">${error}</strong>
                 					% else:
 								<div class="fr fade">⬆ <a href="#_top" class="dark">回到顶部</a></div>
                 						<span class="fade">${template.add_a_reply_now}</span>
@@ -110,7 +112,7 @@
                 				<div class="cell">
                     					<textarea class="mll" name="content" id="reply_content"  onkeyup="c();"></textarea>
                     					<div class="sep10"></div>
-                    					<div class="fr fade" id="e"></div>
+                    					<div class="fr fade" id="e" style='margin-top:10px;font-family:"微软雅黑"'></div>
                    			 		<input type="submit" class="super normal button" value="${template.send}" style='margin-top:10px;width:60px;font-family:"微软雅黑"'/>
                 				</div>
 					</form>

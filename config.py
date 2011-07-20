@@ -40,6 +40,7 @@ template.create_new_topic 	= u"创建新主题"
 template.total_topics 		= u'主题总数'
 template.create			= u'创建'
 template.no_reply		= u'目前尚无回复'
+template.reply_content_cannot_be_empty	= u'回复内容不能为空'
 
 
 
