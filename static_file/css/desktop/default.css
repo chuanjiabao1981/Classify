@@ -399,6 +399,18 @@ a.dark:hover {
 	text-overflow: ellipsis;
 	overflow:hidden;
 }
+.sep3 {
+	height: 3px;
+}
+
+.sep5 {
+	height: 5px;
+}
+
+.sep10 {
+	height: 10px;
+}
+
 .sep20 {
 	height: 20px;
 }

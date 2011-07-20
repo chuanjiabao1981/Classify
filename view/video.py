@@ -20,7 +20,7 @@ class VideoTopicShow:
 		self.inputerror_str[0]		=	None
 		self.inputerror_str[1]		=	u'八个呀路!'
 		self.inputerror_str[2]		=	u'输入字符不能超过'+unicode(str(self.content_length_up))+u'个字符'
-		self.inputerror_str[3]		=	u'写点啥'
+		self.inputerror_str[3]		=	u'写点啥,别空着!'
 		self.inputerror_str[4]		=	u'写的太少了、再写点。至少写'+unicode(str(self.content_length_down))+u'个字符'
 
 	def InputCheck(self):
@@ -28,7 +28,7 @@ class VideoTopicShow:
 			return (False,1)
 		if len(web.input().content) > self.content_length_up:
 			return (False,2)
-		if len(web.input().content.strip()):
+		if len(web.input().content.strip()) == 0:
 			return (False,3)
 		if len(web.input().content.strip()) < self.content_length_down:
 			return (False,4)
@@ -53,6 +53,8 @@ class VideoTopicShow:
 		##TODO:未登录 用decorator
 		t["member"]		= get_member_by_name('飞龙在天')
 		t["topic"]		= find_video_topic_by_id(topic_id)
+		if not t["topic"]:
+			return web.notfound()
 		t["replies"]		= get_reply_by_topic_id(topic_id)
 		(status,error_code)	=self.InputCheck()
 		t["error"]		= self.inputerror_str[error_code]

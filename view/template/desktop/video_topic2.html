@@ -100,9 +100,10 @@
             					}
             				</script>
             			<div class="box">
-					<form action="/videotopic/${topic["_id"]}" method="post" onsubmit="return v()">
+					<form action="/videotopic/${topic["_id"]}#_last" method="post" onsubmit="return v()">
                 				<div class="cell">
 							% if error:
+								<a link="#;" name="_last"></a>
                 						<strong class="black">${error}</strong>
                 					% else:
 								<div class="fr fade">⬆ <a href="#_top" class="dark">回到顶部</a></div>

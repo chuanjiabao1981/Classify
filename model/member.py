@@ -75,6 +75,27 @@ def add_a_member(web_info):
 		return (False,u"错了么")
 	return (True,None)
 
+##check 用户登录
+"""
+def xxx(method):
+	def newxx(self,*a,**n):
+		self.t ="aa"
+		method(self,*a,**n)
+	return newxx
+	
+class a:
+	def __init__(self):
+		pass
+	@xxx
+	def test(self,a,b):
+		print a
+		print b
+		print self.t
+
+if __name__ == '__main__':
+	t = a()
+	t.test("1","2")
+"""
 
 if __name__ == '__main__':
 	p		= get_member_by_name("")
