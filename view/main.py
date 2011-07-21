@@ -10,8 +10,12 @@ from mako.lookup import TemplateLookup
 from mako import exceptions
 from template import template_desktop
 import config
+from util.member_tools import *
 
 class MainPage:
+	def __init__(self):
+		self.cookies = web.cookies()
+	@check_user_login(web)
 	def GET(self):
 		member_name 	= ""
 		#member 		= get_member_by_name(member_name)

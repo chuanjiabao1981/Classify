@@ -9,10 +9,10 @@ from config import cookie
 
 class Login:
 	def GET(self):
-		#try: 
-		return template_desktop.get_template('login.html').render()
-		#except:
-		#	return exceptions.html_error_template().render()
+		try: 
+			return template_desktop.get_template('login.html').render()
+		except:
+			return exceptions.html_error_template().render()
 
 	def POST(self):
 		t			= {}

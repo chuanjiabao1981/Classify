@@ -7,8 +7,12 @@ def encrypt_data(data):
 	d = k.encrypt(data)
 	return d
 def dencrypt_data(en_data):
-	k = des(security.key,CBC,"\0\0\0\0\0\0\0\0",pad=None,padmode=PAD_PKCS5)
-	d = k.decrypt(en_data)
+	try:
+		k = des(security.key,CBC,"\0\0\0\0\0\0\0\0",pad=None,padmode=PAD_PKCS5)
+		d = k.decrypt(en_data)
+	except ValueError,a:
+		##TODO::log
+		return None
 	return  d
 
 if '__main__' == __name__:

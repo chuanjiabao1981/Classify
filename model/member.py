@@ -14,6 +14,15 @@ def get_member_by_name(name):
 def get_member_by_email(email):
 	return connection.Member.find_one({"email":email})
 	
+def parse_auth(auth):
+	try:
+		j	=	json.loads(auth)
+	except  :
+		#TODO:: log
+		return None
+	if not 'name' in  j:
+		return None
+	return j
 def verify_login(web_info):
 	t	=	None
 	if '@' in web_info.name:
@@ -75,28 +84,20 @@ def add_a_member(web_info):
 		return (False,u"错了么")
 	return (True,None)
 
-##check 用户登录
+		
 """
-def xxx(method):
-	def newxx(self,*a,**n):
-		self.t ="aa"
-		method(self,*a,**n)
-	return newxx
+def test_fun(a):
+	print a
+
+class pp(dict):
+	auth="123"
+
+class test_class:
+	@check_user_login({"auth":"123"},test_fun)
+	def aa(self,a,b,c):
+		print a,b,c
 	
-class a:
-	def __init__(self):
-		pass
-	@xxx
-	def test(self,a,b):
-		print a
-		print b
-		print self.t
-
-if __name__ == '__main__':
-	t = a()
-	t.test("1","2")
 """
-
 if __name__ == '__main__':
 	p		= get_member_by_name("")
 	"""
@@ -111,6 +112,7 @@ if __name__ == '__main__':
 	"""
 	#print add_a_member(a)
 	#print get_member_by_name(a.name)
+	"""
 	print get_member_by_name(u'飞龙在天')
 	print get_member_by_email(u'chuanjiabao19811@gmail.com')
 
@@ -119,3 +121,9 @@ if __name__ == '__main__':
 	a.email		= u"chuanjiabao19811@gmail.com"
 	a.password	= u"123"
 	print verify_login(a)
+	"""
+	#k = parse_auth('{"name":"123"}')
+	#print k["name"]
+	#print pp.auth
+	#aa = test_class()
+	#aa.aa("1","2","3")
