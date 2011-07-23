@@ -6,8 +6,10 @@ video_status_published	  	= 10
 
 class MemberStatus:
 	active				= 0
+	block				= 1
 	StatusName			= {}
 	StatusName[active]		= u"激活"
+	StatusName[block]		= u"屏蔽"
 
 class MemberAuthority:
 	##权限类型

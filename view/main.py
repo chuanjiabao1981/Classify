@@ -15,7 +15,9 @@ from util.member_tools import *
 class MainPage:
 	def __init__(self):
 		self.cookies = web.cookies()
-	@check_user_login(web)
+
+	@get_user_info(web)
+	@check_user_login(web,"/login")
 	def GET(self):
 		member_name 	= ""
 		#member 		= get_member_by_name(member_name)
