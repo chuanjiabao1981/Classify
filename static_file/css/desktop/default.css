@@ -410,7 +410,9 @@ a.dark:hover {
 .sep10 {
 	height: 10px;
 }
-
+.sep12 {
+	height: 12px;
+}
 .sep20 {
 	height: 20px;
 }

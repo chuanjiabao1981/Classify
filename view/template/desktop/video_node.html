@@ -1,0 +1,33 @@
+##coding:utf-8
+<%!
+	import view.filter
+	from config import template,site
+%>
+
+<%include file="common/head_own.html"/>
+<body>
+<%include file="index_top.html"/>
+<div id="Wrapper">
+	<div id="Main">
+		<div id="Content">
+			<div class="box">
+				<%include file="${file}"/>
+			</div>
+		</div>
+		<div id="Rightbar">
+			<div id="Login" style="width:282px">
+				<div class="box">
+					<div class="cell">
+						注册
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="clear:both"></div>
+
+	</div>
+</div>
+</body>
+</html>
+

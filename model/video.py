@@ -108,6 +108,9 @@ def add_a_new_video(node,member,webinput):
 def find_video_topic_by_id(topic_id):
 	return connection.Video.find_one({'_id':bson.objectid.ObjectId(topic_id)})
 
+def find_latest_video_topics_in_the_node(node):
+	return connection.Video.find({'node_ref':node._id}).sort('last_reply_time')
+
 def hit_video_topic_by_topic_id(topic_id):
 	connection[config.classify_database][config.collection_name.Video].update(
 		{'_id':bson.objectid.ObjectId(topic_id)},

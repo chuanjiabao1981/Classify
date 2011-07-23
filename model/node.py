@@ -1,7 +1,7 @@
 from model import *
 from classify import *
-def get_node_by_url_name(name):
-	return connection.Node.find_one()	
+def get_node_by_url_name(url_name):
+	return connection.Node.find_one({'url':url_name})	
 
 def inc_topic_num_by_node_url_name(name):
 	# only update the first one
