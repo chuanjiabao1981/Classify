@@ -10,6 +10,7 @@ from mako.lookup import TemplateLookup
 from mako import exceptions
 import config
 from template import template_desktop
+from util.member_tools import *
 
 
 
@@ -21,6 +22,7 @@ app = web.application(urls, globals())
 
 
 class NodeList:
+	@get_user_info(web)
 	def GET(self,node_url_name):
 		member_name 	= ""
 		member 		= get_member_by_name(member_name)
@@ -31,7 +33,7 @@ class NodeList:
 		latest		= find_all_node_topic_by_node_url_name(node_url_name)
 
 		try: 
-			return template_desktop.get_template('node.html').render(node=node,can_create=can_create,is_member=is_member,latest=latest,member=member)
+			return template_desktop.get_template('node.html').render(node=node,can_create=can_create,is_member=is_member,latest=latest,member=self.member)
 		except:
 			return exceptions.html_error_template().render()
 
