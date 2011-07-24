@@ -42,7 +42,12 @@ class Node(Document):
 				"url"		: unicode, 		# url 
 				"name"		: unicode,		# 用于展示的 比如汉字
 				"header"	: unicode,		# 节点的说明
+				#TODO::这个要拆分为 topic_num video_topic_num image_topic_num
+				#TODO::后端管理 要判断 都不为空
 				"topic_num"	: int,			# 节点topic总数
+				"video_num"	: int,			# 节点video总数
+				"image_num"	: int,			# 节点image总数
+				"image"		: unicode,		# 节点图片
 				"classify_name" : unicode,
 				"classify_url"	: unicode,
 				"classify_ref"	: pymongo.objectid.ObjectId,

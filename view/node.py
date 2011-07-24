@@ -28,12 +28,9 @@ class NodeList:
 		t			= {}
 		t["node"]		= get_node_by_url_name(node_url_name)
 		t["video_list"]		= find_latest_video_topics_in_the_node(t["node"]) # find_video_topic_by_id(t["node"]._id)
-		t["file"]		= "video_list.html"
-		print t["node"]._id
-		print t["video_list"].count()
-		print node_url_name
+		t["node_list"]		= "video_list.html"
 		try: 
-			return template_desktop.get_template('video_node.html').render(**t)
+			return template_desktop.get_template('node.html').render(**t)
 		except:
 			return exceptions.html_error_template().render()
 

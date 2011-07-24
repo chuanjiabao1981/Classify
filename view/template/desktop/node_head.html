@@ -1,0 +1,25 @@
+<%!
+	import view.filter
+	from config import template,site
+%>
+
+<div class="cell" style="padding-bottom: 0px;">
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="auto" valign="top">
+				<div class="fr" align="right">
+					<span class="snow">${template.total_videos}</span> 
+					<span class="fade"><strong>${node.video_num|view.filter.float2int}</strong></span>
+					${template.split}
+					<span class="snow">${template.total_topics}</span> 
+					<span class="fade"><strong>${node.topic_num|view.filter.float2int}</strong></span>
+				</div>
+				<span class="bigger"><a href="/">${site.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> ${node.name|h}</span>
+                    		<div class="sep10"></div>
+                    		<span class="header">${node.header|view.filter.linebreaksbr}</span>
+			</td>
+					
+		</tr>
+	</table>
+</div>
+
