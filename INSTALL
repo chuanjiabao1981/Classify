@@ -13,3 +13,6 @@
    用这个命令可以保证把重复的删除
 5. sudo pip install pydes
 6. /srv/www/shitao.com/public_html/static/css/desktop/style.css font-family 添加 "微软雅黑"
+7. db.video.ensureIndex({"node_ref":1,"last_reply_time":-1}) 这个是给video的节点添加索引 
+   因为进入每个节点，都需要根据 节点+最后回复进行查询，用node_ref是为了防止节点名称发生变化带来的开销
+

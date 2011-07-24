@@ -5,7 +5,7 @@ from member import *
 from default import *
 from reply import *
 import bson.objectid
-import datetime
+import datetime,time
 import config
 import os,shutil
 
@@ -109,7 +109,7 @@ def find_video_topic_by_id(topic_id):
 	return connection.Video.find_one({'_id':bson.objectid.ObjectId(topic_id)})
 
 def find_latest_video_topics_in_the_node(node):
-	return connection.Video.find({'node_ref':node._id}).sort('last_reply_time')
+	return connection.Video.find({'node_ref':node._id}).sort([('last_reply_time',-1)])
 
 def hit_video_topic_by_topic_id(topic_id):
 	connection[config.classify_database][config.collection_name.Video].update(
@@ -127,11 +127,24 @@ def reply_to_topic(web_info,member,topic):
 		} 
 	)
 
+def page_video_topic(timestamp,pagenum):
+	#connection.Video.find
+	pass
+	
+
 class video_test:
 	def __init__(self):
 		self.location 		= '/var/tmp/upload_video/2/0000000002'
 		self.image_time		= 5
 		self.video_md5		= 'xxrrrdddssss'
+	def test_page(self):
+		node			= get_node_by_url_name("beginbegin")
+		for i in find_latest_video_topics_in_the_node(node):
+			print i.last_reply_time.timetuple()
+			k = time.mktime(i.last_reply_time.timetuple())
+			###最终生产环境用这个
+			#print datetime.datetime.utcfromtimestamp(k).timetuple()
+			print datetime.datetime.fromtimestamp(k).timetuple()
 
 
 
@@ -145,4 +158,5 @@ if __name__ == '__main__':
 		#video_move(a)
 		print a.location
 	"""	
-	print find_video_topic_by_id('4e0fb44ddecbef0aff000000')
+	m	= video_test()
+	m.test_page()

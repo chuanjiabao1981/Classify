@@ -124,11 +124,25 @@ class Video(Document):
 		"status"		:int			
 	}
 	use_dot_notation		= True
-	default_values		=	{"reply_num":0,"create_time":datetime.datetime.now(),
-					  "view_num":0,"last_reply_time":datetime.datetime.now(),
-					  "status"  :video_status_wait_process,
-					  "image_time" : 5,
-					  "image"   :""}
+	default_values			=	{"reply_num"		:0,
+						 "create_time"		:datetime.datetime.utcnow(),
+						 "view_num"		:0,
+						 "last_reply_time"	:datetime.datetime.utcnow(),
+					  	 "status"  		:video_status_wait_process,
+					  	 "image_time" 		: 5,
+					  	 "image"   		:""
+						}
+	indexes				= [
+						{
+						  'fields':[("create_time",pymongo.DESCENDING)]
+						},
+						{
+						  'fields':[("last_reply_time",pymongo.DESCENDING)]
+						},
+						{
+						  'fields':[("author",pymongo.ASCENDING)]
+						}
+					  ]
 
 
 """
@@ -168,7 +182,7 @@ class Topic(Document):
 	#TODO:
 	#content title 长度限制
 	use_dot_notation	=	True
-	default_values		=	{"reply_num":0,"create_time":datetime.datetime.now(),"hits":0,"last_reply_time":datetime.datetime.now()}
+	default_values		=	{"reply_num":0,"create_time":datetime.datetime.utcnow(),"hits":0,"last_reply_time":datetime.datetime.utcnow()}
 
 
 @connection.register

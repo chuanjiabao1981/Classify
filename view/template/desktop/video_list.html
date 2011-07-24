@@ -5,6 +5,7 @@
 
 % for  i in video_list :
 <div class="video_list_box">
+	<div class="sep3"></div>
 	<div class="video_thumbnail">
 		<img src="${i.image|view.filter.video_image("small")}"/>
 	</div>
@@ -26,5 +27,7 @@
 	<div style="width:80px;list-style-type:none;float:left;padding:20px 0px 0px 20px;margin:0px">
 		<span class="video_view">120</span>
 	</div>
+	<div style="clear:both"></div>
+	<div class="sep3"></div>
 </div>
 % endfor

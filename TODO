@@ -1,0 +1,2 @@
+1. 节点 增加了 video_num topic_num image_num 所以后台要增加管理，以及节点删除的判断
+2. video db建立的索引，topic也要
