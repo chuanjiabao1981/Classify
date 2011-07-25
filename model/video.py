@@ -127,9 +127,29 @@ def reply_to_topic(web_info,member,topic):
 		} 
 	)
 
-def page_video_topic(timestamp,pagenum):
-	#connection.Video.find
-	pass
+def page_video_topic(node,timestamp,pagenum):
+	###
+	### 最终生产环境用这个
+	### print datetime.datetime.utcfromtimestamp(k).timetuple()
+	### #############
+	"""
+		timestamp:0 是第一页
+	"""
+
+	if timestamp == 0:
+		con    = {	"node_ref"		:	node._id}	
+	else:
+		con    = {
+				"node_ref"		: node._id,
+				"last_reply_time"	: {"$lt" : datetime.datetime.fromtimestamp(timestamp)}
+		 	 }
+	all_set=connection.Video.find(con).sort([("last_reply_time",pymongo.DESCENDING)]).limit(pagenum)
+	##这个需要研究下到底用的哪个索引
+	##print all_set.explain()
+	#for i in all_set:
+	#	print i.last_reply_time
+	return all_set
+	
 	
 
 class video_test:
@@ -139,12 +159,36 @@ class video_test:
 		self.video_md5		= 'xxrrrdddssss'
 	def test_page(self):
 		node			= get_node_by_url_name("beginbegin")
+		#node			= get_node_by_url_name("a")
+		                     #1309596238.0
+		#page_video_topic(node,1609595790.0,2)
+		timestamp		= 1309655764.0
+		timestamp		= 0
+		page			= 0
+		while True:
+			print "====="+str(timestamp)+"======"
+			all_set		= page_video_topic(node,timestamp,10)
+			if all_set.count() == 0:
+				break
+			print "page" + str(page+1)+"\t"+str(timestamp)
+			page	=page+1
+			num 	= 0
+			for i in all_set:
+				num = num+1
+				#print i
+				#print time.mktime(i.last_reply_time.timetuple())
+				#timestamp = time.mktime(i.last_reply_time.timetuple())
+				print all_set[num-1]
+				print str(num)+"\t"+str(timestamp)
+		"""
 		for i in find_latest_video_topics_in_the_node(node):
-			print i.last_reply_time.timetuple()
+			#print i.last_reply_time.timetuple()
 			k = time.mktime(i.last_reply_time.timetuple())
+			print k
 			###最终生产环境用这个
 			#print datetime.datetime.utcfromtimestamp(k).timetuple()
-			print datetime.datetime.fromtimestamp(k).timetuple()
+			#print datetime.datetime.fromtimestamp(k).timetuple()
+		"""
 
 
 

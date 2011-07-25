@@ -134,9 +134,12 @@ class Video(Document):
 						}
 	indexes				= [
 						{
-						  'fields':[("create_time",pymongo.DESCENDING)]
+
+						###这个索引顺序有待研究
+						  'fields':[("node_ref",pymongo.ASCENDING),("last_reply_time",pymongo.DESCENDING)]
 						},
 						{
+						###这个索引用于在首页，展示
 						  'fields':[("last_reply_time",pymongo.DESCENDING)]
 						},
 						{
@@ -198,4 +201,8 @@ class Reply(Document):
 		    }
 	use_dot_notation	=	True
 	default_values		= {"create_time":datetime.datetime.utcnow()}
+	indexes			= [
+					{'fields':[("author",pymongo.ASCENDING),("create_time",pymongo.DESCENDING)]},
+					{'fields':[("topic_id",pymongo.ASCENDING),("create_time",pymongo.DESCENDING)]}
+				  ]
 
