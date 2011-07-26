@@ -107,7 +107,7 @@ class cookie:
 cookie.period				= 3600
 
 ##页面个数
-page_num				= 10
+page_num				= 8 
 
 if __name__ == "__main__":
 	print site.title

@@ -52,7 +52,7 @@
 }
 
 .video_list_box{
-		padding:5px;
+		padding:10px;
 		border-bottom: 1px 	solid #E2E2E2;
 		overflow:hidden
 }
@@ -73,7 +73,7 @@
 .video_info ul
 {
 	list-style-type:none;
-	padding-left: 15px;
+	padding-left: 25px;
 	margin:0px
 }
 .video_info .video_title
@@ -168,7 +168,9 @@ color: rgba(0, 0, 0, 0.15);
 }
 body
 {
-font-family: "微软雅黑","Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+//font-family: "微软雅黑","Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+
 }
 .part ul  .first_line
 {
@@ -201,7 +203,9 @@ border-bottom: 1px solid #E2E2E2;
 	border-bottom: 1px solid white;
 	border-left: 1px solid white;
 	width: 240px;
-	font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	//font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+
 }
 
 .mll_small {
@@ -213,7 +217,9 @@ border-bottom: 1px solid #E2E2E2;
 	display: block;
 	width: 420px;
 	height: 40px;
-	font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	//font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+
 }
 .mll_big {
 	-moz-border-radius: 3px;
@@ -224,7 +230,9 @@ border-bottom: 1px solid #E2E2E2;
 	display: block;
 	width: 420px;
 	height: 160px;
-	font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	//font-family: "微软雅黑","Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+
 }
 
 .upload_cell {

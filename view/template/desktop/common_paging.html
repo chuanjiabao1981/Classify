@@ -1,0 +1,20 @@
+<div class="inner">
+<table width="100%">
+	<tr>
+		<td width="20%" align="left">
+		% if has_prev:
+			<a href=${paging_url_prefix}?page=${page-1}>上一页</a>
+		% endif
+		</td>
+		<td width="auto" align="center" valign="middle">
+			${page_num}
+		</td>
+		<td width="20%" align="right">
+		% if has_next:
+			<a href=${paging_url_prefix}?page=${page+1}>下一页</a>
+		% endif
+		</td>
+	</tr>
+</table>
+</div>
+

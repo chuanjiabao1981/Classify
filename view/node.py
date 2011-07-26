@@ -25,14 +25,25 @@ app = web.application(urls, globals())
 class NodeList:
 
 	def DealVideo(self,node_url_name):
+		t			= {}
 		if 'page' in web.input() and web.input().page.isdigit():
 			page			= int(web.input().page)
 		else:
 			page			= 0
-		t			= {}
+		if page == 0:
+			t["has_prev"]		= False
+		else:
+			t["has_prev"]		= True
+
+		
 		t["node"]		= get_node_by_url_name(node_url_name)
 		t["video_list"]		= page_video_topic_(t["node"],page*config.page_num,config.page_num)
 		t["node_list"]		= "video_list.html"
+		t["page"]		= page
+		##TODO::这个页面个数需要处理下,目前video_num
+		t["page_num"]		= t["node"].video_num
+		t["paging_url_prefix"]	= '/go/'+node_url_name
+		t["has_next"]		= True
 		try: 
 			return template_desktop.get_template('node.html').render(**t)
 		except:
