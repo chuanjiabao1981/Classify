@@ -6,7 +6,7 @@ def htmlspace(text):
 ## mako filter 带参数
 def avatar(arg):
 	def filter(text):
-    		default = "/static/img/avatar_" + str(arg) +".png"
+    		default = "/static_file/avatar/avatar_" + str(arg) +".png"
 		return '<img src="' + default + '" border="0" />'  
 		return default
 	return filter

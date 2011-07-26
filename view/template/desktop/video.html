@@ -21,14 +21,14 @@
 </div>
 
 
-<script type="text/javascript" src="/static/jwplayer/jwplayer.js"></script>
+<script type="text/javascript" src="/static_file/jwplayer/jwplayer.js"></script>
 <script type="text/javascript">
 jwplayer("mediaplayer").setup({
-flashplayer: "/static/jwplayer/player.swf",
+flashplayer: "/static_file/jwplayer/player.swf",
 file: "/upload_video/${topic.location}.mp4",
 image: "${topic.image|view.filter.video_image("big")}",
 menu:'false',
-skin:'/static/skin/glow.zip',
+skin:'/static_file/skin/glow.zip',
 width:'610',
 height:'343'
 });

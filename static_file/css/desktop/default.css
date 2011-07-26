@@ -19,8 +19,7 @@
 }
 #Wrapper {
 	background-color: white;
-	//background-image: url("http://bookfor.us/include/style/img/bigbg.jpg");
-	background-image: url("http://static.v2ex.com/tiles/bohemian.jpg");
+	background-image: url("/static_file/img/bohemian.jpg");
 }
 #Welcome
 {
@@ -30,7 +29,7 @@
 {
 	height: 40px;
 	background-color: #222;
-	background-image: url("http://www.v2ex.com/static/img/bg_top.png");
+	background-image: url("/static_file/img/bg_top.png");
 }
 #TopInfo
 {

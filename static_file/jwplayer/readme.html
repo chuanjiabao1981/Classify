@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<title>About the JW Player 5</title>
+</head>
+<body>
+
+	<style type="text/css">
+		#mediaplayer_wrapper
+		{
+				position:relative;
+				top:15px;
+				width:600px;
+				margin:auto
+		}
+		#media_content
+		{
+			background-image:url(../img/noisy.png);
+			background-repeat: repeat-y repeat-x;
+			width:800px;
+			height:300px
+		}
+	</style>
+        <div id="media_content">
+	<!-- START OF THE PLAYER EMBEDDING TO COPY-PASTE -->
+	<div id="mediaplayer" >JW Player goes here</div>
+	</div>
+	
+	<script type="text/javascript" src="jwplayer.js"></script>
+	<script type="text/javascript">
+		jwplayer("mediaplayer").setup({
+			flashplayer: "player.swf",
+			file: "video1.mp4",
+			image: "preview.jpg",
+			menu:'false',
+			skin:'../skin/glow.zip',
+			width:'480',
+			height:'270'
+		});
+	</script>
+	<!-- END OF THE PLAYER EMBEDDING -->
+
+</body>
+</html>
