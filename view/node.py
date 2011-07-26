@@ -25,10 +25,13 @@ app = web.application(urls, globals())
 class NodeList:
 
 	def DealVideo(self,node_url_name):
+		if 'page' in web.input() and web.input().page.isdigit():
+			page			= int(web.input().page)
+		else:
+			page			= 0
 		t			= {}
 		t["node"]		= get_node_by_url_name(node_url_name)
-		t["video_list"]		= page_video_topic(t["node"],0,1)
-		#t["video_list"]		= find_latest_video_topics_in_the_node(t["node"]) # find_video_topic_by_id(t["node"]._id)
+		t["video_list"]		= page_video_topic_(t["node"],page*config.page_num,config.page_num)
 		t["node_list"]		= "video_list.html"
 		try: 
 			return template_desktop.get_template('node.html').render(**t)

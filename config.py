@@ -106,6 +106,9 @@ class cookie:
 ##cookie 时间 单位s
 cookie.period				= 3600
 
+##页面个数
+page_num				= 10
+
 if __name__ == "__main__":
 	print site.title
 	print backend.node.title
