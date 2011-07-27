@@ -1,5 +1,6 @@
 from model import *
 from classify import *
+from topictools import *
 def get_node_by_url_name(url_name):
 	return connection.Node.find_one({'url':url_name})	
 
@@ -36,7 +37,7 @@ def update_a_node(node_info,web_info):
 			return (False,-2)
 
 		#second
-		connection[config.classify_database][config.collection_name.Node].update(
+		t= connection[config.classify_database][config.collection_name.Node].update(
 		{'_id':node_info._id},
 		{
 	 	'$set':{
@@ -50,12 +51,13 @@ def update_a_node(node_info,web_info):
 		},
 		safe=True
 		)
-
 		#third
 		update_classify_node_num(str(node_info.classify_ref),-1)
 		update_classify_node_num(str(web_info.classify_id),1)
 
 		#forth
+		update_topic_node_info(node_info._id,config.collection_name.Video)
+		update_topic_node_info(node_info._id,config.collection_name.Topic)
 
 	
 	except pymongo.errors.DuplicateKeyError:

@@ -22,15 +22,23 @@
 				</div>
 				<span class="bigger"><a href="/">${site.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> ${node.name|h}</span>
                     		<div class="sep10"></div>
+                    		<span class="header">${node.header|view.filter.linebreaksbr}</span>
 				<div class="sep10"></div>
 
-                    		<span class="header">${node.header|view.filter.linebreaksbr}</span>
+				<div>
+                        		<!--div style="padding: 3px 2px 5px 2px; display: inline-block; border-bottom: 5px solid #3c3; margin: 0px 8px 0px 2px;">所有视频</div-->
+					<div style="padding: 3px 2px 5px 2px; display: inline-block; margin: 0px 8px 0px 2px;"><a href='/'>所有视频</a></div>
+
+					<div style="padding: 3px 2px 2px 2px; display: inline-block; border-bottom: 2px solid #3c3; margin: 0px 8px 0px 2px;"><a href>所有讨论</a></div>
+                    		</div>
+
+
 			</td>
 					
 		</tr>
 	</table>
 </div>
-<div class="cell" style="padding-top: 0px;padding-bottom:0px">
+<!--div class="cell" style="padding-top: 0px;padding-bottom:0px">
 	<table>
 	<tr>
 			<td>
@@ -49,5 +57,5 @@
 		</tr>
 
 	</table>
-</div>
+</div-->
 

@@ -78,7 +78,6 @@
 }
 .video_info .video_title
 {	
-	color: #CC1F29;
 	color:  #2786C2;
 	font-size:16px;
 }
@@ -312,11 +311,8 @@ ul.backend_nav a
 
 ul.backend_nav li li a
 {
-	//border-top:1px solid #e4ffd3;
-	//border-bottom:1px solid #486b02;
 
 	border-top:3px solid white;
-	//border-bottom:3px solid white;
 	border-right: 3px solid white;
 	border-left:  3px solid white;
 }

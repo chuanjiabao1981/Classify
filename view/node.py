@@ -37,6 +37,9 @@ class NodeList:
 
 		
 		t["node"]		= get_node_by_url_name(node_url_name)
+		if not t["node"]:
+			return web.notfound()
+
 		t["video_list"]		= page_video_topic_(t["node"],page*config.page_num,config.page_num)
 		t["node_list"]		= "video_list.html"
 		t["page"]		= page

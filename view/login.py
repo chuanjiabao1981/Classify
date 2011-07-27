@@ -25,5 +25,5 @@ class Login:
 			return t["error"]
 		web.setcookie('auth',r,cookie.period)
 		password	= web.input().password
-		return "sucess"
+		return web.seeother('/')
 		
