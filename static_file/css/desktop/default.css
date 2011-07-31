@@ -321,12 +321,13 @@ ul.backend_nav li:last-child a{
 	border-right:0;
 	border-bottom:0;
 }
-*/
+
 ul.backend_nav a:hover,ul a:focus
 {
-	color:#f3f3f3;
-	background-color:#C00;
+	//color:#f3f3f3;
+	//background-color:#C00;
 }
+*/
 
 table.input_table td
 {

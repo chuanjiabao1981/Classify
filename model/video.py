@@ -128,7 +128,11 @@ def reply_to_topic(web_info,member,topic):
 	)
 
 def page_video_topic_(node,skip,limit):
-	return connection.Video.find({"node_ref":node._id}).skip(skip).limit(limit)
+	
+	topic_list= connection.Video.find({"node_ref":node._id}).sort([("last_reply_time",pymongo.DESCENDING)]).skip(skip).limit(limit)
+	#print topic_list.explain()
+	return topic_list
+	
 
 ##这个是传说中的优化版本
 def page_video_topic(node,timestamp,pagenum):

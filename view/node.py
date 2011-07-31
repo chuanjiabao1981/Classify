@@ -40,7 +40,7 @@ class NodeList:
 		if not t["node"]:
 			return web.notfound()
 
-		t["video_list"]		= page_video_topic_(t["node"],page*config.page_num,config.page_num)
+		t["video_list"]		= get_latest_topic(config.collection_name.Video,t["node"],page*config.page_num,config.page_num)
 		t["node_list"]		= "video_list.html"
 		t["page"]		= page
 		##TODO::这个页面个数需要处理下,目前video_num
