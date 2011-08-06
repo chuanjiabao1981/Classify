@@ -16,3 +16,6 @@
 7. db.video.ensureIndex({"node_ref":1,"last_reply_time":-1}) 这个是给video的节点添加索引 
    因为进入每个节点，都需要根据 节点+最后回复进行查询，用node_ref是为了防止节点名称发生变化带来的开销
 
+8.
+  tmp
+  tmp/img/ #图片上传临时目录

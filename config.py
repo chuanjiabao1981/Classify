@@ -67,6 +67,16 @@ video_setting.image_small	= '160x90'
 video_setting.image_big		= '480x270'
 
 
+class path_setting():
+	pass
+#webserver和uwsgi的用户组必须是一致的
+path_setting.html_document_root		= '/srv/www/shitao.com/public_html'
+#图片临时目录
+path_setting.tmp_img_root_dir		= '/tmp/img/' 
+
+
+
+
 class backend():
 	class node():
 		class field():

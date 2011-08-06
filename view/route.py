@@ -14,6 +14,7 @@ urls = (
     '/go/(.*)','NodeList',
     '/','MainPage',
     '/upload','UploadVideo',
+    '/uploadimage','UploadImage',
     '/videotopic/(.*)','VideoTopicShow',
     '/newvideo/(.*)','NewVideoTopic',
     '/login','Login',

@@ -26,6 +26,7 @@ class MainPage:
 		t			= {}
 		t["video_list"]		= get_latest_topic(config.collection_name.Video,None,0,config.page_num)
 		t["site"]		= config.site
+		t["index_page"]		= True
 
 		try: 
 			return template_desktop.get_template('index.html').render(**t)
