@@ -1,0 +1,37 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
+    <script type="text/javascript" src="/static_file/js/jquery.form.js"></script> 
+    <script type="text/javascript" src="/static_file/js/imagereaselect/scripts/jquery.imgareaselect.pack.js"></script> 
+    <link rel="stylesheet" type="text/css" href="/static_file/js/imagereaselect/css/imgareaselect-default.css" /> 
+    <script type="text/javascript" src="/static_file/js/image.select.js"></script>
+</head>
+<body>
+<div style="width:350px">
+<div id="origin" style="margin-right:20px;width:210px;height:210px;float:left;border-style:solid;border-width:1px;">
+<table width="100%"   align="center" height="100%">
+<tr>
+	<td>	<img src="/static_file/img/waiting.gif"></img> </td>
+</tr>
+</table>
+</div>
+<div id="preview" style="float: left; position: relative; overflow-x: hidden; overflow-y: hidden; width: 100px; height: 100px;border-style:solid;border-width:1px"></div>
+<form>
+	<input  type="hidden" name='x1' value='' id='x1' />
+	<input  type="hidden" name='y1' value='' id='y1' />
+	<input  type="hidden" name='x2' value='' id='x2' />
+	<input  type="hidden" name='y2' value='' id='y2' />
+	<input  type="hidden" name='w' value='' id='w' />
+	<input  type="hidden" name='h' value='' id='h' />
+	<input  type="submit" value="保存"/>
+</form>
+</div>
+<div style="clear:both"></div>
+</div>
+<form id="image_upload" enctype="multipart/form-data"> 
+    <input type="file" name="origin_image" id="fileToUpload" size="18" />
+    <input id="image_upload_submit" type="submit" value="上传图片" /> 
+    <input id="image_upload_cancel" type="submit" value="取消上传" /> 
+</form>
+</body>
+</html>
