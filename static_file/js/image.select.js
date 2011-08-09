@@ -6,8 +6,8 @@ function preview(img, selection) {
     var scaleY = 100 / selection.height;
  		
     $('#preview img').css({
-        width: Math.round(scaleX * 300 ),
-        height: Math.round(scaleY * 300 ),
+        width: Math.round(scaleX * 200 ),
+        height: Math.round(scaleY * 200 ),
         marginLeft: -Math.round(scaleX * selection.x1),
         marginTop: -Math.round(scaleY * selection.y1)
     });
@@ -50,15 +50,14 @@ $(document).ready(function() {
         // $.ajax options can be used here too, for example: 
         //timeout:   3000 
     }; 
-    $('#submit1').click(function(){
-	//alert("12334")
-	$('#myForm').ajaxSubmit(options); 
+    $('#image_upload_submit').click(function(){
+	$('#image_upload').ajaxSubmit(options); 
 	return false; 
     }
     )
-    $('#submit2').click(function(){
-	$('#myForm').attr({action:"/",method:"GET"})
-	$('#myForm').submit();
+    $('#image_upload_cancel').click(function(){
+	$('#image_upload').attr({action:"/",method:"GET"})
+	$('#image_upload').submit();
     }
     );
 }); 
@@ -75,12 +74,13 @@ function showResponse(responseText, statusText, xhr, $form)  {
     // property set to 'json' then the first argument to the success callback 
     // is the json data object returned by the server 
     if (responseText.img != '') {
-	document.getElementById('output1').innerHTML = '<img id="tt" src='+responseText.img+' style="float:left;margin-right:20px" width="300px" height="300px"/>';
+	//document.getElementById('origin').innerHTML = '<img id="tt_tt_tt" src='+responseText.img+' style="float:left;margin-right:20px" width="200px" height="200px"/>';
+	document.getElementById('origin').innerHTML = '<img id="tt_tt_tt" src='+responseText.img+' style="float:left;margin:5px" width="200px" height="200px"/>';
+
 	document.getElementById('preview').innerHTML = '<img src='+responseText.img+' style="position: relative;" />';
-	//alert(responseText.img)
 	//document.getElementById('message').innerHTML = data.error;
     }
-    $('#tt').imgAreaSelect({ handles: true, onSelectChange: preview,aspectRatio: '1:1'});
+    $('#tt_tt_tt').imgAreaSelect({ handles: true, onSelectChange: preview,aspectRatio: '1:1'});
     //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.'); 
 }
 // pre-submit callback 
