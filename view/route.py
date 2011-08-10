@@ -7,6 +7,7 @@ from upload  import *
 from video   import *
 from backend import *
 from login   import *
+from demo    import *
 
 urls = (
     '/topic/(.*)','TopicShow',
@@ -28,6 +29,8 @@ urls = (
     '/backend/node/add','NodeAdd',
     '/backend/node/edit/([^/]+)','NodeEdit',
     '/backend/main','Backend',
+    '/demoget','DemoGet',
+    '/demopost','DemoPost',
     
 )
 

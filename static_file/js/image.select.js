@@ -26,7 +26,7 @@ $(document).ready(function() {
         beforeSubmit:  	showRequest,  // pre-submit callback 
         success:       	showResponse,  // post-submit callback 
 	url:	       	'/uploadimage',
-	type:	       	'post',
+	type:	       	'POST',
  	dataType:	'json'
         // other available options: 
         //url:       url         // override for form's 'action' attribute 
@@ -50,13 +50,27 @@ $(document).ready(function() {
         // $.ajax options can be used here too, for example: 
         //timeout:   3000 
     }; 
+/*
+     $('#image_upload').submit(function() { 
+        // inside event callbacks 'this' is the DOM element so we first 
+        // wrap it in a jQuery object and then invoke ajaxSubmit 
+	alert("123");
+        $(this).ajaxSubmit(options); 
+ 
+        // !!! Important !!! 
+        // always return false to prevent standard browser submit and page navigation 
+        return false; 
+    });*/
     $('#image_upload_submit').click(function(){
 	$('#image_upload').ajaxSubmit(options); 
-	return false; 
+	//$('#image_upload').ajaxForm(options); 
+		//alert("222");
+    		return false; 
     }
     )
     $('#image_upload_cancel').click(function(){
 	$('#image_upload').attr({action:"/",method:"GET"})
+
 	$('#image_upload').submit();
     }
     );
@@ -81,7 +95,7 @@ function showResponse(responseText, statusText, xhr, $form)  {
 	//document.getElementById('message').innerHTML = data.error;
     }
     $('#tt_tt_tt').imgAreaSelect({ handles: true, onSelectChange: preview,aspectRatio: '1:1'});
-    //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.'); 
+    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.'); 
 }
 // pre-submit callback 
 function showRequest(formData, jqForm, options) { 
