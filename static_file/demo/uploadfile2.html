@@ -1,22 +1,52 @@
 <html>
 <head>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
+
+    <!--link rel="stylesheet" type="text/css" href="/static_file/js/imagereaselect/css/imgareaselect-animated.css" /--> 
+    <link rel="stylesheet" type="text/css" href="http://odyniec.net/projects/imgareaselect/css/imgareaselect-animated.css" /> 
+
     <script type="text/javascript" src="/static_file/js/jquery.form.js"></script> 
-    <script type="text/javascript" src="/static_file/js/imagereaselect/scripts/jquery.imgareaselect.pack.js"></script> 
-    <link rel="stylesheet" type="text/css" href="/static_file/js/imagereaselect/css/imgareaselect-default.css" /> 
+    <!---script type="text/javascript" src="/static_file/js/imagereaselect/scripts/jquery.imgareaselect.pack.js"></script--> 
+   <script type="text/javascript" src="http://odyniec.net/projects/imgareaselect/jquery.imgareaselect.pack.js"></script> 
+
+
+    <script type="text/javascript">
+        $(document).ready(function() { 
+            var options = { 
+                type:       'POST',
+                url:        '/uploadimage',
+		dataType:    'json',
+		success:       showResponse
+            }; 
+
+	    $('#submit_post_button').click(function(){
+                $('#demopost').ajaxSubmit(options);
+                return false;
+            });
+	$('#tt_tt_tt').imgAreaSelect({  maxWidth: 150, maxHeight: 150,handles: true});
+	});
+	function showResponse(responseText, statusText, xhr, $form)
+	{ 
+		//document.getElementById('demopost_output').innerHTML = "<img src="+responseText.img+" />";
+		//document.getElementById('demopost_output').innerHTML = responseText.img;
+		//document.getElementById('demopost_output').innerHTML = '<img id="tt_tt_tt" src='+responseText.img+' style="float:left" />';
+		//$('#tt_tt_tt').imgAreaSelect({ handles: true, onSelectChange: preview,aspectRatio: '1:1'});
+		$('#tt_tt_tt').imgAreaSelect({  maxWidth: 150, maxHeight: 150,handles: true});
+
+
+	}
+     </script>
+
 </head>
 <body>
-<form action="/demoget" method="GET">
-<input  name='x1' value='' id='x1' />
-
-<input type='submit' name='submit_get' value='get'></input>
-</form>
-<form action="/demopost" method="POST">
- <input  name='x2' value='' id='x2' />
- 
-<input type='submit' name='submit_post' value='post'></input>
-</form>
-
+<img id="tt_tt_tt" src='/tmp/img//2011-08-12/496abc73e82094c035b8522acc2da800.png'/>
+<!--form id="demopost" method="POST">
+ <input type="file" name="origin_image" id="fileToUpload" size="18" />
+ <input id='submit_post_button' type='submit' name='submit_post' value='post'></input>
+</form-->
+<!--p id='demopost_output' style="width:200px;height:200px">
+<img id="tt_tt_tt" src='/tmp/img//2011-08-12/496abc73e82094c035b8522acc2da800.png'/>
+</p-->
 </body>
 </html>
 

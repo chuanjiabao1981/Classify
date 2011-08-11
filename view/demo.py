@@ -6,7 +6,7 @@ class DemoPost:
 	def POST(self):
 		##这个必须读
 		print web.input()
-		return "<html><strong>aaaa</strong><html>";
+		return """{"img":"1"}""";
 
 class DemoGet:
 	def GET(self):

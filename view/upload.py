@@ -47,17 +47,21 @@ class UploadImage:
 	def is_image(self):
 		if not 'origin_image_content_type' in web.input():
 			return(False,None)	
+
+		print web.input().origin_image_content_type
 		a = ['image/gif','image/jpg','image/jpeg','image/png']
 		error = u'仅支持如下图片格式:'+','.join(map(lambda i:i.split('/')[1],a))
-		if web.input().origin_image_content_type in a:
+		if web.input().origin_image_content_type.split('/')[0] == 'image': 
 			return (True,None)
 		else:
 			return (False,error)
 	def POST(self):
 		redirect_path = '/demo/uploadfile.html'
 		(status,err) = self.is_image()
+
 		if status == False:
-			return web.seeother(redirect_path)
+			x ='{"img":"'+err+'" }'
+			return x
 		(status,err) = self.mv_uploadfile_to_tmppath()
 		if status == False:
 			print err
