@@ -1,13 +1,11 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
-
-    <!--link rel="stylesheet" type="text/css" href="/static_file/js/imagereaselect/css/imgareaselect-animated.css" /--> 
-    <link rel="stylesheet" type="text/css" href="http://odyniec.net/projects/imgareaselect/css/imgareaselect-animated.css" /> 
-
+    <link rel="stylesheet" type="text/css" href="/static_file/js/imagereaselect/css/imgareaselect-animated.css" /> 
     <script type="text/javascript" src="/static_file/js/jquery.form.js"></script> 
-    <!---script type="text/javascript" src="/static_file/js/imagereaselect/scripts/jquery.imgareaselect.pack.js"></script--> 
-   <script type="text/javascript" src="http://odyniec.net/projects/imgareaselect/jquery.imgareaselect.pack.js"></script> 
+    <script type="text/javascript" src="/static_file/js/imagereaselect/scripts/jquery.imgareaselect.pack.js"></script> 
 
 
     <script type="text/javascript">
@@ -18,35 +16,69 @@
 		dataType:    'json',
 		success:       showResponse
             }; 
-
+		
 	    $('#submit_post_button').click(function(){
                 $('#demopost').ajaxSubmit(options);
                 return false;
             });
-	$('#tt_tt_tt').imgAreaSelect({  maxWidth: 150, maxHeight: 150,handles: true});
-	});
+	}
+
+	);
+	function preview(img, selection) {
+    		if (!selection.width || !selection.height)
+        	return;
+ 
+    		var scaleX = 100 / selection.width;
+    		var scaleY = 100 / selection.height;
+ 		
+    		$('#preview img').css({
+        		width: Math.round(scaleX * 200 ),
+        		height: Math.round(scaleY * 200 ),
+        		marginLeft: -Math.round(scaleX * selection.x1),
+        		marginTop: -Math.round(scaleY * selection.y1)
+    		});
+		
+    		$('#x1').val(selection.x1);
+    		$('#y1').val(selection.y1);
+    		$('#x2').val(selection.x2);
+    		$('#y2').val(selection.y2);
+    		$('#w').val(selection.width);
+    		$('#h').val(selection.height); 
+	}
+
 	function showResponse(responseText, statusText, xhr, $form)
 	{ 
-		//document.getElementById('demopost_output').innerHTML = "<img src="+responseText.img+" />";
-		//document.getElementById('demopost_output').innerHTML = responseText.img;
-		//document.getElementById('demopost_output').innerHTML = '<img id="tt_tt_tt" src='+responseText.img+' style="float:left" />';
-		//$('#tt_tt_tt').imgAreaSelect({ handles: true, onSelectChange: preview,aspectRatio: '1:1'});
-		$('#tt_tt_tt').imgAreaSelect({  maxWidth: 150, maxHeight: 150,handles: true});
-
-
+		document.getElementById('demopost_output').innerHTML = 
+		'<img id="tt_tt_tt" src='+responseText.img+' width="200px" height="200px" style="margin:6px 5px 2px 5px"/>';
+		document.getElementById('preview').innerHTML = '<img src='+responseText.img+' style="position: relative;" />';
+		$('#tt_tt_tt').imgAreaSelect({ handles: true,aspectRatio:'1:1',onSelectChange: preview});
 	}
      </script>
 
 </head>
 <body>
-<img id="tt_tt_tt" src='/tmp/img//2011-08-12/496abc73e82094c035b8522acc2da800.png'/>
-<!--form id="demopost" method="POST">
- <input type="file" name="origin_image" id="fileToUpload" size="18" />
- <input id='submit_post_button' type='submit' name='submit_post' value='post'></input>
-</form-->
-<!--p id='demopost_output' style="width:200px;height:200px">
-<img id="tt_tt_tt" src='/tmp/img//2011-08-12/496abc73e82094c035b8522acc2da800.png'/>
-</p-->
+<form id="demopost" method="POST">
+<table>
+<tr>
+<td>
+ <input type="file" name="origin_image" id="fileToUpload" value="选择图片" style="height:22px;font-size:12px"/>
+</td>
+<td>
+ <input id='submit_post_button' type='submit' name='submit_post' value='上传头像' style="height:22px;font-size:12px;"></input>
+</td>
+</tr>
+</table>
+</form>
+<div style="height:30px"></div>
+<table style="border-collapse: collapse;border-spacing:0px">    
+<tr>
+	<td id='demopost_output' style="width:210px;height:210px;border-style:solid;border-width:1px;"></td>
+	<td id="preview" style="margin-left:20px;float: left; position: relative; overflow-x: hidden; overflow-y: hidden; width: 100px; height: 100px;">
+	<div style="border-style:solid;border-width:1px;width:99px;height:99px"></div>
+	</td>
+</tr>
+
+</table>
 </body>
 </html>
 
