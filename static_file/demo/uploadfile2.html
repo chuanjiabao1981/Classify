@@ -18,13 +18,14 @@
             }; 
 		
 	    $('#submit_post_button').click(function(){
-                $('#demopost').ajaxSubmit(options);
+                $('#image_upload').ajaxSubmit(options);
                 return false;
             });
 	    $("#submit_post_button")
 	    .ajaxComplete(function(){
 		$(this).hide();
 	    });
+	   $('#thumbnail_save').hide();
 	}
 	);
 	function preview(img, selection) {
@@ -51,18 +52,19 @@
 
 	function showResponse(responseText, statusText, xhr, $form)
 	{ 
-		document.getElementById('demopost_output').innerHTML = 
+		document.getElementById('image_output').innerHTML = 
 		'<img id="tt_tt_tt" src='+responseText.img+' width="200px" height="200px" style="margin:5px 5px 2px 5px"/>';
 		document.getElementById('preview').innerHTML = '<img src='+responseText.img+' style="position: relative;" />';
-		$('#tt_tt_tt').imgAreaSelect({ handles: true,aspectRatio:'1:1',onSelectChange: preview,x1:30,y1:30,x2:150,y2:150});
-		//$('#tt_tt_tt').imgAreaSelect({x1:30,y1:30,x2:120,y2:120,on});
+		$('#tt_tt_tt').imgAreaSelect({ handles: true,aspectRatio:'1:1',onInit:preview,onSelectChange: preview,x1:30,y1:30,x2:150,y2:150});
+		$('#thumbnail_save').show(500);
 
+		
 	}
      </script>
 
 </head>
 <body>
-<form id="demopost" method="POST">
+<form id="image_upload" method="POST">
 <table>
 <tr>
 <td>
@@ -78,7 +80,7 @@
 <form>
 <table style="border-collapse: collapse;border-spacing:0px">    
 <tr>
-	<td rowspan="2" id='demopost_output' style="width:210px;height:210px;border-style:solid;border-width:1px;border-color:green"></td>
+	<td rowspan="2" id='image_output' style="width:210px;height:210px;border-style:solid;border-width:1px;border-color:green"></td>
 	<td id="preview" style="margin-left:20px;float: left; position: relative; overflow-x: hidden; overflow-y: hidden; width: 100px; height: 100px;">
 	<div style="border-style:solid;border-width:1px;width:99px;height:99px;border-color:green"></div>
 	</td>
@@ -89,10 +91,9 @@
 		<input   type='hidden' name='y1' value='' id='y1' />
 		<input   type='hidden' name='x2' value='' id='x2' />
 		<input   type='hidden' name='y2' value='' id='y2' />
-		<input   type='hidden'  name='w' value='' id='w' />
-		<input   type='hidden' name='h' value='' id='h' />
-
-		<input type='submit' value='保存头像' style="margin-top:10px;margin-left:35px;height:22px;font-size:12px;"/>
+		<input   type='hidden' name='w'  value='' id='w' />
+		<input   type='hidden' name='h'  value='' id='h' />
+		<input   type='submit' value='保存头像'   id='thumbnail_save' style="margin-top:10px;margin-left:35px;height:22px;font-size:12px;"/>
 	</td>
 </tr>
 </form>
