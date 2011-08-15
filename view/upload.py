@@ -1,5 +1,6 @@
 #coding=utf-8
 import web
+import web.webapi
 import os,shutil
 from datetime import date
 from model.video import *
@@ -10,9 +11,14 @@ import json
 
 class UploadError:
 	def GET(self):
+		type = 'toolarge'
 		a={}
 		a["stauts"]=False
-		a["img"]   = '123'
+		a["img"]   = '文件太大!'
+		if 'type' in web.input():
+			type = web.input().type
+		if type == 'notimge':
+			a["img"] = '文件格式错误!'
 		return json.dumps(a)
 
 class UploadVideo:
@@ -64,21 +70,19 @@ class UploadImage:
 		else:
 			return (False,error)
 	def POST(self):
-		redirect_path = '/demo/uploadfile.html'
 		print web.input()
+		redirect_path = '/demo/uploadfile.html'
 		(status,err) = self.is_image()
 		a	     = {}
 		if status == False:
 			a["status"]	=     False
 			a["img"]	=     err
-			return json.dumps(a)
+			raise web.webapi.HTTPError('400', {},json.dumps(a))
 		(status,err) = self.mv_uploadfile_to_tmppath()
 		if status == False:
 			a["status"]	=     False
 			a["img"]	=     "上传失败"
-			return json.dumps(a)
+			raise web.webapi.HTTPError('400', {},json.dumps(a))
 		a["status"]	=	True
 		a["img"]	=	err
-		#x ='{"img":"'+err+'" }'
-		#print x
 		return json.dumps(a)

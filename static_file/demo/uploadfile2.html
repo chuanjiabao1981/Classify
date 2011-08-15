@@ -14,10 +14,7 @@
                 type:       'POST',
                 url:        '/uploadimage',
 		dataType:    'json',
-		success:       showResponse,
-		error: function(xhr, textStatus, errorThrown) {
-			alert(xhr.status);
-   		 }
+		success:       showResponse
             }; 
 		
 	    $('#submit_post_button').click(function(){
@@ -60,14 +57,11 @@
 			$('#tt_tt_tt').imgAreaSelect({ handles: true,aspectRatio:'1:1',onInit:preview,onSelectChange: preview,x1:30,y1:30,x2:150,y2:150});
 			$('#thumbnail_save').show(500);
 			$("#submit_post_button").hide();
-			alert(xhr.status);
 
 		}else{
 			document.getElementById('error_upload').innerHTML=responseText.img;
 			$('#error_upload').show(500);
 		}
-		alert(statusText);
-		
 	}
      </script>
 
