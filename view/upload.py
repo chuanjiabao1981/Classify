@@ -1,4 +1,4 @@
-# coding=utf-8
+#coding=utf-8
 import web
 import os,shutil
 from datetime import date
@@ -6,7 +6,14 @@ from model.video import *
 from model.member import *
 from model.node   import *
 from config import *
+import json
 
+class UploadError:
+	def GET(self):
+		a={}
+		a["stauts"]=False
+		a["img"]   = '123'
+		return json.dumps(a)
 
 class UploadVideo:
 	def POST(self):
@@ -50,22 +57,28 @@ class UploadImage:
 
 		print web.input().origin_image_content_type
 		a = ['image/gif','image/jpg','image/jpeg','image/png']
-		error = u'仅支持如下图片格式:'+','.join(map(lambda i:i.split('/')[1],a))
+		error = "请上传图片文件"
+		print error
 		if web.input().origin_image_content_type.split('/')[0] == 'image': 
 			return (True,None)
 		else:
 			return (False,error)
 	def POST(self):
 		redirect_path = '/demo/uploadfile.html'
+		print web.input()
 		(status,err) = self.is_image()
-
+		a	     = {}
 		if status == False:
-			x ='{"img":"'+err+'" }'
-			return x
+			a["status"]	=     False
+			a["img"]	=     err
+			return json.dumps(a)
 		(status,err) = self.mv_uploadfile_to_tmppath()
 		if status == False:
-			print err
-			return None
-		x ='{"img":"'+err+'" }'
-		print x
-		return x
+			a["status"]	=     False
+			a["img"]	=     "上传失败"
+			return json.dumps(a)
+		a["status"]	=	True
+		a["img"]	=	err
+		#x ='{"img":"'+err+'" }'
+		#print x
+		return json.dumps(a)
