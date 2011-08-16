@@ -73,8 +73,18 @@ class path_setting():
 path_setting.html_document_root		= '/srv/www/shitao.com/public_html'
 #图片临时目录
 path_setting.tmp_img_root_dir		= '/tmp/img/' 
+#头像目录
+path_setting.avatar_root_dir		= '/avatar/'
 
 
+class avatar()
+	pass
+#页面上展现的原图大小
+avatar.origin_width			= 200
+avatar.origin_height			= 200
+#页面上预览图片的大小
+avatar.preview_width			= 100
+avatar.preview_height			= 100
 
 
 class backend():
