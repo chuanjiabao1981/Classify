@@ -20,3 +20,6 @@
   tmp
   tmp/img/ #图片上传临时目录
 9. im.resize((300,300)).crop((21,0,265,244)).save('/home/work/tmp/1.jpg')
+10.给member表添加avatar字段
+   db.member.update({avatar:{"$exists":false}},{"$set":{avatar:"avatar"}},false,true)
+

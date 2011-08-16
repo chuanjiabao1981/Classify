@@ -14,7 +14,7 @@ urls = (
     '/newtopic/(.*)','NewTopic',
     '/go/(.*)','NodeList',
     '/','MainPage',
-    '/errorupload','UploadError',
+    '/uploadsizeerror','UploadSizeError',
     '/upload','UploadVideo',
     '/uploadimage','UploadImage',
     '/videotopic/(.*)','VideoTopicShow',

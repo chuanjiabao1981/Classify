@@ -9,16 +9,14 @@ from model.node   import *
 from config import *
 import json
 
-class UploadError:
+class UploadSizeError:
 	def GET(self):
-		type = 'toolarge'
 		a={}
 		a["stauts"]=False
 		a["img"]   = '文件太大!'
-		if 'type' in web.input():
-			type = web.input().type
-		if type == 'notimge':
-			a["img"] = '文件格式错误!'
+		print web.input()
+		if 'size' in web.input():
+			a["img"] = "文件不能超过" + web.input().size.encode('utf-8')
 		return json.dumps(a)
 
 class UploadVideo:
@@ -70,7 +68,6 @@ class UploadImage:
 		else:
 			return (False,error)
 	def POST(self):
-		print web.input()
 		redirect_path = '/demo/uploadfile.html'
 		(status,err) = self.is_image()
 		a	     = {}

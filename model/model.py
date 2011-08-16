@@ -79,13 +79,16 @@ class Member(Document):
 			"authority"	:long,
 			"status"	:int,
 			"readme"	:unicode,
+			"avatar"	:unicode,
 			"register_time"	:datetime.datetime
 		    }
 	use_dot_notation	=	True
 	default_values		=	{"authority"		:MemberAuthority.default_authority,
 					 "status"		:MemberStatus.active,
 					 "register_time"	:datetime.datetime.utcnow(),
-					 "readme"		:""}
+					 "readme"		:"",
+					 "avatar"		:"avatar"
+					  }
 	indexes			=	[
 						{
 							"fields":["name"],
