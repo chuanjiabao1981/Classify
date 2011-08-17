@@ -20,7 +20,7 @@
 
 	    var options_image_save = {
 		type: 'POST',
-		url : '/demopost',
+		url : '/setavatar',
 		dataType:'json',
 		success:showImageSaveResult
 	    };
@@ -61,7 +61,8 @@
 	}
 	function showImageSaveResult(responseText,statusText,xhr,$form)
 	{
-		document.getElementById('output1').innerHTML = '上传成功';
+		alert(responseText.err);
+		document.getElementById('output1').innerHTML = responseText.err;
 		$('#output1').show();
 		$('#output1').hide("fade",{},2000);
 	}
@@ -76,6 +77,7 @@
 			$('#tt_tt_tt').imgAreaSelect({ handles: true,aspectRatio:'1:1',onInit:preview,onSelectChange: preview,x1:30,y1:30,x2:150,y2:150});
 			$('#image_save_submit').show(500);
 			$("#submit_post_button").hide();
+			$("#image_save_img").val(responseText.img);
 
 		}else{
 			document.getElementById('error_upload').innerHTML=responseText.img;
@@ -116,6 +118,7 @@
 		<input   type='hidden' name='y2' value='' id='y2' />
 		<input   type='hidden' name='w'  value='' id='w' />
 		<input   type='hidden' name='h'  value='' id='h' />
+		<input   type='hidden' name='img' value='' id='image_save_img'/>
 		<input   type='submit' value='保存头像'   id='image_save_submit' style="margin-top:10px;margin-left:35px;height:22px;font-size:12px;"/>
 		<strong  id='error_upload' style="display:none;color:red;margin-left:30px"></strong>
 

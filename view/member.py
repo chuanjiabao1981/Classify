@@ -7,6 +7,7 @@ import re
 from model.model  import *
 from model.member import *
 from PIL import Image
+from util.member_tools import *
 
 class SetAvatar:
 	def __init__(self):
@@ -17,7 +18,7 @@ class SetAvatar:
 			if not i in web.input():
 				##TODO:some log
 				return False
-		if web.input().x1.isdigit() and web.input().y1.isdigit() and web.input().x2.isdigit() and web.input().y2.isdigit():
+		if not (web.input().x1.isdigit() and web.input().y1.isdigit() and web.input().x2.isdigit() and web.input().y2.isdigit()):
 			## TODO::some log
 			return False
 		#前缀匹配临时图片目录
@@ -42,19 +43,33 @@ class SetAvatar:
 		crop_im = im.resize((config.avatar.origin_width,config.avatar.origin_height)).crop((x1,y1,x2,y2))  #.save('/home/work/tmp/1.jpg')
 		
 		#保存各种大小
+		for i in config.avatar.save_size:
+			try:
+				
+				crop_im.resize(config.avatar.save_size[i]).save(des_path + '/'+ str(self.member._id)+'_'+i+'.jpg')
+			except IOError,a:
+				print a
+				##TODO:some log
+				print i + 'error'
+				return False
+		return True
 
 
 	@get_user_info(web)
 	def POST(self):
+		print web.input()
 		r = {}
 		r["status"] = False
 		if self.member == None or self.member.status == MemberStatus.block:
-			r["err"] = "请登录后再保存图片"
+			r["err"] = "请登录后再保头像"
 			return json.dumps(r)
 		if not self.post_arg_check():
-			r["err"] = "上传错误"
+			r["err"] = "上传头像错误"
+			return json.dumps(r)
+		if not self.resize_avatar_img():
+			r["err"] = "上传头像错误"
 			return json.dumps(r)
 		
-		a = {}
-		a["status"] =True
-		return 	json.dumps(a)
+		r["status"] =True
+		r["err"]    ="头像保存成功"
+		return 	json.dumps(r)

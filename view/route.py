@@ -8,6 +8,7 @@ from video   import *
 from backend import *
 from login   import *
 from demo    import *
+from member  import *
 
 urls = (
     '/topic/(.*)','TopicShow',
@@ -30,6 +31,7 @@ urls = (
     '/backend/node/add','NodeAdd',
     '/backend/node/edit/([^/]+)','NodeEdit',
     '/backend/main','Backend',
+    '/setavatar','SetAvatar',
     '/demoget','DemoGet',
     '/demopost','DemoPost',
     
