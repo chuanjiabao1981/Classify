@@ -22,20 +22,27 @@
 		type: 'POST',
 		url : '/setavatar',
 		dataType:'json',
-		success:showImageSaveResult
+		success:showImageSaveResult,
+		error: function(xhr, textStatus, errorThrown) {
+			alert("系统错误");
+        		//console.log("in ajaxForm error");
+    		}
 	    };
 		
 	    $('#submit_post_button').click(function(){
+		$('#tt_tt_tt').imgAreaSelect({remove:true});
                 $('#image_upload').ajaxSubmit(options);
 		$('#error_upload').hide();
                 return false;
             });
 	   $('#image_save_submit').click(function(){
+		$('#output1').hide();
                 $('#image_save').ajaxSubmit(options_image_save);
                 return false;
             });
 
 	   $('#image_save_submit').hide();
+	   $('#output1').hide();
 	}
 	);
 	function preview(img, selection) {
@@ -61,10 +68,15 @@
 	}
 	function showImageSaveResult(responseText,statusText,xhr,$form)
 	{
-		alert(responseText.err);
-		document.getElementById('output1').innerHTML = responseText.err;
-		$('#output1').show();
-		$('#output1').hide("fade",{},2000);
+		if (responseText.status){
+			document.getElementById('output1').innerHTML = responseText.err;
+			$('#output1').show();
+			$('#output1').hide("fade",{},2000);
+			
+		}else{
+			document.getElementById('output1').innerHTML = responseText.err;
+			$('#output1').show();
+		}
 	}
 
 	function showResponse(responseText, statusText, xhr, $form)
@@ -76,7 +88,7 @@
 			document.getElementById('preview').innerHTML = '<img src='+responseText.img+' style="position: relative;" />';
 			$('#tt_tt_tt').imgAreaSelect({ handles: true,aspectRatio:'1:1',onInit:preview,onSelectChange: preview,x1:30,y1:30,x2:150,y2:150});
 			$('#image_save_submit').show(500);
-			$("#submit_post_button").hide();
+			//$("#submit_post_button").hide();
 			$("#image_save_img").val(responseText.img);
 
 		}else{

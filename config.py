@@ -87,6 +87,7 @@ avatar.preview_width			= 100
 avatar.preview_height			= 100
 #实际保存的头像大小 (w,h)
 avatar.save_size			= {
+						"big":(100,100),
 						"large":(73,73),
 						"normal":(48,48),
 						"small":(24,24)	

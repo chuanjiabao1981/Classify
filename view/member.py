@@ -40,13 +40,13 @@ class SetAvatar:
 		y1      = int(web.input().y1)
 		x2	= int(web.input().x2)
 		y2	= int(web.input().y2)
-		crop_im = im.resize((config.avatar.origin_width,config.avatar.origin_height)).crop((x1,y1,x2,y2))  #.save('/home/work/tmp/1.jpg')
+		crop_im = im.resize((config.avatar.origin_width,config.avatar.origin_height),Image.ANTIALIAS).crop((x1,y1,x2,y2))  #.save('/home/work/tmp/1.jpg')
 		
 		#保存各种大小
 		for i in config.avatar.save_size:
 			try:
 				
-				crop_im.resize(config.avatar.save_size[i]).save(des_path + '/'+ str(self.member._id)+'_'+i+'.jpg')
+				crop_im.resize(config.avatar.save_size[i],Image.ANTIALIAS).save(des_path + '/'+ str(self.member._id)+'_'+i+'.jpg')
 			except IOError,a:
 				print a
 				##TODO:some log
