@@ -46,11 +46,10 @@ class SetAvatar:
 		for i in config.avatar.save_size:
 			try:
 				
-				crop_im.resize(config.avatar.save_size[i],Image.ANTIALIAS).save(des_path + '/'+ str(self.member._id)+'_'+i+'.jpg')
+				crop_im.resize(config.avatar.save_size[i],Image.ANTIALIAS).save(des_path + '/'+ str(self.member._id)+'_'+i+'.jpg',quality=100)
 			except IOError,a:
 				print a
 				##TODO:some log
-				print i + 'error'
 				return False
 		return True
 

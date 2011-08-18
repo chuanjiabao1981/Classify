@@ -114,6 +114,7 @@ class Video(Document):
 		"create_time"		:datetime.datetime,
 		"author"		:unicode,
 		"author_ref"		:pymongo.objectid.ObjectId,
+		"author_avatar"         :unicode,
 		"last_reply_time"	:datetime.datetime,
 		"last_reply_by"		:unicode,			# 最后回复
 		"reply_num"		:int,
@@ -172,6 +173,7 @@ class Topic(Document):
 		"hits"			:int,
 		"author"		:unicode,
 		"author_ref"		:pymongo.objectid.ObjectId,			# 作者引用
+		"author_avatar"		:unicode,
 		"video"			:{
 						"where":unicode,	# 视频位置
 						"image":unicode,	# 视频截图的位置
@@ -198,6 +200,8 @@ class Reply(Document):
 	structure = {
 			"topic_id"		:pymongo.objectid.ObjectId,
 			"author"  		:unicode,
+			"author_ref"		:pymongo.objectid.ObjectId,			# 作者引用
+			"author_avatar"		:unicode,
 			"create_time"		:datetime.datetime,
 			"content"		:unicode,
 			"content_length"	:int

@@ -86,7 +86,7 @@
 			document.getElementById('image_output').innerHTML = 
 			'<img id="tt_tt_tt" src='+responseText.img+' width="200px" height="200px" style="margin:5px 5px 2px 5px"/>';
 			document.getElementById('preview').innerHTML = '<img src='+responseText.img+' style="position: relative;" />';
-			$('#tt_tt_tt').imgAreaSelect({ handles: true,aspectRatio:'1:1',onInit:preview,onSelectChange: preview,x1:30,y1:30,x2:150,y2:150});
+			$('#tt_tt_tt').imgAreaSelect({ handles: true,onInit:preview,onSelectChange: preview,x1:30,y1:30,x2:150,y2:150});
 			$('#image_save_submit').show(500);
 			//$("#submit_post_button").hide();
 			$("#image_save_img").val(responseText.img);
