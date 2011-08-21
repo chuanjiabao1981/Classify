@@ -96,6 +96,7 @@ def add_a_new_video(node,member,webinput):
 	video.node_ref		=	node._id
 	video.author		=	member.name
 	video.author_ref	=	member._id
+	video.author_avatar	=	member.avatar
 	video.location		=	webinput.file_path
 	video.tags		=	process_tag(webinput.tags)
 	video.video_md5		=	webinput.file_md5

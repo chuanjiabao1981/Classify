@@ -9,6 +9,7 @@ from model.member import *
 from PIL import Image
 from util.member_tools import *
 
+
 class SetAvatar:
 	def __init__(self):
 		self.cookies = web.cookies()
