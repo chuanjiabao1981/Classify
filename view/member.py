@@ -8,6 +8,11 @@ from model.model  import *
 from model.member import *
 from PIL import Image
 from util.member_tools import *
+from mako.template import Template
+from mako.lookup import TemplateLookup
+from mako import exceptions
+from template import template_desktop
+
 
 
 class SetAvatar:
@@ -49,15 +54,17 @@ class SetAvatar:
 				
 				crop_im.resize(config.avatar.save_size[i],Image.ANTIALIAS).save(des_path + '/'+ str(self.member._id)+'_'+i+'.jpg',quality=100)
 			except IOError,a:
-				print a
 				##TODO:some log
 				return False
 		return True
 
-
+	def GET(self,user_id):
+		t = {}
+		t["admin_file"] =  'backend_member_avatar.html'
+		return template_desktop.get_template('backend.html').render(**t)
 	@get_user_info(web)
 	def POST(self):
-		print web.input()
+		#print web.input()
 		r = {}
 		r["status"] = False
 		if self.member == None or self.member.status == MemberStatus.block:
@@ -73,3 +80,13 @@ class SetAvatar:
 		r["status"] =True
 		r["err"]    ="头像保存成功"
 		return 	json.dumps(r)
+
+class SetAvatarBackend(SetAvatar):
+	def __init__(self):
+		SetAvatar.__init__(self)
+	def GET(self,member_id):
+		t = {}
+		t["admin_file"] =  'backend_member_avatar.html'
+		return template_desktop.get_template('backend.html').render(**t)
+
+

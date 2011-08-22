@@ -27,6 +27,7 @@ urls = (
     '/backend/member','MemberOverView',
     '/backend/member/add','MemberAdd',
     '/backend/member/edit/([^/]+)','MemberEdit',
+    '/backend/member/edit/avatar/([^/]+)','SetAvatarBackend',
     '/backend/node','NodeOverView',
     '/backend/node/add','NodeAdd',
     '/backend/node/edit/([^/]+)','NodeEdit',
