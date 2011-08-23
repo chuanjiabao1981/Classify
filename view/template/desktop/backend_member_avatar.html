@@ -1,27 +1,54 @@
-<div>
+<%!
+	import view.filter
+	from config import template,site,backend
+	from model.default import MemberStatus
+%>
+
+<div class="admin_title">
+		<h1>${backend.member.avatar}</h1>
+</div>
+
+<div class="operation_link">
+				<a href='/backend/member' class="button">${backend.member.title}</a>
+				<a href='/backend/member/add' class="button">${backend.member.add}</a>
+				<a href='/backend/member/edit/avatar' class="button select">${backend.member.avatar}</a>
+
+</div>
+<div class='edit_content'>
+<fieldset>
+<legend>#${backend.member.avatar}#</legend>
+
 <form id="image_save" method="POST">
-<table style="border-collapse: collapse;border-spacing:0px">    
-<tr>
-	<td rowspan="2" id='image_output' style="width:210px;height:210px;border-style:solid;border-width:1px;border-color:green"></td>
-	<td id="preview" style="margin-left:20px;float: left; position: relative; overflow-x: hidden; overflow-y: hidden; width: 100px; height: 100px;">
-	<div style="border-style:solid;border-width:1px;width:99px;height:99px;border-color:green"></div>
-	</td>
-</tr>
-<tr>
-	<td style="height:100px;" valign="top">
-		<input   type='hidden' name='x1' value='' id='x1' />
-		<input   type='hidden' name='y1' value='' id='y1' />
-		<input   type='hidden' name='x2' value='' id='x2' />
-		<input   type='hidden' name='y2' value='' id='y2' />
-		<input   type='hidden' name='w'  value='' id='w' />
-		<input   type='hidden' name='h'  value='' id='h' />
-		<input   type='hidden' name='img' value='' id='image_save_img'/>
-		<input   type='submit' value='保存头像'   id='image_save_submit' style="margin-top:10px;margin-left:35px;height:22px;font-size:12px;"/>
-	</td>
-</tr>
-<tr>
-</tr>
+
+	<table style="border-collapse: collapse;border-spacing:0px">    
+
+		<tr>
+			<td rowspan="2" id='image_output' style="width:210px;height:210px;border-style:solid;border-width:1px;border-color:green"></td>
+			<td id="preview" style="margin-left:20px;float: left; position: relative; overflow-x: hidden; overflow-y: hidden; width: 100px; height: 100px;">
+				<div style="border-style:solid;border-width:1px;width:99px;height:99px;border-color:green"></div>
+			</td>
+		</tr>
+		<tr>
+			<td style="height:100px;" valign="top">
+				<input   type='hidden' name='x1' value='' id='x1' />
+				<input   type='hidden' name='y1' value='' id='y1' />
+				<input   type='hidden' name='x2' value='' id='x2' />
+				<input   type='hidden' name='y2' value='' id='y2' />
+				<input   type='hidden' name='w'  value='' id='w' />
+				<input   type='hidden' name='h'  value='' id='h' />
+				<input   type='hidden' name='img' value='' id='image_save_img'/>
+				<input   type='submit' value='保存头像'   id='image_save_submit' 
+				style="margin-top:10px;margin-left:35px;height:22px;font-size:12px;"/>
+				</br></br>
+				<!--strong  id='error_upload' style="display:none;color:red;margin-left:30px"></strong-->
+				<div id="error_upload" style="margin-left:30px"></div>
+			</td>
+		</tr>
+
+	</table>
 </form>
+<div style='height:10px'></div>
+
 <form id="image_upload" enctype="multipart/form-data" method="POST">
 	<table>
 	<tr>
@@ -34,6 +61,7 @@
 	</tr>
 	</table>
 </form>
+</fieldset>
 
 
 </div>

@@ -14,10 +14,16 @@
 			</div>
 
 			<div class="operation_link">
+			% if action_type == 'add':
 				<a href='/backend/member' class="button">${backend.member.title}</a>
 				<a href='/backend/member/add' class="button select">${backend.member.add}</a>
-				<a href='/backend/member/avatar' class="button">${backend.member.avatar}</a>
+			% elif action_type == 'edit':
+				<a href='/backend/member' class="button">${backend.member.title}</a>
+				<a href='/backend/member/add' class="button select">${backend.member.edit}</a>
+				<a href='/backend/member/edit/avatar' class="button">${backend.member.avatar}</a>
+			% endif
 
+				
 			</div>
 			<div class='edit_content'>
 			% if action_type == 'add':

@@ -30,13 +30,13 @@
                 return false;
             });
 	   $('#image_save_submit').click(function(){
-		$('#output1').hide();
+		$('#error_upload').hide();
                 $('#image_save').ajaxSubmit(options_image_save);
                 return false;
             });
 
 	   $('#image_save_submit').hide();
-	   $('#output1').hide();
+	   $('#error_upload').hide();
 	}
 	);
 	function preview(img, selection) {
@@ -62,7 +62,6 @@
 	}
 	function showImageSaveResult(responseText,statusText,xhr,$form)
 	{
-		alert(responseText.err);
 		if (responseText.status){
 			document.getElementById('error_upload').innerHTML = responseText.err;
 			$('#error_upload').show();
@@ -71,6 +70,8 @@
 		}else{
 			document.getElementById('error_upload').innerHTML = responseText.err;
 			$('#error_upload').show();
+			alert(responseText.err);
+
 		}
 	}
 

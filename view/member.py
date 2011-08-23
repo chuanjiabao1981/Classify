@@ -86,5 +86,6 @@ class SetAvatarBackend(SetAvatar):
 		SetAvatar.__init__(self)
 	def GET(self,member_id):
 		t = {}
-		t["admin_file"] =  'backend_member_avatar.html'
+		t["admin_file"]    =  'backend_member_avatar.html'
+		t["admin_title"]   =  'aaa'
 		return template_desktop.get_template('backend.html').render(**t)
