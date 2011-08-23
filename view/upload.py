@@ -35,7 +35,6 @@ class UploadImage:
 		if not 'origin_image_content_type' in web.input():
 			return (False,None)
 		# 临时目录
-		
 		img_tmp_path = path_setting.html_document_root + path_setting.tmp_img_root_dir	+ '/' + date.today().isoformat()
 		# 临时文件
 		img_tmp_name = web.input().origin_image_md5+'.'+web.input().origin_image_content_type.split('/')[1]
