@@ -15,7 +15,14 @@ def get_user_info(web):
 				self.member = None
 				return method(self,*a,**n)
 			self.member	=	get_member_by_name(user["name"])
-			##TODO::check pass word
+			if not self.member :
+				self.member = None
+				return method(self,*a,**n)
+			print user["password"]
+			print self.member.password
+			if not (user["password"] == self.member.password):
+				self.member = None
+				return method(self,*a,**n)
 			##TODO::log some info
 			return method(self,*a,**n)
 		return __f
