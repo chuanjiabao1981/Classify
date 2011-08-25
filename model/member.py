@@ -31,7 +31,7 @@ def verify_login(web_info):
 		t = get_member_by_name(web_info.name)
 	if not t:
 		return (False,'这个用户不存在!')
-	pp	=	unicode(hashlib.md5(web_info.password.strip(' ').strip('\n')).hexdigest().upper())
+	pp	=	hashlib.md5(web_info.password.strip(' ').strip('\n')).hexdigest().upper()
 	if pp != t.password:
 		return (False,'密码错误!!')
 	aa	= {'name':t.name,'password':t.password}
@@ -46,7 +46,7 @@ def update_member_info(member_info,web_info):
 	t['readme']	=	web_info.readme
 	t['authority']	=	MemberAuthority.build_authority(web_info)
 	if web_info.password.strip(' ').strip('\n') :
-		t['password'] = unicode(hashlib.md5(web_info.password.strip(' ').strip('\n')).hexdigest().upper())
+		t['password'] = hashlib.md5(web_info.password.strip(' ').strip('\n')).hexdigest().upper()
 	try:
 		connection[config.classify_database][config.collection_name.Member].update(
 		{'_id':member_info._id},
@@ -68,7 +68,7 @@ def add_a_member(web_info):
 	member		=	connection.Member()
 	member.name	=	web_info.name.strip(' ').strip('\n')
 	member.email	=	web_info.email.strip(' ').strip('\n')
-	member.password	=	unicode(hashlib.md5(web_info.password.strip(' ').strip('\n')).hexdigest().upper())
+	member.password	=	hashlib.md5(web_info.password.strip(' ').strip('\n')).hexdigest().upper()
 	member.readme	=	web_info.readme.strip(' ').strip('\n')
 	if connection.Member.find().count() == 0:
 		member.authority	=	~0l	

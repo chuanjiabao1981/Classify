@@ -74,12 +74,6 @@ def process_video(video):
 	return
 
 	
-def str_to_unicode(video):
-	video.title  	= unicode(video.title)
-	video.content	= unicode(video.content)
-	video.tags	= unicode(video.tags)
-	video.image	= unicode(video.image)
-	video.location  = unicode(video.location)
 
 	
 	
@@ -102,7 +96,6 @@ def add_a_new_video(node,member,webinput):
 	video.video_md5		=	webinput.file_md5
 ## 这个过程应该放在后台任务
 	process_video(video)
-	str_to_unicode(video)
 	video.save()
 	return video
 

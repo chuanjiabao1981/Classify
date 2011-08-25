@@ -19,8 +19,8 @@
 				<a href='/backend/member/add' class="button select">${backend.member.add}</a>
 			% elif action_type == 'edit':
 				<a href='/backend/member' class="button">${backend.member.title}</a>
-				<a href='/backend/member/add' class="button select">${backend.member.edit}</a>
-				<a href='/backend/member/edit/avatar' class="button">${backend.member.avatar}</a>
+				<a href='/backend/member/edit/info/${item._id}' class="button select">${backend.member.edit}</a>
+				<a href='/backend/member/edit/avatar/${item._id}' class="button">${backend.member.avatar}</a>
 			% endif
 
 				
@@ -29,7 +29,7 @@
 			% if action_type == 'add':
 			<form enctype="multipart/form-data" name="classify_form" action="/backend/member/add" method="post">
 			% elif action_type == 'edit':
-				<form enctype="multipart/form-data" name="classify_form" action="/backend/member/edit/${item._id}" method="post">
+				<form enctype="multipart/form-data" name="classify_form" action="/backend/member/edit/info/${item._id}" method="post">
 				<input type="hidden" name="id" value="${item._id}"></input>
 			% endif
 

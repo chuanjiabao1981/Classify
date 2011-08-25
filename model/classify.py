@@ -11,10 +11,14 @@ def get_all_classify():
 
 
 def add_a_classify(web_info):
+	
 	classify = connection.Classify()	
 	classify.name = web_info.name.strip(" ").strip("\n");
 	classify.url  = web_info.url.strip(" ").strip("\n");
 	classify.des  = web_info.des.strip(" ").strip("\n");
+	print type(classify.name)
+	print web_info.name
+	print classify.name
 	try:
 		classify.save()
 	except pymongo.errors.DuplicateKeyError:

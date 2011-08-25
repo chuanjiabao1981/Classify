@@ -1,4 +1,5 @@
 # coding=utf-8
+#!/usr/bin/python
 import web
 import os
 from model.video  import *
@@ -11,7 +12,8 @@ from mako.lookup import TemplateLookup
 from mako import exceptions
 from template import template_desktop
 import config
-import re
+import re,sys
+
 
 Backend_File ={'main':'backend_classify.html',
 	       'classify':'backend_classify.html'}

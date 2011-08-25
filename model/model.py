@@ -14,9 +14,9 @@ class Classify(Document):
 	__collection__ = config.collection_name.Classify
 	__database__   = config.classify_database
 	structure      = {
-			 "url"			:unicode,### 类型的url名称
-			 "name"			:unicode,### 用于展示
-			 "des"			:unicode,
+			 "url"			:basestring,### 类型的url名称
+			 "name"			:basestring,### 用于展示
+			 "des"			:basestring,
 			 "node_num"		:int,	 ### classify中包含的node个数
 			 "create_time"		:datetime.datetime
 	}
@@ -39,17 +39,17 @@ class Node(Document):
 	__database__   = config.classify_database
 	structure      = {
 
-				"url"		: unicode, 		# url 
-				"name"		: unicode,		# 用于展示的 比如汉字
-				"header"	: unicode,		# 节点的说明
+				"url"		: basestring, 		# url 
+				"name"		: basestring,		# 用于展示的 比如汉字
+				"header"	: basestring,		# 节点的说明
 				#TODO::这个要拆分为 topic_num video_topic_num image_topic_num
 				#TODO::后端管理 要判断 都不为空
 				"topic_num"	: int,			# 节点topic总数
 				"video_num"	: int,			# 节点video总数
 				"image_num"	: int,			# 节点image总数
-				"image"		: unicode,		# 节点图片
-				"classify_name" : unicode,
-				"classify_url"	: unicode,
+				"image"		: basestring,		# 节点图片
+				"classify_name" : basestring,
+				"classify_url"	: basestring,
 				"classify_ref"	: pymongo.objectid.ObjectId,
 				"create_time"	: datetime.datetime
 			 }
@@ -73,13 +73,13 @@ class Member(Document):
 	__collection__ = config.collection_name.Member
 	__database__   = config.classify_database
 	structure = {
-			"name"		:unicode,
-			"email"		:unicode,
-			"password"	:unicode,
+			"name"		:basestring,
+			"email"		:basestring,
+			"password"	:basestring,
 			"authority"	:long,
 			"status"	:int,
-			"readme"	:unicode,
-			"avatar"	:unicode,
+			"readme"	:basestring,
+			"avatar"	:basestring,
 			"register_time"	:datetime.datetime
 		    }
 	use_dot_notation	=	True
@@ -104,27 +104,27 @@ class Video(Document):
 	__collection__ = config.collection_name.Video
 	__database__   = config.classify_database
 	structure = {
-		"title"			:unicode,
-		"content"		:unicode,
+		"title"			:basestring,
+		"content"		:basestring,
 		"content_length"	:int,
 		"time"			:int,	#视频时间,单位s
-		"node_url"		:unicode,
-		"node_name"		:unicode,
+		"node_url"		:basestring,
+		"node_name"		:basestring,
 		"node_ref"		:pymongo.objectid.ObjectId,
 		"create_time"		:datetime.datetime,
-		"author"		:unicode,
+		"author"		:basestring,
 		"author_ref"		:pymongo.objectid.ObjectId,
-		"author_avatar"         :unicode,
+		"author_avatar"         :basestring,
 		"last_reply_time"	:datetime.datetime,
-		"last_reply_by"		:unicode,			# 最后回复
+		"last_reply_by"		:basestring,			# 最后回复
 		"reply_num"		:int,
 		"view_num"		:int,
-		"tag"			:unicode,
-		"location"		:unicode,
-		"video_md5"		:unicode,
+		"tag"			:basestring,
+		"location"		:basestring,
+		"video_md5"		:basestring,
 		"image_time"		:int,	# 截图的时间 单位 s
-		"image"			:unicode,
-		"fail_reason"		:unicode,
+		"image"			:basestring,
+		"fail_reason"		:basestring,
 		"status"		:int			
 	}
 	use_dot_notation		= True
@@ -167,24 +167,24 @@ class Topic(Document):
 	__collection__ 	= config.collection_name.Topic
 	__database__	= config.classify_database
 	structure = {
-		"title"			:unicode,
-		"content"		:unicode,
+		"title"			:basestring,
+		"content"		:basestring,
 		"content_length"	:int,
 		"hits"			:int,
-		"author"		:unicode,
+		"author"		:basestring,
 		"author_ref"		:pymongo.objectid.ObjectId,			# 作者引用
-		"author_avatar"		:unicode,
+		"author_avatar"		:basestring,
 		"video"			:{
-						"where":unicode,	# 视频位置
-						"image":unicode,	# 视频截图的位置
+						"where":basestring,	# 视频位置
+						"image":basestring,	# 视频截图的位置
 						"time" : int 
 					 },	
 		"create_time"		:datetime.datetime,		# topic 创建时间
-		"node_url"		:unicode,			# 节点的url
-		"node_name"		:unicode,			# 节点的引用
+		"node_url"		:basestring,			# 节点的url
+		"node_name"		:basestring,			# 节点的引用
 		"node_ref"		:pymongo.objectid.ObjectId,				# 
 		"last_reply_time"	:datetime.datetime,
-		"last_reply_by"		:unicode,			# 最后回复
+		"last_reply_by"		:basestring,			# 最后回复
 		"reply_num"		:int			
 	}
 	#TODO:
@@ -199,11 +199,11 @@ class Reply(Document):
 	__database__	= config.classify_database	
 	structure = {
 			"topic_id"		:pymongo.objectid.ObjectId,
-			"author"  		:unicode,
+			"author"  		:basestring,
 			"author_ref"		:pymongo.objectid.ObjectId,			# 作者引用
-			"author_avatar"		:unicode,
+			"author_avatar"		:basestring,
 			"create_time"		:datetime.datetime,
-			"content"		:unicode,
+			"content"		:basestring,
 			"content_length"	:int
 		    }
 	use_dot_notation	=	True
