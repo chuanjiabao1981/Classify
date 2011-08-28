@@ -21,8 +21,8 @@ class UploadSizeError:
 
 class UploadVideo:
 	def POST(self):
-		member 		= get_member_by_name("")
-		node		= get_node_by_url_name("")
+		member 		= get_member_by_name("chuanjiabao")
+		node		= get_node_by_url_name("111")
 		video		= add_a_new_video(node,member,web.input())
 		return video
 		

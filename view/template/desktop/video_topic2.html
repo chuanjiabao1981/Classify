@@ -18,14 +18,14 @@
 					<div class="inner" style="min-height: 73px;">
 				% endif
 						<div class="fr snow" style="padding-left: 10px; padding-bottom: 10px;">
-							<a href="/member/{{ topic.member.username }}">${topic.author|view.filter.avatar("large")}</a>
+							<a href="/member/${topic.author.name}">${topic.author.avatar|view.filter.avatar("large")}</a>
 						</div>
 					        <span class="bigger"><a href="/">${site.title}</a> ${template.chevron} 
 								     <a href="/go/${topic.node_url}">${topic.node_name|h}</a>
 						</span>
 						<h1>${topic["title"]|h}</h1>
 						<small class="fade">
-							By <a href="/member/${topic.author}" class="dark">${topic.author}</a>
+							By <a href="/member/${topic.author.name}" class="dark">${topic.author.name}</a>
 		      						% if 'source' in topic:
 			    						via {{ topic.source }}
 		      						% endif 

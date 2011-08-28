@@ -48,9 +48,6 @@ class Node(Document):
 				"video_num"	: int,			# 节点video总数
 				"image_num"	: int,			# 节点image总数
 				"image"		: basestring,		# 节点图片
-				#"classify_name" : basestring,
-				#"classify_url"	: basestring,
-				#"classify_ref"	: pymongo.objectid.ObjectId,
 				"classify"	: Classify,		# 节点所属类别
 				"create_time"	: datetime.datetime
 			 }
@@ -118,9 +115,7 @@ class Video(Document):
 		"node_name"		:basestring,
 		"node_ref"		:pymongo.objectid.ObjectId,
 		"create_time"		:datetime.datetime,
-		"author"		:basestring,
-		"author_ref"		:pymongo.objectid.ObjectId,
-		"author_avatar"         :basestring,
+		"author"		:Member,
 		"last_reply_time"	:datetime.datetime,
 		"last_reply_by"		:basestring,			# 最后回复
 		"reply_num"		:int,
@@ -134,6 +129,7 @@ class Video(Document):
 		"status"		:int			
 	}
 	use_dot_notation		= True
+	use_autorefs			= 	True
 	default_values			=	{"reply_num"		:0,
 						 "create_time"		:datetime.datetime.utcnow(),
 						 "view_num"		:0,
@@ -205,14 +201,14 @@ class Reply(Document):
 	__database__	= config.classify_database	
 	structure = {
 			"topic_id"		:pymongo.objectid.ObjectId,
-			"author"  		:basestring,
-			"author_ref"		:pymongo.objectid.ObjectId,			# 作者引用
-			"author_avatar"		:basestring,
+			"author"  		:Member,
 			"create_time"		:datetime.datetime,
 			"content"		:basestring,
 			"content_length"	:int
 		    }
 	use_dot_notation	=	True
+	use_autorefs		= 	True
+
 	default_values		= {"create_time":datetime.datetime.utcnow()}
 	indexes			= [
 					{'fields':[("author",pymongo.ASCENDING),("create_time",pymongo.DESCENDING)]},

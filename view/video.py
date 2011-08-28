@@ -37,7 +37,7 @@ class VideoTopicShow:
 	def GET(self,topic_id):
 		topic 		= find_video_topic_by_id(topic_id)
 		member_name	=	""
-		member		= get_member_by_name('飞龙在天')
+		member		= get_member_by_name('chuanjiabao')
 		replies		= get_reply_by_topic_id(topic_id) 
 		hit_video_topic_by_topic_id(topic_id)
 		try: 
@@ -51,7 +51,7 @@ class VideoTopicShow:
 		t			= {}
 		t["error"]		= None
 		##TODO:未登录 用decorator
-		t["member"]		= get_member_by_name('飞龙在天')
+		t["member"]		= get_member_by_name('chuanjiabao')
 		t["topic"]		= find_video_topic_by_id(topic_id)
 		if not t["topic"]:
 			return web.notfound()

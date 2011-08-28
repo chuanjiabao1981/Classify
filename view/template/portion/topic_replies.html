@@ -14,14 +14,14 @@
 
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
-            <td width="48" valign="top"><a href="/member/${reply.author}">${reply.author|view.filter.avatar("normal")}</a></td>
+            <td width="48" valign="top"><a href="/member/${reply.author.name}">${reply.author.avatar|view.filter.avatar("normal")}</a></td>
             <td width="10"></td>
             <td width="auto" valign="top">
 	    <div class="fr" id="reply_{{ reply.num }}_buttons">
 	    <strong><small class="snow">#${counter+1} - ${reply.create_time} ago &nbsp; 
-	    <img src="/static_file/img/reply.png" align="absmiddle" border="0" alt="回复 ${reply.author}" onclick="replyOne('${reply.author}')" class="clickable" /><span class="ops"></span></small></strong></div>
+	    <img src="/static_file/img/reply.png" align="absmiddle" border="0" alt="回复 ${reply.author.name}" onclick="replyOne('${reply.author.name}')" class="clickable" /><span class="ops"></span></small></strong></div>
             <div class="sep3"></div>
-            <strong><a href="/member/${reply.author}" class="dark">${reply.author}</a></strong>
+            <strong><a href="/member/${reply.author.name}" class="dark">${reply.author.name}</a></strong>
                 <div class="sep5"></div>
                 <div class="content reply_content">${reply.content}</div>
             </td>

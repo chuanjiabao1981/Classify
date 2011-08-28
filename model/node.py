@@ -88,8 +88,6 @@ def add_a_node(info):
 	return (True,0)
 
 if __name__ == "__main__":
-	all  = get_all_node()
-	for i in all:
-		print i
-	print all
-	#inc_topic_num_by_node_url_name("begin")
+	i= connection.Node.find_one({'url':'111'})	
+	print i.url
+	print i.classify.name

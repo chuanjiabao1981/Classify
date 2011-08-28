@@ -10,7 +10,7 @@ import config
 def add_a_reply(web_info,member,topic):
 	reply			= connection.Reply()
 	reply.topic_id		= topic._id
-	reply.author		= member.name
+	reply.author		= member
 	reply.content		= web_info.content
 	reply.content_length	= len(reply.content)
 	reply.save()
