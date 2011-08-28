@@ -22,4 +22,24 @@
 9. im.resize((300,300)).crop((21,0,265,244)).save('/home/work/tmp/1.jpg')
 10.给member表添加avatar字段
    db.member.update({avatar:{"$exists":false}},{"$set":{avatar:"avatar"}},false,true)
+11. 如果一个field对应的为dbref 
+    a:save   直接赋值对象即可
+    b:update的时候要用get_dbref
+    t= connection[config.classify_database][config.collection_name.Node].update(
+		{'_id':node_info._id},
+		{
+	 	'$set':{
+			 'url'			:	web_info.url,
+			 'name'			:	web_info.name,
+			 'header'		:	web_info.header,
+			 'classify'		:	classify_item.get_dbref()
+		       }
+		},
+		safe=True
+		)
 
+12. index 一个 dbref直接index对象
+13. 根据dbref查询
+    db.node.find({'classify.$id':ObjectId("4e5a3a9fdecbef0d28000000")}) 
+14. mongokit 0.7以后不会自动建索引了，所以要人工建。
+    

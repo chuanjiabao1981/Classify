@@ -1,3 +1,4 @@
+# coding=utf-8
 from model import *
 from classify import *
 from topictools import *
@@ -16,7 +17,11 @@ def get_all_node():
 
 def find_a_node(node_id):
 	return connection.Node.find_one({'_id':bson.objectid.ObjectId(node_id)})
-
+"""
+这个函数是以前的nested结构的时候,
+一旦classify更新后，更新对应的node节点信息。
+目前的结构，不推荐使用。
+"""
 def update_node_classify_info(classify_info):
 	connection[config.classify_database][config.collection_name.Node].update(
 		{'classify_ref':classify_info._id},
@@ -35,7 +40,6 @@ def update_a_node(node_info,web_info):
 		classify_item	=	find_a_classify(web_info.classify_id)
 		if not classify_item:
 			return (False,-2)
-
 		#second
 		t= connection[config.classify_database][config.collection_name.Node].update(
 		{'_id':node_info._id},
@@ -44,20 +48,18 @@ def update_a_node(node_info,web_info):
 			 'url'			:	web_info.url,
 			 'name'			:	web_info.name,
 			 'header'		:	web_info.header,
-			 'classify_ref'		:	classify_item._id,
-			 'classify_name'	:	classify_item.name,
-			 'classify_url'		:	classify_item.url
+			 'classify'		:	classify_item.get_dbref()
 		       }
 		},
 		safe=True
 		)
 		#third
-		update_classify_node_num(str(node_info.classify_ref),-1)
-		update_classify_node_num(str(web_info.classify_id),1)
+		update_classify_node_num(node_info.classify._id,-1)
+		update_classify_node_num(classify_item._id,1)
 
 		#forth
-		update_topic_node_info(node_info._id,config.collection_name.Video)
-		update_topic_node_info(node_info._id,config.collection_name.Topic)
+		#update_topic_node_info(node_info._id,config.collection_name.Video)
+		#update_topic_node_info(node_info._id,config.collection_name.Topic)
 
 	
 	except pymongo.errors.DuplicateKeyError:
@@ -74,17 +76,20 @@ def add_a_node(info):
 	node.name		=	info.name
 	node.url		=	info.url
 	node.header		=	info.header
-	node.classify_ref	=	classify_item._id
-	node.classify_name	=	classify_item.name
-	node.classify_url	=	classify_item.url
+	node.classify		=	classify_item
+	#node.classify_ref	=	classify_item._id
+	#node.classify_name	=	classify_item.name
+	#node.classify_url	=	classify_item.url
 	try:
 		node.save()
 	except pymongo.errors.DuplicateKeyError:
 		return (False,-1)
-	update_classify_node_num(info.classify_id,1)
+	update_classify_node_num(classify_item._id,1)
 	return (True,0)
 
 if __name__ == "__main__":
-	node = get_node_by_url_name("")
-	print node
+	all  = get_all_node()
+	for i in all:
+		print i
+	print all
 	#inc_topic_num_by_node_url_name("begin")

@@ -37,7 +37,12 @@ class Backend:
 class NodeOverView:
 	def GET(self):
 		all_node = get_all_node()
-		return template_desktop.get_template('backend.html').render(all_node=all_node,admin_file='backend_node.html')
+		try:
+			return template_desktop.get_template('backend.html').render(all_node=all_node,admin_file='backend_node.html')
+		except:
+			return exceptions.html_error_template().render()
+
+
 
 def NodeVerifyPostInput():
 	p		=	re.compile('^[a-zA-Z0-9_]+$')
@@ -54,7 +59,7 @@ def NodeVerifyPostInput():
 		error = u'节点名称不能为空!'
 	elif len(web.input().name) > name_len_limit:
 		error = u'节点名称不能超过'+str(name_len_limit)+u'个字符!'
-	elif not web.input().classify_id:
+	elif not "classify_id" in web.input():
 		error = u'类别id异常'
 	return error
 	

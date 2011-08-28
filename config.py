@@ -11,6 +11,7 @@ mongodb_port 		= 27017
 ## 数据库名称
 if debug:
 	classify_database	= "shitao_debug"
+	classify_database	= "shitao_debug_2"
 else:
 	classify_database	= "shitao"
 class collection_name():

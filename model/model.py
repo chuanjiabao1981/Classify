@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 from mongokit import *
 from default  import *
 import pymongo
@@ -48,12 +48,14 @@ class Node(Document):
 				"video_num"	: int,			# 节点video总数
 				"image_num"	: int,			# 节点image总数
 				"image"		: basestring,		# 节点图片
-				"classify_name" : basestring,
-				"classify_url"	: basestring,
-				"classify_ref"	: pymongo.objectid.ObjectId,
+				#"classify_name" : basestring,
+				#"classify_url"	: basestring,
+				#"classify_ref"	: pymongo.objectid.ObjectId,
+				"classify"	: Classify,		# 节点所属类别
 				"create_time"	: datetime.datetime
 			 }
 	use_dot_notation	=	True
+	use_autorefs		= 	True
 	default_values		=	{"topic_num":0,"header":"","create_time":datetime.datetime.utcnow()}
 	indexes			=	[
 						{
@@ -63,6 +65,10 @@ class Node(Document):
 						{
 							'fields':["name"],
 							'unique':True
+						},
+						{
+							'fields':[("classify",pymongo.ASCENDING)]
+
 						}	
 					]
 
