@@ -21,7 +21,7 @@
 							<a href="/member/${topic.author.name}">${topic.author.avatar|view.filter.avatar("large")}</a>
 						</div>
 					        <span class="bigger"><a href="/">${site.title}</a> ${template.chevron} 
-								     <a href="/go/${topic.node_url}">${topic.node_name|h}</a>
+								     <a href="/go/${topic.node.url}">${topic.node.name|h}</a>
 						</span>
 						<h1>${topic["title"]|h}</h1>
 						<small class="fade">

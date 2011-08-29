@@ -16,12 +16,9 @@ def update_topic_node_info(node_id,collection_name):
 	
 def get_latest_topic(collection_name,node,skip,limit):
 	if node:
-		#topic_list= connection[config.classify_database][collection_name].find({"node_ref":node._id}).sort([("last_reply_time",pymongo.DESCENDING)]).skip(skip).limit(limit)
-		topic_list = connection.Video.find({"node_ref":node._id}).sort([("last_reply_time",pymongo.DESCENDING)]).skip(skip).limit(limit)
-
+		topic_list = connection.Video.find({"node":node.get_dbref()}).sort([("last_reply_time",pymongo.DESCENDING)]).skip(skip).limit(limit)
 	else:
-		print "test"
-		topic_list= connection[config.classify_database][collection_name].\
+		topic_list = connection[config.classify_database][collection_name].\
 				find().sort([("last_reply_time",pymongo.DESCENDING)]).skip(skip).limit(limit)
 
 	#print topic_list.explain()

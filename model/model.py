@@ -53,7 +53,7 @@ class Node(Document):
 			 }
 	use_dot_notation	=	True
 	use_autorefs		= 	True
-	default_values		=	{"topic_num":0,"header":"","create_time":datetime.datetime.utcnow()}
+	default_values		=	{"topic_num":0,"video_num":0,"image_num":0,"header":"","create_time":datetime.datetime.utcnow()}
 	indexes			=	[
 						{
 							'fields':["url"],
@@ -111,9 +111,7 @@ class Video(Document):
 		"content"		:basestring,
 		"content_length"	:int,
 		"time"			:int,	#视频时间,单位s
-		"node_url"		:basestring,
-		"node_name"		:basestring,
-		"node_ref"		:pymongo.objectid.ObjectId,
+		"node"			:Node,
 		"create_time"		:datetime.datetime,
 		"author"		:Member,
 		"last_reply_time"	:datetime.datetime,
@@ -142,7 +140,7 @@ class Video(Document):
 						{
 
 						###这个索引顺序有待研究
-						  'fields':[("node_ref",pymongo.ASCENDING),("last_reply_time",pymongo.DESCENDING)]
+						  'fields':[("node",pymongo.ASCENDING),("last_reply_time",pymongo.DESCENDING)]
 						},
 						{
 						###这个索引用于在首页，展示

@@ -85,13 +85,12 @@ def add_a_new_video(node,member,webinput):
 	video.content_length	=	len(video.content)
 	if webinput.image_time.isdigit():
 		video.image_time	=	int(webinput.image_time)
-	video.node_url		=	node.url
-	video.node_name		=	node.name
-	video.node_ref		=	node._id
+	video.node		=	node
 	video.author		=	member
 	video.location		=	webinput.file_path
 	video.tags		=	process_tag(webinput.tags)
 	video.video_md5		=	webinput.file_md5
+	inc_video_topic_num(node,1)
 ## 这个过程应该放在后台任务
 	process_video(video)
 	video.save()
