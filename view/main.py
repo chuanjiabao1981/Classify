@@ -5,12 +5,12 @@ from model.model  import *
 from model.member import *
 from model.node   import *
 from model.topic  import *
+from model.video  import *
 from mako.template import Template
 from mako.lookup import TemplateLookup
 from mako import exceptions
 from template import template_desktop
 import config
-from util.member_tools import *
 
 
 class MainPage:
@@ -24,7 +24,7 @@ class MainPage:
 		#member 		= get_member_by_name(member_name)
 		#node			= get_node_by_url_name(node_url_name)
 		t			= {}
-		t["video_list"]		= get_latest_topic(config.collection_name.Video,None,0,config.page_num)
+		t["video_list"]		= get_latest_video_topic(config.collection_name.Video,None,0,config.page_num)
 		t["site"]		= config.site
 		t["index_page"]		= True
 

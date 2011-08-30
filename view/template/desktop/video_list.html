@@ -12,14 +12,13 @@
 	<div class="video_info">
 		<ul>
 			<li>
-				<!--h3><a href="/"><span class="video_title"> Casio G-shock 2011 卡西欧 精品再现</span></a></h3-->
 				<a href="/videotopic/${i["_id"]}"><span class="video_title">${i["title"]}a</span></a>
 
 			</li>
 			<li class="video_intro">防水、夜光、支持大气压测试。绝对超值享受，20年品质保证...</li>
 				<div class="sep12"></div>
 			% if index_page:
-				<li class="node" style="float:left"><a href="/">${i["node_name"]}</a></li>
+				<li class="node" style="float:left"><a href="/">${i.node.name}</a></li>
 				<li class="vidoe_create" style="padding:2px 4px;float:right">
 			% else:
 				<li class="vidoe_create" style="padding:2px 4px;float:left">

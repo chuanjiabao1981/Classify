@@ -4,7 +4,6 @@ from classify import *
 from topictools import *
 def get_node_by_url_name(url_name):
 	k=connection.Node.find_one({'url':url_name})	
-	print k
 	return k
 
 def inc_topic_num_by_node_url_name(name):
@@ -73,12 +72,15 @@ def update_a_node(node_info,web_info):
 def add_a_node(info):
 	node			= 	connection.Node()
 	classify_item		=	find_a_classify(info.classify_id)
+	print classify_item
 	if not classify_item:
 		return (False,-2)
 	node.name		=	info.name
 	node.url		=	info.url
 	node.header		=	info.header
-	node.classify		=	classify_item
+	node.classify		=	classify_item.get_dbref()
+	print node.classify
+	print classify_item.get_dbref()
 	try:
 		node.save()
 	except pymongo.errors.DuplicateKeyError:
@@ -86,20 +88,25 @@ def add_a_node(info):
 	update_classify_node_num(classify_item._id,1)
 	return (True,0)
 def inc_video_topic_num(node,num):
-	print node._id
-	print connection.Node.find_one({'_id':node._id})	
 
 	connection[config.classify_database][config.collection_name.Node].update(
 		{'_id':node._id}, 
 		{ '$inc':{"video_num":num} 
 		},safe=True 
 	)
-	print connection.Node.find_one({'_id':node._id})	
 
 
 if __name__ == "__main__":
-	i= connection.Node.find_one({'url':'testnode'})	
-	print i
-	inc_video_topic_num(i,2)
-	i= connection.Node.find_one({'url':'testnode'})	
-	print i
+	#i= connection.Node.find_one({'url':'testnode'})	
+	class info:
+		def __init__(self):
+			self.name 		=	'ddd'
+			self.classify_id	=	'4e5cdde3decbef0919000001'
+			self.url		=	'ddd'
+			self.header		=	'cdd'
+	a = info()
+	add_a_node(a)
+	all = get_all_node()
+	for i in all:
+		print i
+		print i.classify

@@ -26,3 +26,12 @@ def get_latest_topic(collection_name,node,skip,limit):
 	#	print type(i)
 	return topic_list
 
+if __name__ == '__main__':
+	#all = get_latest_topic(config.collection_name.Video,None,0,config.page_num)
+	all = connection["shitao_debug_2"]["video"].find()
+	alld = connection["shitao_debug_2"]["video"]
+	
+	#all = connection.Video.find()
+	all = alld.find()
+	for i in all:
+		print type(i["node"])

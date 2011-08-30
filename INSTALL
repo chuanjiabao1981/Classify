@@ -23,7 +23,13 @@
 10.给member表添加avatar字段
    db.member.update({avatar:{"$exists":false}},{"$set":{avatar:"avatar"}},false,true)
 11. 如果一个field对应的为dbref 
-    a:save   直接赋值对象即可
+    a:save  要用get_dbref()；如果直接用对象，嵌入对象也会引入一次插入操作。
+      例如：
+	  video.node=node
+	  inc_video_topic_num(node) ##增加node节点对应的 video个数,写入mongodb
+	  video.save()
+	  失效：inc_video_topic_num,无效，因为在video.save()中 除了写入video同时写入node；
+	  video.node = node.get_dbref()
     b:update的时候要用get_dbref
     t= connection[config.classify_database][config.collection_name.Node].update(
 		{'_id':node_info._id},
@@ -40,6 +46,9 @@
 
 12. index 一个 dbref直接index对象
 13. 根据dbref查询
-    db.node.find({'classify.$id':ObjectId("4e5a3a9fdecbef0d28000000")}) 
+    db.node.find({'classify':classify.get_dbref()}) 
 14. mongokit 0.7以后不会自动建索引了，所以要人工建。
-    
+15. get_latest_topic 中使用动态获取的collection查询，无法自动autoref, mongokit 0.7
+	connection[config.classify_database][collection_name].find()
+    必须使用
+      connection.Video

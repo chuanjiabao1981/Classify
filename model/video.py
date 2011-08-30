@@ -74,10 +74,20 @@ def process_video(video):
 	return
 
 	
-
+def add_a_new_video2(node,member,webinput):
+	connection[config.classify_database][config.collection_name.Video].insert(
+		{
+			'node'		: node,
+			'author'	: member
+		}
+	)
+	
 	
 	
 def add_a_new_video(node,member,webinput):
+	member 	= get_member_by_name("chuanjiabao")
+	node	= get_node_by_url_name("testnode")
+
 	video = connection.Video();
 	# webinput引用的字段都是必须要有的
 	video.title		=	webinput.title
@@ -85,15 +95,18 @@ def add_a_new_video(node,member,webinput):
 	video.content_length	=	len(video.content)
 	if webinput.image_time.isdigit():
 		video.image_time	=	int(webinput.image_time)
-	video.node		=	node
-	video.author		=	member
+	video.node		=	node.get_dbref()
+	video.author		=	member.get_dbref()
 	video.location		=	webinput.file_path
 	video.tags		=	process_tag(webinput.tags)
 	video.video_md5		=	webinput.file_md5
-	inc_video_topic_num(node,1)
-## 这个过程应该放在后台任务
+## 这个过程应该放在后台任务###
+	########################
 	process_video(video)
+	########################
 	video.save()
+	##处理后再增加###
+	inc_video_topic_num(node,1)
 	return video
 
 def find_video_topic_by_id(topic_id):
@@ -117,6 +130,17 @@ def reply_to_topic(web_info,member,topic):
 		
 		} 
 	)
+def get_latest_video_topic(collection_name,node,skip,limit):
+	if node:
+		topic_list = connection.Video.find({"node":node.get_dbref()}).sort([("last_reply_time",pymongo.DESCENDING)]).skip(skip).limit(limit)
+	else:
+		topic_list = connection.Video.find().sort([("last_reply_time",pymongo.DESCENDING)]).skip(skip).limit(limit)
+
+	#print topic_list.explain()
+	#for i in topic_list:
+	#	print type(i)
+	return topic_list
+
 
 def page_video_topic_(node,skip,limit):
 	
@@ -201,5 +225,16 @@ if __name__ == '__main__':
 		#video_move(a)
 		print a.location
 	"""	
-	m	= video_test()
-	m.test_page()
+	class webinput:
+		def __init__(self):
+			self.title 		= "123"
+			self.content		= "111111"
+			self.tags		= "1 2 3"
+			self.image_time		= "10"
+			self.file_path		= "kk"
+			self.file_md5		= "1233434"
+		
+	a	= webinput()
+	member 	= get_member_by_name("chuanjiabao")
+	node	= get_node_by_url_name("testnode")
+	add_a_new_video(node,member,a)
