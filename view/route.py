@@ -19,7 +19,7 @@ urls = (
     '/upload','UploadVideo',
     '/uploadimage','UploadImage',
     '/videotopic/(.*)','VideoTopicShow',
-    '/newvideo/(.*)','NewVideoTopic',
+    '/newvideo/(.+)','NewVideoTopic',
     '/login','Login',
     '/backend/classify/add','ClassifyAdd',
     '/backend/classify/edit/([^/]+)','ClassifyEdit',

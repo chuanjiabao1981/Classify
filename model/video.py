@@ -87,7 +87,6 @@ def add_a_new_video2(node,member,webinput):
 def add_a_new_video(node,member,webinput):
 	member 	= get_member_by_name("chuanjiabao")
 	node	= get_node_by_url_name("testnode")
-
 	video = connection.Video();
 	# webinput引用的字段都是必须要有的
 	video.title		=	webinput.title

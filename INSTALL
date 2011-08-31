@@ -52,3 +52,4 @@
 	connection[config.classify_database][collection_name].find()
     必须使用
       connection.Video
+16. web.py HTTPError 这个是一个type 要用raise不能用return

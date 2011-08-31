@@ -10,6 +10,7 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 from mako import exceptions
 from template import template_desktop
+from util.member_tools import *
 import config
 
 

@@ -64,7 +64,8 @@ class SetAvatar:
 		return template_desktop.get_template('backend.html').render(**t)
 	@get_user_info(web)
 	def POST(self):
-		#print web.input()
+		print web.input()
+		print self.member
 		r = {}
 		r["status"] = False
 		if self.member == None or self.member.status == MemberStatus.block:

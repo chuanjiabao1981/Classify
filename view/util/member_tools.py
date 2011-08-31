@@ -33,7 +33,10 @@ def check_user_login(web,redirect_path):
 	def __inner_wrapper(method):
 		def __f(self,*a,**n):
 			if self.member == None or self.member.status == MemberStatus.block:
-				return web.seeother(redirect_path)
+				if redirect_path.isdigit() :
+					raise web.webapi.HTTPError(redirect_path, {},"Crazy Man!")
+				else:
+					return web.seeother(redirect_path)
 			print self.member.authority
 			print self.member.status
 			return method(self,*a,**n)
