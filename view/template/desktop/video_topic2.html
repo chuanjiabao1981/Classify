@@ -32,7 +32,9 @@
 		      					at ${topic.create_time} , ${topic.view_num|view.filter.float2int} hits
 						</small>
 					</div>
+				% if video:
 					<%include file="video.html"/>
+				% endif
 				% if "content" in topic:
                 			<div class="inner">
                     				<div class="content topic_content">${topic["content"]|view.filter.linebreaksbr,view.filter.htmlspace}</div>

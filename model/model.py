@@ -212,4 +212,3 @@ class Reply(Document):
 					{'fields':[("author",pymongo.ASCENDING),("create_time",pymongo.DESCENDING)]},
 					{'fields':[("topic_id",pymongo.ASCENDING),("create_time",pymongo.DESCENDING)]}
 				  ]
-

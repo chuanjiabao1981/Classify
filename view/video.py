@@ -42,8 +42,13 @@ class VideoTopicShow:
 		member		= get_member_by_name('chuanjiabao')
 		replies		= get_reply_by_topic_id(topic_id) 
 		hit_video_topic_by_topic_id(topic_id)
+		_t["topic"]	= topic
+		_t["member"]	= member
+		_t["replies"]	= replies
+		_t["video"]	= True
+
 		try: 
-			return template_desktop.get_template('video_topic2.html').render(topic=topic,member=member,replies=replies)
+			return template_desktop.get_template('video_topic2.html').render(**_t)
 		except:
 			return exceptions.html_error_template().render()
 	
@@ -81,3 +86,23 @@ class NewVideoTopic:
 		except:
 			return exceptions.html_error_template().render()
 
+class UploadVideo:
+	def verifyArgument(self):
+		if not "file_path" in web.input() or not 'node_url_name' in web.input():
+			if web.ctx.env['HTTP_REFERER']:
+				raise web.seeother( web.ctx.env['HTTP_REFERER'])
+			else:
+				raise web.seeother('/')
+		
+	@get_user_info(web)
+	@check_user_login(web,"400")
+	def POST(self):
+		###TODO::错误后返回templage
+		###TODO::上传之前先验证
+		self.verifyArgument()
+		node		= get_node_by_url_name(web.input().node_url_name)
+		if not node:
+			raise web.webapi.HTTPError('400', {},"Crazy Man!")
+		video		= add_a_new_video(node,self.member,web.input())
+		###TODO::当前的链接
+		raise web.seeother('/go/'+node.url)

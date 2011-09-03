@@ -20,23 +20,6 @@ class UploadSizeError:
 			a["img"] = "文件不能超过" + web.input().size.encode('utf-8')
 		return json.dumps(a)
 
-class UploadVideo:
-	def verifyArgument(self):
-		if not "file_path" in web.input():
-			if web.ctx.env['HTTP_REFERER']:
-				raise web.seeother( web.ctx.env['HTTP_REFERER'])
-			else:
-				raise web.seeother('/')
-	@get_user_info(web)
-	@check_user_login(web,"400")
-	def POST(self):
-		self.verifyArgument()
-		node		= get_node_by_url_name("testnode")
-		if not node:
-			raise web.webapi.HTTPError(redirect_path, {},"Crazy Man!")
-		video		= add_a_new_video(node,self.member,web.input())
-		###TODO::当前的链接
-		raise web.seeother('/go/'+node.url)
 		
 class UploadImage:
 	def mv_uploadfile_to_tmppath(self):

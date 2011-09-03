@@ -10,6 +10,10 @@ from mako.lookup import TemplateLookup
 from mako import exceptions
 from template import template_desktop
 import config
+from util.node_tools import *
+from util.member_tools import *
+from model.reply import *
+
 
 
 
@@ -20,50 +24,48 @@ urls = (
 
 app = web.application(urls, globals())
 
-"""
-template_desktop = TemplateLookup(directories		=[ os.path.join(os.path.dirname(__file__),'template',config.template_desktop_path),
-							   os.path.join(os.path.dirname(__file__),'template','portion')
-							 ],
-				  module_directory	= os.path.join(os.path.dirname(__file__),'..','tmp'),
-				  output_encoding       ='utf-8', 
-				  encoding_errors	='replace',
-				  input_encoding	='utf-8'
-				 );"""
-
-######上边的东东 必须重启uwsgi才能生效##########
-######下边的东东 不需要重启uwsgi就能生效########
 
 class NewTopic:
+	@get_node_info(web,"/")
+	@get_user_info(web)
+	@check_user_login(web,"/")
 	def GET(self,node_url_name):
-		member_name 	= ""
-		member 		= get_member_by_name(member_name)
-		node		= get_node_by_url_name(node_url_name)
 		try: 
-			return template_desktop.get_template('new_topic.html').render(node=node,site=config.site)
+			return template_desktop.get_template('new_topic.html').render(node=self.node,site=config.site)
 		except:
 			return exceptions.html_error_template().render()
+
+	@get_node_info(web,"/")
+	@get_user_info(web)
+	@check_user_login(web,"/")
 	def POST(self,node_url_name):
-		member_name	=	""
-		node		= get_node_by_url_name(node_url_name)
-		member		= get_member_by_name(member_name)
-		topic		= add_new_topic(node,member, 
+		topic		= add_new_topic(self.node,self.member, 
 						web.input().title,
 						web.input().video,
 						web.input().content)  
 		inc_topic_num_by_node_url_name(node_url_name)
-		web.seeother('/newtopic/%s'%(node.url))  
+		return web.seeother('/topic/%s'%(topic._id))  
 
 
 
 class TopicShow:
 	def GET(self,topic_id):
+		_t		= {}
 		topic 		= find_topic_by_id(topic_id)
 		member_name	=	""
 		member		= get_member_by_name(member_name)
 		replies		= get_reply_by_topic_id(topic_id) 
-		hit_topic_by_topic_id(topic_id)
 
-		return template_desktop.get_template('topic.html').render(topic=topic,member=member,replies=replies)
+		_t["topic"]	= topic
+		_t["member"]	= member
+		_t["replies"]	= replies
+		_t["video"]	= False
+		
+		hit_topic_by_topic_id(topic_id)
+		try :
+			return template_desktop.get_template('video_topic2.html').render(**_t)
+		except:
+			return exceptions.html_error_template().render()
 	def POST(self,topic_id):
 		topic			= find_topic_by_id(topic_id)
 		replyer			= get_member_by_name("")

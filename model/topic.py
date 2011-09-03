@@ -20,6 +20,9 @@ def add_new_topic(node,member,title,video,content):
 	topic.save()
 	return topic
 
+def add_a_new_topic(node,member,webinput):
+	pass 
+
 def add_new_reply_to_topic(topic_id,reply_time,reply_author):
 	## 这里必须这样用
 	## connection.Topic不好使

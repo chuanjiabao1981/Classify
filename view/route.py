@@ -11,15 +11,15 @@ from demo    import *
 from member  import *
 
 urls = (
+    '/','MainPage',
+    '/go/(.*)','NodeList',
     '/topic/(.*)','TopicShow',
     '/newtopic/(.*)','NewTopic',
-    '/go/(.*)','NodeList',
-    '/','MainPage',
-    '/uploadsizeerror','UploadSizeError',
-    '/upload','UploadVideo',
-    '/uploadimage','UploadImage',
     '/videotopic/(.*)','VideoTopicShow',
     '/newvideo/(.+)','NewVideoTopic',
+    '/upload','UploadVideo',
+    '/uploadsizeerror','UploadSizeError',
+    '/uploadimage','UploadImage',
     '/login','Login',
     '/backend/classify/add','ClassifyAdd',
     '/backend/classify/edit/([^/]+)','ClassifyEdit',
