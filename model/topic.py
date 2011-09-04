@@ -21,7 +21,22 @@ def add_new_topic(node,member,title,video,content):
 	return topic
 
 def add_a_new_topic(node,member,webinput):
-	pass 
+	topic			=	connection.Topic()
+	topic.title		=	webinput.title
+	topic.content		=	webinput.content
+	topic.content_length	=	len(webinput.content)
+	topic.author		=	member.get_dbref()
+	topic.node		=	node.get_dbref()
+	topic.save()
+	inc_topic_num(node,1)
+	return topic
+
+def remove_a_topic(node,topic):
+	connection[config.classify_database][config.collection_name.Topic].remove({'_id':bson.objectid.ObjectId(topic._id)})
+	inc_topic_num(node,-1)
+	return
+	
+
 
 def add_new_reply_to_topic(topic_id,reply_time,reply_author):
 	## 这里必须这样用
@@ -38,7 +53,6 @@ def add_new_reply_to_topic(topic_id,reply_time,reply_author):
 
 def find_topic_by_id(topic_id):
 	return connection.Topic.find_one({'_id':bson.objectid.ObjectId(topic_id)})
-
 
 def hit_topic_by_topic_id(topic_id):
 	connection[config.classify_database][config.collection_name.Topic].update(

@@ -39,11 +39,7 @@ class NewTopic:
 	@get_user_info(web)
 	@check_user_login(web,"/")
 	def POST(self,node_url_name):
-		topic		= add_new_topic(self.node,self.member, 
-						web.input().title,
-						web.input().video,
-						web.input().content)  
-		inc_topic_num_by_node_url_name(node_url_name)
+		topic		= add_a_new_topic(self.node,self.member,web.input())
 		return web.seeother('/topic/%s'%(topic._id))  
 
 

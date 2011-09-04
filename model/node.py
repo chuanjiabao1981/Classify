@@ -18,6 +18,10 @@ def get_all_node():
 
 def find_a_node(node_id):
 	return connection.Node.find_one({'_id':bson.objectid.ObjectId(node_id)})
+
+def find_node_by_id(node_id):
+	return connection.Node.find_one({'_id':bson.objectid.ObjectId(node_id)})
+
 """
 这个函数是以前的nested结构的时候,
 一旦classify更新后，更新对应的node节点信息。
@@ -94,6 +98,12 @@ def inc_video_topic_num(node,num):
 		{ '$inc':{"video_num":num} 
 		},safe=True 
 	)
+def inc_topic_num(node,num):
+	connection[config.classify_database][config.collection_name.Node].update(
+		{'_id':node._id},
+		{'$inc':{"topic_num":num}}
+	)
+	
 
 
 if __name__ == "__main__":

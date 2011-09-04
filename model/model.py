@@ -171,18 +171,9 @@ class Topic(Document):
 		"content"		:basestring,
 		"content_length"	:int,
 		"hits"			:int,
-		"author"		:basestring,
-		"author_ref"		:pymongo.objectid.ObjectId,			# 作者引用
-		"author_avatar"		:basestring,
-		"video"			:{
-						"where":basestring,	# 视频位置
-						"image":basestring,	# 视频截图的位置
-						"time" : int 
-					 },	
+		"author"		:Member,
 		"create_time"		:datetime.datetime,		# topic 创建时间
-		"node_url"		:basestring,			# 节点的url
-		"node_name"		:basestring,			# 节点的引用
-		"node_ref"		:pymongo.objectid.ObjectId,				# 
+		"node"			:Node,				# 节点的url
 		"last_reply_time"	:datetime.datetime,
 		"last_reply_by"		:basestring,			# 最后回复
 		"reply_num"		:int			
@@ -190,6 +181,8 @@ class Topic(Document):
 	#TODO:
 	#content title 长度限制
 	use_dot_notation	=	True
+	use_autorefs		= 	True
+
 	default_values		=	{"reply_num":0,"create_time":datetime.datetime.utcnow(),"hits":0,"last_reply_time":datetime.datetime.utcnow()}
 
 
