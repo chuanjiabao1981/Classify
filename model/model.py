@@ -117,7 +117,7 @@ class Video(Document):
 		"last_reply_time"	:datetime.datetime,
 		"last_reply_by"		:basestring,			# 最后回复
 		"reply_num"		:int,
-		"view_num"		:int,
+		"hits"		:int,
 		"tag"			:basestring,
 		"location"		:basestring,
 		"video_md5"		:basestring,
@@ -130,7 +130,7 @@ class Video(Document):
 	use_autorefs			= 	True
 	default_values			=	{"reply_num"		:0,
 						 "create_time"		:datetime.datetime.utcnow(),
-						 "view_num"		:0,
+						 "hits"			:0,
 						 "last_reply_time"	:datetime.datetime.utcnow(),
 					  	 "status"  		:video_status_wait_process,
 					  	 "image_time" 		: 5,

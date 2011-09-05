@@ -37,6 +37,7 @@ class VideoTopicShow:
 		return (True,0)
 			
 	def GET(self,topic_id):
+		_t		= {}
 		topic 		= find_video_topic_by_id(topic_id)
 		member_name	=	""
 		member		= get_member_by_name('chuanjiabao')

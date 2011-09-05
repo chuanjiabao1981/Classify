@@ -29,7 +29,7 @@
 		      						% if 'source' in topic:
 			    						via {{ topic.source }}
 		      						% endif 
-		      					at ${topic.create_time} , ${topic.view_num|view.filter.float2int} hits
+		      					at ${topic.create_time} , ${topic.hits|view.filter.float2int} hits
 						</small>
 					</div>
 				% if video:

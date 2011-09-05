@@ -12,6 +12,8 @@ from template import template_desktop
 import config
 from util.node_tools import *
 from util.member_tools import *
+from util.topic_tools import *
+
 from model.reply import *
 
 
@@ -45,15 +47,14 @@ class NewTopic:
 
 
 class TopicShow:
+	@get_topic_info(web,"/")
+	@get_user_info(web)
 	def GET(self,topic_id):
 		_t		= {}
-		topic 		= find_topic_by_id(topic_id)
-		member_name	=	""
-		member		= get_member_by_name(member_name)
 		replies		= get_reply_by_topic_id(topic_id) 
 
-		_t["topic"]	= topic
-		_t["member"]	= member
+		_t["topic"]	= self.topic
+		_t["member"]	= self.member
 		_t["replies"]	= replies
 		_t["video"]	= False
 		

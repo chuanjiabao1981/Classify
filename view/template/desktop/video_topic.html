@@ -31,7 +31,7 @@
 		      % if 'source' in topic:
 			    via {{ topic.source }}
 		      % endif 
-		      at ${topic.create_time} , ${topic.view_num|view.filter.float2int} hits
+		      at ${topic.create_time} , ${topic.hits|view.filter.float2int} hits
 		      % if level == 0:
 			&nbsp; <a href="#;" onclick="if (confirm('{{ l10n.sure_to_delete }} #{{ topic.num }} - {{ topic.title|escape }}')) { location = '/delete/topic/{{ topic.num }}'; }" class="op">DELETE</a> <a href="/backstage/tidy/topic/{{ topic.num }}" class="op">TIDY</a>
 		      % endif 

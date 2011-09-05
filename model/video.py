@@ -117,7 +117,7 @@ def find_latest_video_topics_in_the_node(node):
 def hit_video_topic_by_topic_id(topic_id):
 	connection[config.classify_database][config.collection_name.Video].update(
 		{'_id':bson.objectid.ObjectId(topic_id)},
-		{ '$inc':{"view_num":1}}
+		{ '$inc':{"hits":1}}
 	)
 def reply_to_topic(web_info,member,topic):
 	reply_time	= datetime.datetime.utcnow()
