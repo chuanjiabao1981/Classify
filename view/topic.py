@@ -49,13 +49,13 @@ class NewTopic:
 class TopicShow:
 	@get_topic_info(web,"/")
 	@get_user_info(web)
+	@get_reply_info(web)
 	def GET(self,topic_id):
 		_t		= {}
-		replies		= get_reply_by_topic_id(topic_id) 
 
 		_t["topic"]	= self.topic
 		_t["member"]	= self.member
-		_t["replies"]	= replies
+		_t["replies"]	= self.replies
 		_t["video"]	= False
 		
 		hit_topic_by_topic_id(topic_id)
@@ -63,9 +63,12 @@ class TopicShow:
 			return template_desktop.get_template('video_topic2.html').render(**_t)
 		except:
 			return exceptions.html_error_template().render()
+	@get_topic_info(web,"/")
+	@get_user_info(web)
+	@check_user_login(web,"/login")
 	def POST(self,topic_id):
-		topic			= find_topic_by_id(topic_id)
-		replyer			= get_member_by_name("")
+		topic			= self.topic
+		replyer			= self.member
 		reply			= connection.Reply()
 		reply_time		= datetime.datetime.now()
 		reply.topic_id		= topic._id
