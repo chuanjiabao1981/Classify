@@ -117,7 +117,7 @@ class Video(Document):
 		"last_reply_time"	:datetime.datetime,
 		"last_reply_by"		:basestring,			# 最后回复
 		"reply_num"		:int,
-		"hits"		:int,
+		"hits"			:int,
 		"tag"			:basestring,
 		"location"		:basestring,
 		"video_md5"		:basestring,
@@ -183,7 +183,9 @@ class Topic(Document):
 	use_dot_notation	=	True
 	use_autorefs		= 	True
 
-	default_values		=	{"reply_num":0,"create_time":datetime.datetime.utcnow(),"hits":0,"last_reply_time":datetime.datetime.utcnow()}
+	default_values		=	{"reply_num":0,
+					 "hits":0,
+					 }
 
 
 @connection.register
@@ -200,7 +202,6 @@ class Reply(Document):
 	use_dot_notation	=	True
 	use_autorefs		= 	True
 
-	default_values		= {"create_time":datetime.datetime.utcnow()}
 	indexes			= [
 					{'fields':[("author",pymongo.ASCENDING),("create_time",pymongo.DESCENDING)]},
 					{'fields':[("topic_id",pymongo.ASCENDING),("create_time",pymongo.DESCENDING)]}

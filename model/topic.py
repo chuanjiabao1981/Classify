@@ -2,6 +2,7 @@
 from model import *
 from node  import *
 from member import *
+from reply  import *
 import bson.objectid
 import datetime
 import config
@@ -27,6 +28,7 @@ def add_a_new_topic(node,member,webinput):
 	topic.content_length	=	len(webinput.content)
 	topic.author		=	member.get_dbref()
 	topic.node		=	node.get_dbref()
+	topic.create_time	=	datetime.datetime.utcnow()
 	topic.save()
 	inc_topic_num(node,1)
 	return topic
@@ -36,21 +38,17 @@ def remove_a_topic(node,topic):
 	inc_topic_num(node,-1)
 	return
 	
-
-
-def add_new_reply_to_topic(topic_id,reply_time,reply_author):
-	## 这里必须这样用
-	## connection.Topic不好使
+def add_new_reply_to_topic(topic,member,webinput):
+	reply = add_a_new_reply(topic,member,webinput)
 	connection[config.classify_database][config.collection_name.Topic].update(
 		{'_id':topic_id}, 
 		{ '$inc':{"reply_num":1} ,
-		  '$set':{"last_reply_by":reply_author,"last_reply_time":reply_time}
-		
+		  '$set':{"last_reply_by":member.name,"last_reply_time":reply.create_time}
 		} 
 	)
 
-
-
+def remove_reply_from_topic(topic,reply):
+	reply.remove()
 def find_topic_by_id(topic_id):
 	return connection.Topic.find_one({'_id':bson.objectid.ObjectId(topic_id)})
 
@@ -63,6 +61,9 @@ def hit_topic_by_topic_id(topic_id):
 def find_all_node_topic_by_node_url_name(node_url_name):
 	return connection.Topic.fetch({"node_url":node_url_name}).sort([('last_reply_time',-1)])
 	
+def get_all_topic():
+	return connection.Topic.find().sort([('create_time',pymongo.DESCENDING)])
+
 	
 
 	
