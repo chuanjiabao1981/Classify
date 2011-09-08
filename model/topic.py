@@ -36,12 +36,13 @@ def add_a_new_topic(node,member,webinput):
 def remove_a_topic(node,topic):
 	connection[config.classify_database][config.collection_name.Topic].remove({'_id':bson.objectid.ObjectId(topic._id)})
 	inc_topic_num(node,-1)
+	##TODO::Remove all reply
 	return
 	
 def add_new_reply_to_topic(topic,member,webinput):
 	reply = add_a_new_reply(topic,member,webinput)
 	connection[config.classify_database][config.collection_name.Topic].update(
-		{'_id':topic_id}, 
+		{'_id':topic._id}, 
 		{ '$inc':{"reply_num":1} ,
 		  '$set':{"last_reply_by":member.name,"last_reply_time":reply.create_time}
 		} 

@@ -46,7 +46,15 @@ class TestReplyApi(unittest.TestCase):
 		print "Topic Del Rely[%d]"%(after_del_reply_num)
 		self.assertEqual(before_num,after_del_reply_num,"Reply del api Error")
 
-		
+	def test_del_all_reply(self):
+		print get_all_reply_num()
+		del_all_reply()
+		self.assertEqual(get_all_reply_num(),0,"Del all err")
+
+	def test_find_latest_reply_of_topic_case1(self):
+		del_all_reply()
+		latest_reply = find_latest_reply_of_topic(self.topic)
+		self.assertEqual(latest_reply,None,"Api Error")
 
 	def test_find_latest_reply_of_topic(self):
 		
@@ -57,17 +65,12 @@ class TestReplyApi(unittest.TestCase):
 		reply0 = add_a_new_reply(self.topic,self.member,webinput1)
 		reply1 = add_a_new_reply(self.topic,self.member,webinput2)
 		latest_reply = find_latest_reply_of_topic(self.topic)
-		
-		print reply
-		"""
-		replies = [i for i in find_latest_reply_of_topic(self.topic)]
-		
-		print replies[0]._id,reply1._id
-		print replies[1]._id,reply0._id
-	
-		self.assertEqual(reply0._id,replies[1]._id,"sequence error")
-		self.assertEqual(reply1._id,replies[0]._id,"sequence error")
-		"""
+		print reply1.create_time,reply1._id
+		print reply0.create_time,reply0._id
+
+		print latest_reply["create_time"],latest_reply["_id"]
+		self.assertEqual(reply1._id,latest_reply["_id"],"Not Same id")
+
 		del_a_reply(reply0)
 		del_a_reply(reply1)
 

@@ -5,10 +5,45 @@ from model.member 	import *
 import unittest
 
 class TestTopicApi(unittest.TestCase):
+	class testinput:
+		def __init__(self,content):
+			self.content	= content
+
 	def setUp(self):
-		pass
+		self.topic  		= None
+		self.member		= None
+		for i in get_all_topic():
+			self.topic = i
+			break
+
+		#get a member
+		for i in get_all_member():
+			self.member = i
+			break
+
+		self.assertNotEqual(self.topic,None,"No Topic:please insert one topic")
+		self.assertNotEqual(self.member,None,"No Member:please insert one member")
+
 	def tearDown(self):
 		pass
+
+	def test_add_new_reply_to_topic(self):
+		webinput1 	= TestTopicApi.testinput("No.1 yesterday i have a dream")
+		webinput2 	= TestTopicApi.testinput("No.2 yesterday i have a dream")
+		#reply1 		= add_a_new_reply(self.topic,self.member,webinput1)
+		#reply2 		= add_a_new_reply(self.topic,self.member,webinput2)
+
+		add_new_reply_to_topic(self.topic,self.member,webinput1)
+		add_new_reply_to_topic(self.topic,self.member,webinput2)
+
+		
+		topic_after_reply = find_topic_by_id(self.topic._id)
+		print self.topic._id
+		print self.topic.reply_num
+		print topic_after_reply.reply_num
+		
+		self.assertEqual(self.topic.reply_num,topic_after_reply.reply_num-2,"add a new reply error")
+	
 	def test_add_a_new_topic(self):
 		class testinput:
 			def __init__(self):
