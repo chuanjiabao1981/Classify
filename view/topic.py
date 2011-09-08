@@ -47,39 +47,31 @@ class NewTopic:
 
 
 class TopicShow:
+	URL_PREFIX='/topic/'
 	@get_topic_info(web,"/")
 	@get_user_info(web)
 	@get_reply_info(web)
 	def GET(self,topic_id):
 		_t		= {}
 
-		_t["topic"]	= self.topic
-		_t["member"]	= self.member
-		_t["replies"]	= self.replies
-		_t["video"]	= False
+		_t["topic"]		= self.topic
+		_t["member"]		= self.member
+		_t["replies"]		= self.replies
+		_t["video"]		= False
+		_t["url_prefix"]	= TopicShow.URL_PREFIX
 		
 		hit_topic_by_topic_id(topic_id)
 		try :
 			return template_desktop.get_template('video_topic2.html').render(**_t)
 		except:
 			return exceptions.html_error_template().render()
+
 	@get_topic_info(web,"/")
 	@get_user_info(web)
 	@check_user_login(web,"/login")
 	def POST(self,topic_id):
-		topic			= self.topic
-		replyer			= self.member
-		reply			= connection.Reply()
-		reply_time		= datetime.datetime.now()
-		reply.topic_id		= topic._id
-		reply.author		= replyer.name
-		reply.content		= web.input().content
-		reply.content_length	= len(reply.content)
-		reply.create_time	= reply_time
-		reply.save()
-		
-		add_new_reply_to_topic(topic._id,reply_time,replyer.name)
-		web.seeother('/topic/%s'%(topic_id))
+		add_new_reply_to_topic(self.topic,self.member,web.input())
+		web.seeother('%s%s'%(TopicShow.URL_PREFIX,topic_id))
 
 application = app.wsgifunc()
 if __name__ == "__main__":

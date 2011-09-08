@@ -102,7 +102,7 @@
             					}
             				</script>
             			<div class="box">
-					<form action="/videotopic/${topic["_id"]}#_last" method="post" onsubmit="return v()">
+					<form action="${url_prefix}/${topic["_id"]}#_last" method="post" onsubmit="return v()">
                 				<div class="cell">
 							% if error:
 								<a link="#;" name="_last"></a>

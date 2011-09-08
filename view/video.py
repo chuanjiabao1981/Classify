@@ -14,6 +14,7 @@ from util.member_tools import *
 import config
 
 class VideoTopicShow:
+	URL_PREFIX = '/videotopic'
 	def __init__(self):
 		self.content_length_up 		=	2000
 		self.content_length_down	=	3
@@ -47,6 +48,8 @@ class VideoTopicShow:
 		_t["member"]	= member
 		_t["replies"]	= replies
 		_t["video"]	= True
+		_t["url_prefix"]	= VideoTopicShow.URL_PREFIX
+
 
 		try: 
 			return template_desktop.get_template('video_topic2.html').render(**_t)
