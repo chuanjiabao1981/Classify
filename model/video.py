@@ -119,6 +119,7 @@ def hit_video_topic_by_topic_id(topic_id):
 		{'_id':bson.objectid.ObjectId(topic_id)},
 		{ '$inc':{"hits":1}}
 	)
+
 def reply_to_topic(web_info,member,topic):
 	reply_time	= datetime.datetime.utcnow()
 	add_a_reply(web_info,member,topic)
@@ -139,6 +140,15 @@ def get_latest_video_topic(collection_name,node,skip,limit):
 	#for i in topic_list:
 	#	print type(i)
 	return topic_list
+
+def add_new_reply_to_video(video,member,webinput):
+	reply = add_a_new_reply(topic,member,webinput)
+	connection[config.classify_database][config.collection_name.Video].update(
+		{'_id':topic._id}, 
+		{ '$inc':{"reply_num":1} ,
+		  '$set':{"last_reply_by":member.name,"last_reply_time":reply.create_time}
+		} 
+	)
 
 
 def page_video_topic_(node,skip,limit):

@@ -10,11 +10,12 @@ from mako.lookup import TemplateLookup
 from mako import exceptions
 from template import template_desktop
 from util.member_tools import *
+from util.topic_tools  import *
 
 import config
 
 class VideoTopicShow:
-	URL_PREFIX = '/videotopic'
+	URL_PREFIX = '/videotopic/'
 	def __init__(self):
 		self.content_length_up 		=	2000
 		self.content_length_down	=	3
@@ -37,43 +38,41 @@ class VideoTopicShow:
 			return (False,4)
 		return (True,0)
 			
+	@get_videotopic_info(web,"/")
+	@get_user_info(web)
+	@get_reply_info(web)
 	def GET(self,topic_id):
-		_t		= {}
-		topic 		= find_video_topic_by_id(topic_id)
-		member_name	=	""
-		member		= get_member_by_name('chuanjiabao')
-		replies		= get_reply_by_topic_id(topic_id) 
-		hit_video_topic_by_topic_id(topic_id)
-		_t["topic"]	= topic
-		_t["member"]	= member
-		_t["replies"]	= replies
-		_t["video"]	= True
+		_t			= {}
+		_t["topic"]		= self.topic
+		_t["member"]		= self.member
+		_t["replies"]		= self.replies
+		_t["video"]		= True
 		_t["url_prefix"]	= VideoTopicShow.URL_PREFIX
-
-
 		try: 
+			hit_video_topic_by_topic_id(topic_id)
 			return template_desktop.get_template('video_topic2.html').render(**_t)
 		except:
 			return exceptions.html_error_template().render()
 	
 
-
+	@get_videotopic_info(web,"/")  		## topic
+	@get_user_info(web)	       		## member
+	@check_user_login(web,"/login")
+	@get_reply_info(web)			## replies
 	def POST(self,topic_id):
-		t			= {}
-		t["error"]		= None
-		##TODO:未登录 用decorator
-		t["member"]		= get_member_by_name('chuanjiabao')
-		t["topic"]		= find_video_topic_by_id(topic_id)
-		if not t["topic"]:
-			return web.notfound()
-		t["replies"]		= get_reply_by_topic_id(topic_id)
-		(status,error_code)	=self.InputCheck()
-		t["error"]		= self.inputerror_str[error_code]
-		if t["error"]:
-			return template_desktop.get_template('video_topic2.html').render(**t)
+		_t			= {}
+		reply_check		= TopicReplyCheck()		
+		_t["error"]		= reply_check.check_input(web.input())
+		if _t["error"]:
+			_t["topic"]		= self.topic
+			_t["member"]		= self.member
+			_t["replies"]		= self.replies
+			_t["video"]		= True
+			_t["url_prefix"]	= VideoTopicShow.URL_PREFIX
+			return template_desktop.get_template('video_topic2.html').render(**_t)
 		else:
-			reply_to_topic(web.input(),t["member"],t["topic"])
-			return web.seeother('/videotopic/'+topic_id)
+			add_new_reply_to_topic(self.topic,self.member,web.input())
+			return web.seeother('%s%s'%(VideoTopicShow.URL_PREFIX,topic_id))
 
 class NewVideoTopic:
 	@get_user_info(web)

@@ -401,6 +401,7 @@ a.dark:hover {
 	line-height: 180%;
 	color: #000;
 	text-overflow: ellipsis;
+	word-break:break-word;
 	overflow:hidden;
 }
 .sep3 {

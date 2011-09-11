@@ -17,16 +17,14 @@ from util.topic_tools import *
 from model.reply import *
 
 
-
-
+"""
 urls = (
     '/topic/(.*)','TopicShow',
     '/newtopic/(.*)','NewTopic'
 )
 
 app = web.application(urls, globals())
-
-
+"""
 class NewTopic:
 	@get_node_info(web,"/")
 	@get_user_info(web)
@@ -69,10 +67,18 @@ class TopicShow:
 	@get_topic_info(web,"/")
 	@get_user_info(web)
 	@check_user_login(web,"/login")
+	@get_reply_info(web)
 	def POST(self,topic_id):
+		_t			= {}
+		reply_check		= TopicReplyCheck()		
+		_t["error"]		= reply_check.check_input(web.input())
+		
+		print _t["error"]
+
 		add_new_reply_to_topic(self.topic,self.member,web.input())
 		web.seeother('%s%s'%(TopicShow.URL_PREFIX,topic_id))
-
+"""
 application = app.wsgifunc()
 if __name__ == "__main__":
 	app.run()
+"""
