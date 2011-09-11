@@ -51,7 +51,11 @@ def add_new_reply_to_topic(topic,member,webinput):
 def remove_reply_from_topic(topic,reply):
 	reply.remove()
 def find_topic_by_id(topic_id):
-	return connection.Topic.find_one({'_id':bson.objectid.ObjectId(topic_id)})
+	try:
+		return connection.Topic.find_one({'_id':bson.objectid.ObjectId(topic_id)})
+	except :
+		##TODO::log something
+		return None
 
 def hit_topic_by_topic_id(topic_id):
 	connection[config.classify_database][config.collection_name.Topic].update(

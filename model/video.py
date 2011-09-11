@@ -109,7 +109,12 @@ def add_a_new_video(node,member,webinput):
 	return video
 
 def find_video_topic_by_id(topic_id):
-	return connection.Video.find_one({'_id':bson.objectid.ObjectId(topic_id)})
+	try:
+		return connection.Video.find_one({'_id':bson.objectid.ObjectId(topic_id)})
+	except :
+		##TODO:: log something
+		return None
+
 
 def find_latest_video_topics_in_the_node(node):
 	return connection.Video.find({'node_ref':node._id}).sort([('last_reply_time',-1)])
