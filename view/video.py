@@ -17,30 +17,11 @@ import config
 class VideoTopicShow:
 	URL_PREFIX = '/videotopic/'
 	def __init__(self):
-		self.content_length_up 		=	2000
-		self.content_length_down	=	3
-
-		self.inputerror_str			=	{}
-		self.inputerror_str[0]		=	None
-		self.inputerror_str[1]		=	u'八个呀路!'
-		self.inputerror_str[2]		=	u'输入字符不能超过'+unicode(str(self.content_length_up))+u'个字符'
-		self.inputerror_str[3]		=	u'写点啥,别空着!'
-		self.inputerror_str[4]		=	u'写的太少了、再写点。至少写'+unicode(str(self.content_length_down))+u'个字符'
-
-	def InputCheck(self):
-		if not 'content' in web.input():
-			return (False,1)
-		if len(web.input().content) > self.content_length_up:
-			return (False,2)
-		if len(web.input().content.strip()) == 0:
-			return (False,3)
-		if len(web.input().content.strip()) < self.content_length_down:
-			return (False,4)
-		return (True,0)
+		pass
 			
-	@get_videotopic_info(web,"/")
-	@get_user_info(web)
-	@get_reply_info(web)
+	@get_videotopic_info(web,"/")  	## topic
+	@get_user_info(web)		## member	
+	@get_reply_info(web)		## replies
 	def GET(self,topic_id):
 		_t			= {}
 		_t["topic"]		= self.topic
