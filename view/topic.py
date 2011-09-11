@@ -60,7 +60,7 @@ class TopicShow:
 		
 		hit_topic_by_topic_id(topic_id)
 		try :
-			return template_desktop.get_template('video_topic2.html').render(**_t)
+			return template_desktop.get_template('topic.html').render(**_t)
 		except:
 			return exceptions.html_error_template().render()
 
