@@ -92,3 +92,12 @@ class SetAvatarBackend(SetAvatar):
 		t["admin_title"]   =  'aaa'
 		t["member_id"]	   =   member_id
 		return template_desktop.get_template('backend.html').render(**t)
+
+
+class AccountSetting:
+
+	@get_user_info(web)
+	@check_user_login(web,"/")
+	def GET(self):
+		_t = {}
+		return template_desktop.get_template('account_setting.html').render(**_t)

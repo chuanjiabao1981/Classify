@@ -21,6 +21,7 @@ urls = (
     '/uploadsizeerror','UploadSizeError',
     '/uploadimage','UploadImage',
     '/login','Login',
+    '/account/setting','AccountSetting',
     '/backend/classify/add','ClassifyAdd',
     '/backend/classify/edit/([^/]+)','ClassifyEdit',
     '/backend/classify','ClassifyOverView',
