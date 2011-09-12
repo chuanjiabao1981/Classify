@@ -83,6 +83,8 @@ class Member(Document):
 			"status"	:int,
 			"readme"	:basestring,
 			"avatar"	:basestring,
+			"sign"		:basestring,
+			"intro"		:basestring,
 			"register_time"	:datetime.datetime
 		    }
 	use_dot_notation	=	True

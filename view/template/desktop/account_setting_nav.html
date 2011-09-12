@@ -1,0 +1,12 @@
+<ul class="tabs">
+	% for i in settings:
+		% if i[0] == select_setting:
+			<li><a href="${i[1]}" class="selected">${i[2]}</a></li>
+		% else:
+			<li><a href="${i[1]}" >${i[2]}</a></li>
+		% endif
+
+	% endfor
+ </ul>
+
+

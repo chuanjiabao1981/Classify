@@ -1,0 +1,55 @@
+<%!
+	from config import template,site
+%>
+<div class="box">
+	<div class="cell">
+		<span class="fade"><a href="/">${site.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> 设置</span>
+	</div>
+	<div class="inner">
+		<form action="/settings" method="post">
+                    <table cellpadding="5" cellspacing="0" border="0">
+        			    <tbody><tr>
+        			        <td width="120" align="right">
+        			            用户名
+        			        </td>
+        			        <td width="200" align="left">
+					    ${member.name}
+        			        </td>
+        			    </tr>
+        			    <tr>
+        			        <td align="right">
+        			            电子邮件
+        			        </td>
+        			        <td width="200" align="left">
+        			            <input type="text" class="sl" name="email" value="${member.email}">
+        			        </td>
+        			    </tr>
+        			    <tr>
+        			        <td align="right">
+        			            签名
+        			        </td>
+        			        <td width="200" align="left">
+        			            <input type="text" class="sl" name="tagline" value="${member.sign}">
+        			        </td>
+        			    </tr>
+                        	    <tr>
+        			        <td align="right">
+        			            个人简介
+        			        </td>
+        			        <td width="200" align="left">
+        			            <textarea class="ml" name="bio">${member.intro}</textarea>
+        			        </td>
+        			    </tr>
+        			    
+                        	    <tr>
+        			        <td align="right">
+        			        </td>
+        			        <td width="200" align="left">
+        			            <input type="submit" value="保存设置" class="super normal button">
+        			        </td>
+        			    </tr>
+        			</tbody></table>
+                    </form>
+	</div>
+</div>
+

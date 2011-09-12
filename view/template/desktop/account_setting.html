@@ -58,86 +58,24 @@ ul.tabs li a.selected
 </style>
 </head>
 <body>
+
 <div id="Wrapper">
-<div id="Main">
-<div id="Content">
-<!--div class="box"-->
-<!--div class="inner"-->
-	<ul class="tabs">
-    		<li><a href="/chuanjiabao1981/Classify" highlight="repo_source" class="selected">个人信息</a></li>
-    		<li><a href="/chuanjiabao1981/Classify/commits/master" highlight="repo_commits">密码设置</a></li>
-    		<li><a href="/chuanjiabao1981/Classify/network" highlight="repo_network">设置头像</a></li>
-    		<li><a href="/chuanjiabao1981/Classify/wiki" highlight="repo_wiki">消息(0)</a></li>
-  	</ul>
+	<div id="Main">
+		<div id="Content">
+			<%include file="account_setting_nav.html"/>
 
-<!--/div-->
+			<div class="sep5"></div>
+			<div class="sep5"></div>
+			<div class="sep5"></div>
 
-<!--/div-->
-
-<div class="sep5"></div>
-<div class="sep5"></div>
-<div class="sep5"></div>
+			<%include file="account_setting_baseinfo.html"/>
+		</div>
+		<div style="clear:both"></div>
+		<div class="sep5"></div>
+		<div class="sep5"></div>
 
 
-<div class="box">
-	<div class="cell">
-		<span class="fade"><a href="/">ShiTao</a> <span class="chevron">&nbsp;›&nbsp;</span> 设置</span>
 	</div>
-	<div class="inner">
-		<form action="/settings" method="post">
-                    
-                    <table cellpadding="5" cellspacing="0" border="0">
-        			    <tbody><tr>
-        			        <td width="120" align="right">
-        			            用户名
-        			        </td>
-        			        <td width="200" align="left">
-        			            chuanjiabao
-        			        </td>
-        			    </tr>
-        			    <tr>
-        			        <td align="right">
-        			            电子邮件
-        			        </td>
-        			        <td width="200" align="left">
-        			            <input type="text" class="sl" name="email" value="chuanjiabao1981@gmail.com">
-        			        </td>
-        			    </tr>
-        			    <tr>
-        			        <td align="right">
-        			            签名
-        			        </td>
-        			        <td width="200" align="left">
-        			            <input type="text" class="sl" name="tagline" value="">
-        			        </td>
-        			    </tr>
-                        	    <tr>
-        			        <td align="right">
-        			            个人简介
-        			        </td>
-        			        <td width="200" align="left">
-        			            <textarea class="ml" name="bio">传家宝</textarea>
-        			        </td>
-        			    </tr>
-        			    
-                        	    <tr>
-        			        <td align="right">
-        			        </td>
-        			        <td width="200" align="left">
-        			            <input type="submit" value="保存设置" class="super normal button">
-        			        </td>
-        			    </tr>
-        			</tbody></table>
-                    </form>
-	</div>
-</div>
-</div>
-<div style="clear:both"></div>
-<div class="sep5"></div>
-<div class="sep5"></div>
-
-
-</div>
 </div>
 </body>
 </html>

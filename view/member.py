@@ -93,11 +93,18 @@ class SetAvatarBackend(SetAvatar):
 		t["member_id"]	   =   member_id
 		return template_desktop.get_template('backend.html').render(**t)
 
-
+AccoutSettingList = (
+			(0,'/account/setting',"基本信息"),
+			(1,'/account/setting/security',"密码管理"),
+			(2,'/account/setting/avatar',"头像设置")
+		    )
 class AccountSetting:
 
 	@get_user_info(web)
 	@check_user_login(web,"/")
 	def GET(self):
 		_t = {}
+		_t["settings"] 		= AccoutSettingList 
+		_t["select_setting"]	= 0 
+		_t["member"]		= self.member
 		return template_desktop.get_template('account_setting.html').render(**_t)

@@ -22,6 +22,10 @@
 9. im.resize((300,300)).crop((21,0,265,244)).save('/home/work/tmp/1.jpg')
 10.给member表添加avatar字段
    db.member.update({avatar:{"$exists":false}},{"$set":{avatar:"avatar"}},false,true)
+   db.member.update({intro:{"$exists":false}},{"$set":{intro:""}},false,true)
+   db.member.update({sign:{"$exists":false}},{"$set":{sign:""}},false,true)
+
+
 11. 如果一个field对应的为dbref 
     a:save  要用get_dbref()；如果直接用对象，嵌入对象也会引入一次插入操作。
       例如：
