@@ -1,7 +1,8 @@
+/*
 * {
 	margin:0px;
 	padding:0px;
-	}
+	}*/
 #Rightbar{
 		width:272px;
 		float:right;
@@ -167,6 +168,8 @@ color: rgba(0, 0, 0, 0.15);
 }
 body
 {
+padding: 0px;
+margin: 0px;
 //font-family: "微软雅黑","Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 
@@ -474,4 +477,37 @@ a.black:hover {
 	-webkit-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
 	outline: none;
 }
+.sl:focus {
+	border: 1px solid rgba(128, 128, 160, 0.6);
+	-moz-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+	-webkit-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+	outline: none;
+}
 
+.sl {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+	font-size: 14px;
+	border: 1px solid #CCC;
+	width: 320px;
+	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
+
+.ml:focus {
+	border: 1px solid rgba(128, 128, 160, 0.6);
+	-moz-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+	-webkit-box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+	outline: none;
+}
+.ml {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+	font-size: 14px;
+	border: 1px solid #CCC;
+	display: block;
+	width: 320px;
+	height: 160px;
+	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+}
