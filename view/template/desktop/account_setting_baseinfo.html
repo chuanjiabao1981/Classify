@@ -6,9 +6,20 @@
 		<span class="fade"><a href="/">${site.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> 设置</span>
 	</div>
 	<div class="inner">
-		<form action="/settings" method="post">
+		<form action="/account/setting" method="post">
                     <table cellpadding="5" cellspacing="0" border="0">
-        			    <tbody><tr>
+        			    <tbody>
+				    %if error:
+				    <tr>
+        			        <td width="120" align="right">
+        			        </td>
+        			        <td width="200" align="left">
+					    <span style="color:red">${error}</span>
+        			        </td>
+        			    </tr>
+				    %endif
+
+				    <tr>
         			        <td width="120" align="right">
         			            用户名
         			        </td>
@@ -29,7 +40,7 @@
         			            签名
         			        </td>
         			        <td width="200" align="left">
-        			            <input type="text" class="sl" name="tagline" value="${member.sign}">
+        			            <input type="text" class="sl" name="sign" value="${member.sign}">
         			        </td>
         			    </tr>
                         	    <tr>
@@ -37,7 +48,7 @@
         			            个人简介
         			        </td>
         			        <td width="200" align="left">
-        			            <textarea class="ml" name="bio">${member.intro}</textarea>
+        			            <textarea class="ml" name="intro">${member.intro}</textarea>
         			        </td>
         			    </tr>
         			    

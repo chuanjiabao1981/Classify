@@ -1,74 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html>
-<head>
-<link href="/static_file/css/desktop/default.css" type="text/css" rel="stylesheet" media="screen"/>
-
-<style type="text/css">
-ul.tabs {
-position: relative;
-//margin: 10px 0 0 0;
-height: 26px;
-padding: 6px 10px;
-background: url('https://a248.e.akamai.net/assets.github.com/images/modules/pagehead/tab_background.gif?v2') 0 0 repeat-x;
-border: 1px solid #DDD;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-}
-ul.tabs li {
-list-style-type: none;
-margin: 0;
-display: inline;
-}
-
-ul.tabs li a {
-float: left;
-margin-right: 10px;
-height: 26px;
-padding: 0 8px;
-line-height: 26px;
-//font-size: 14px;
-font-size: 13px;
-color: #666;
-//text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
-text-decoration:none;
-
-}
-
-ul.tabs li a:hover
-{
-	color:#333;
-	background-color:#ccc;
-	text-decoration:none;
-}
-ul.tabs li a.selected
-{
-	position:relative;
-	top:-1px;
-//	font-weight:bold;
-	color:#333;
-	background:#fff;
-	border:1px solid #ccc;
-	border-right-color:#eee;
-	border-bottom-color:#eee;
-}
-
-
-</style>
+##coding:utf-8
+<%include file="common/head_own2.html"/>
+<%include file="js/avatar.js"/>
 </head>
 <body>
-
+<%include file="index_top.html"/>
 <div id="Wrapper">
 	<div id="Main">
 		<div id="Content">
 			<%include file="account_setting_nav.html"/>
 
 			<div class="sep5"></div>
-			<div class="sep5"></div>
-			<div class="sep5"></div>
-
-			<%include file="account_setting_baseinfo.html"/>
+			<!--div class="sep5"></div-->
+			<%include file="${setting_file}"/>
 		</div>
 		<div style="clear:both"></div>
 		<div class="sep5"></div>

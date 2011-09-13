@@ -93,18 +93,75 @@ class SetAvatarBackend(SetAvatar):
 		t["member_id"]	   =   member_id
 		return template_desktop.get_template('backend.html').render(**t)
 
+
 AccoutSettingList = (
 			(0,'/account/setting',"基本信息"),
 			(1,'/account/setting/security',"密码管理"),
 			(2,'/account/setting/avatar',"头像设置")
 		    )
 class AccountSetting:
+	URL_PREFIX='/account/setting'
+	def check_input(self,member):
+		email_len_limit		= 128 
+		sign_len_limit		= 256
+		intro_len_limit		= 1024
+		for i in ("email","sign","intro"):
+			if not i in web.input():
+				#TODO::log somethin
+				return "参数错误"
+			self.member[i] = web.input()[i]
+		if '@' not in self.member.email:
+			return "Email格式错误"
+		if len(self.member.email) > email_len_limit:
+			return "Email长度不能超过%d"%(email_len_limit)
+		if len(self.member.sign)  > sign_len_limit:
+			return "个人签名不能超过%d"%(sign_len_limit)
+		if len(self.member.intro) > intro_len_limit:
+			return "个人介绍不能超过%d"%(intro_len_limit)
+		return None
 
 	@get_user_info(web)
-	@check_user_login(web,"/")
+	@check_user_login(web,"/login")
 	def GET(self):
 		_t = {}
 		_t["settings"] 		= AccoutSettingList 
 		_t["select_setting"]	= 0 
 		_t["member"]		= self.member
+		_t["setting_file"]	= "account_setting_baseinfo.html"
 		return template_desktop.get_template('account_setting.html').render(**_t)
+
+	@get_user_info(web)
+	@check_user_login(web,"/login")
+	def POST(self):
+		_t = {}
+		_t["settings"] 		= AccoutSettingList 
+		_t["select_setting"]	= 0 
+		_t["error"]		= self.check_input(self.member)
+		_t["member"]		= self.member
+		_t["setting_file"]	= "account_setting_baseinfo.html"
+
+		
+		if not _t["error"]:
+			self.member.save()
+			raise web.seeother(AccountSetting.URL_PREFIX)
+		else:
+			return template_desktop.get_template('account_setting.html').render(**_t)
+
+
+class AccountSettingAvatar(SetAvatar):
+	def __init__(self):
+		SetAvatar.__init__(self)
+
+	@get_user_info(web)
+	@check_user_login(web,"/login")
+
+	def GET(self):
+		_t = {}
+		_t["settings"] 		= AccoutSettingList 
+		_t["select_setting"]	= 2 
+		_t["member"]		= self.member
+		_t["setting_file"]	= "account_setting_avatar.html"
+		return template_desktop.get_template('account_setting.html').render(**_t)
+
+
+
