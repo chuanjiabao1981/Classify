@@ -64,8 +64,8 @@ class SetAvatar:
 		return template_desktop.get_template('backend.html').render(**t)
 	@get_user_info(web)
 	def POST(self):
-		print web.input()
-		print self.member
+		#print web.input()
+		#print self.member
 		r = {}
 		r["status"] = False
 		if self.member == None or self.member.status == MemberStatus.block:
@@ -80,7 +80,7 @@ class SetAvatar:
 		
 		r["status"] =True
 		r["err"]    ="头像保存成功"
-		print self.member
+		update_member_avatar(self.member,str(self.member._id))
 		return 	json.dumps(r)
 
 class SetAvatarBackend(SetAvatar):
@@ -154,7 +154,6 @@ class AccountSettingAvatar(SetAvatar):
 
 	@get_user_info(web)
 	@check_user_login(web,"/login")
-
 	def GET(self):
 		_t = {}
 		_t["settings"] 		= AccoutSettingList 

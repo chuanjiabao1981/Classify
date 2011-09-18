@@ -38,7 +38,9 @@ def verify_login(web_info):
 	tt	= json.dumps(aa)
 	dd	= encrypt_data(tt)
 	return (True,dd)
-
+def update_member_avatar(member,avatar):
+	member.avatar = avatar;
+	member.save()
 def update_member_info(member_info,web_info):
 	t		=	{}
 	t['name']	=	web_info.name.strip(' ').strip('\n')

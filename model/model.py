@@ -92,7 +92,10 @@ class Member(Document):
 					 "status"		:MemberStatus.active,
 					 "register_time"	:datetime.datetime.utcnow(),
 					 "readme"		:"",
-					 "avatar"		:"avatar"
+					 "avatar"		:"avatar",
+					 "sign"			:"",
+					 "intro"		:""
+
 					  }
 	indexes			=	[
 						{
