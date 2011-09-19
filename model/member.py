@@ -41,6 +41,10 @@ def verify_login(web_info):
 def update_member_avatar(member,avatar):
 	member.avatar = avatar;
 	member.save()
+def update_member_password(member,password):
+	member.password =  hashlib.md5(password.strip(' ').strip('\n')).hexdigest().upper()
+	member.save()
+
 def update_member_info(member_info,web_info):
 	t		=	{}
 	t['name']	=	web_info.name.strip(' ').strip('\n')

@@ -142,12 +142,30 @@ class AccountSetting:
 
 		
 		if not _t["error"]:
+			##TODO:: 用接口 不要直接调用实际存储api
 			self.member.save()
 			raise web.seeother(AccountSetting.URL_PREFIX)
 		else:
 			return template_desktop.get_template('account_setting.html').render(**_t)
 
 class AccountSettingSecurity:
+	URL_PREFIX='/account/setting/security'
+
+	def check_input(self,member):
+		pass_len_limit		= 128 
+		for i in ("pass1","pass2"):
+			if not i in web.input():
+				#TODO::log somethin
+				return "参数错误"
+		if web.input().pass1 != web.input().pass2:
+			return "两次密码输入不同"
+		if len(web.input().pass1) > pass_len_limit or len(web.input().pass2) > pass_len_limit:
+			return "密码长度不能超过%d"%(pass_len_limit)
+		if len(web.input().pass1) == 0:
+			return "密码不能为空"
+		#TODO::密码中不能包含空白、tab、回车
+		return None
+	
 	@get_user_info(web)
 	@check_user_login(web,"/login")
 	def GET(self):
@@ -157,6 +175,25 @@ class AccountSettingSecurity:
 		_t["member"]		= self.member
 		_t["setting_file"]	= "account_setting_security.html"
 		return template_desktop.get_template('account_setting.html').render(**_t)
+
+	@get_user_info(web)
+	@check_user_login(web,"/login")
+	def POST(self):
+		_t = {}
+		_t["settings"] 		= AccoutSettingList 
+		_t["select_setting"]	= 1 
+		_t["error"]		= self.check_input(self.member)
+		_t["member"]		= self.member
+		_t["setting_file"]	= "account_setting_security.html"
+
+		
+		if not _t["error"]:
+			update_member_password(self.member,web.input().pass1)
+			##TODO::重新设置cookie
+			raise web.seeother(AccountSetting.URL_PREFIX)
+		else:
+			return template_desktop.get_template('account_setting.html').render(**_t)
+
 
 
 		
