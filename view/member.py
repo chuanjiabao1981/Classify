@@ -147,7 +147,19 @@ class AccountSetting:
 		else:
 			return template_desktop.get_template('account_setting.html').render(**_t)
 
+class AccountSettingSecurity:
+	@get_user_info(web)
+	@check_user_login(web,"/login")
+	def GET(self):
+		_t = {}
+		_t["settings"] 		= AccoutSettingList 
+		_t["select_setting"]	= 1
+		_t["member"]		= self.member
+		_t["setting_file"]	= "account_setting_security.html"
+		return template_desktop.get_template('account_setting.html').render(**_t)
 
+
+		
 class AccountSettingAvatar(SetAvatar):
 	def __init__(self):
 		SetAvatar.__init__(self)

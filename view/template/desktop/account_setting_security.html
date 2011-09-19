@@ -1,0 +1,60 @@
+<%!
+	from config import template,site
+%>
+
+<div class="box">
+	<div class="cell">
+		<span class="fade"><a href="/">${site.title}</a> <span class="chevron">&nbsp;›&nbsp;</span> 安全设置 </span>
+	</div>
+	<div class="inner">
+		<form action="/account/setting/security" method="post">
+                    <table cellpadding="5" cellspacing="0" border="0">
+        			    <tbody>
+				    %if error:
+				    <tr>
+        			        <td width="120" align="right">
+        			        </td>
+        			        <td width="200" align="left">
+					    <span style="color:red">${error}</span>
+        			        </td>
+        			    </tr>
+				    %endif
+
+				   <tr>
+        			        <td width="120" align="right">
+        			            用户名
+        			        </td>
+        			        <td width="200" align="left">
+					    ${member.name}
+        			        </td>
+        			    </tr>
+
+        			    <tr>
+        			        <td align="right">
+        			            新密码
+        			        </td>
+        			        <td width="200" align="left">
+        			            <input type="password" class="sl" name="pass1" value="">
+        			        </td>
+        			    </tr>
+        			    <tr>
+        			        <td align="right">
+        			            新密码
+        			        </td>
+        			        <td width="200" align="left">
+        			            <input type="password" class="sl" name="pass2" value="">
+        			        </td>
+        			    </tr>
+                        	    <tr>
+        			        <td align="right">
+        			        </td>
+        			        <td width="200" align="left">
+        			            <input type="submit" value="保存设置" class="super normal button">
+        			        </td>
+        			    </tr>
+        			</tbody>
+			</table>
+                    </form>
+	</div>
+</div>
+

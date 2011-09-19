@@ -22,6 +22,7 @@ urls = (
     '/uploadimage','UploadImage',
     '/login','Login',
     '/account/setting','AccountSetting',
+    '/account/setting/security','AccountSettingSecurity',
     '/account/setting/avatar','AccountSettingAvatar',
     '/backend/classify/add','ClassifyAdd',
     '/backend/classify/edit/([^/]+)','ClassifyEdit',

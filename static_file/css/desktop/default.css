@@ -516,9 +516,10 @@ ul.tabs {
 	margin: 0;
 	position: relative;
 	height: 26px;
-	padding: 6px 10px;
-	background: url('https://a248.e.akamai.net/assets.github.com/images/modules/pagehead/tab_background.gif?v2') 0 0 repeat-x;
-	border: 1px solid #DDD;
+	padding: 0px;
+	//padding: 6px 10px;
+	//background: url('https://a248.e.akamai.net/assets.github.com/images/modules/pagehead/tab_background.gif?v2') 0 0 repeat-x;
+	//border: 1px solid #DDD;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
