@@ -30,7 +30,6 @@ class VideoTopicShow:
 		_t["video"]		= True
 		_t["url_prefix"]	= VideoTopicShow.URL_PREFIX
 		try: 
-			hit_video_topic_by_topic_id(topic_id)
 			return template_desktop.get_template('topic.html').render(**_t)
 		except:
 			return exceptions.html_error_template().render()
@@ -52,7 +51,7 @@ class VideoTopicShow:
 			_t["url_prefix"]	= VideoTopicShow.URL_PREFIX
 			return template_desktop.get_template('topic.html').render(**_t)
 		else:
-			add_new_reply_to_topic(self.topic,self.member,web.input())
+			add_new_reply_to_video(self.topic,self.member,web.input())
 			return web.seeother('%s%s'%(VideoTopicShow.URL_PREFIX,topic_id))
 
 class NewVideoTopic:

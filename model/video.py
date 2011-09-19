@@ -147,9 +147,9 @@ def get_latest_video_topic(collection_name,node,skip,limit):
 	return topic_list
 
 def add_new_reply_to_video(video,member,webinput):
-	reply = add_a_new_reply(topic,member,webinput)
+	reply = add_a_new_reply(video,member,webinput)
 	connection[config.classify_database][config.collection_name.Video].update(
-		{'_id':topic._id}, 
+		{'_id':video._id}, 
 		{ '$inc':{"reply_num":1} ,
 		  '$set':{"last_reply_by":member.name,"last_reply_time":reply.create_time}
 		} 

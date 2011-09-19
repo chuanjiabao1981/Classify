@@ -513,6 +513,7 @@ a.black:hover {
 }
 
 ul.tabs {
+	margin: 0;
 	position: relative;
 	height: 26px;
 	padding: 6px 10px;
